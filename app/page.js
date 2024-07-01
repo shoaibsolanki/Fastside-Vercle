@@ -7,18 +7,16 @@ import PopularProducts from "./components/PopularProducts";
 import HeroSection from "./components/HeroSection";
 import WhyUs from "./components/MicroComponenets/WhyUs";
 import Testomonials from "./components/Testomonials";
+import Footer from "./components/Footer";
 
 export default function Home() {
   return (
-    <main className=" min-h-screen ">
-      <Navbar />
-      <div className="  max-w-[1800px] mx-auto px-4 my-2">
-        <HeroSection />
-        <PopularProducts />
-        <SaleComponenet />
-        <WhyUs />
-        {/* <Testomonials /> */}
-      </div>
+    <main className=" min-h-screen max-w-[1800px] mx-auto px-4 my-2">
+      <HeroSection />
+      <PopularProducts />
+      <SaleComponenet />
+      <WhyUs />
+      {/* <Testomonials /> */}
     </main>
   );
 }
