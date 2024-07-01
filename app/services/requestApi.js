@@ -5,6 +5,9 @@ class DataService {
   Login(data) {
     return https.post("auth/user-login", data);
   }
+  Signup(data){
+    return https.post(`customer/create`, data);
+  }
 
   
 }

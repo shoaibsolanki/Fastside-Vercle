@@ -29,18 +29,18 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  useEffect(() => {
-    const fetchAndSetProducts = async () => {
-      try {
-        const productsData = await fetchProductApi();
-        setProducts(productsData.data);
-      } catch (error) {
-        console.error("Failed to fetch products", error);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchAndSetProducts = async () => {
+  //     try {
+  //       const productsData = await fetchProductApi();
+  //       setProducts(productsData.data);
+  //     } catch (error) {
+  //       console.error("Failed to fetch products", error);
+  //     }
+  //   };
 
-    fetchAndSetProducts();
-  }, []);
+  //   fetchAndSetProducts();
+  // }, []);
   // console.log(products);
 
   useEffect(() => {

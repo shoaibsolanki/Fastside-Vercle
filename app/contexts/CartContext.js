@@ -28,12 +28,12 @@ export const CartProvider = ({ children }) => {
     }
   }, [id]);
 
-  useEffect(() => {
-    if (id) {
-      getCartItems(id);
-      migrateLocalStorageCartToServerCart(id);
-    }
-  }, [id]);
+  // useEffect(() => {
+  //   if (id) {
+  //     getCartItems(id);
+  //     migrateLocalStorageCartToServerCart(id);
+  //   }
+  // }, [id]);
 
   const getCartItems = async (userId) => {
     try {
