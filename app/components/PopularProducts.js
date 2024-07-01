@@ -3,15 +3,16 @@ import React, { useEffect, useState } from "react";
 
 import ProductComponent from "./ProductComponent";
 import { BASEURL } from "../services/http-Pos";
-
-const PopularProducts = () => {
+import axios from "axios";
+import DataService from "../services/requestApi";
+const PopularProducts = ({data,setData}) => {
   const [currentPage, setCurrentPage] = useState("1");
-  const [data, setData] = useState([]);
+
 
   const GetAllBillingItem = async () => {
     try {
       const response = await axios.get(
-        `${BASEURL.ENDPOINT_URL}search/recommended-item/80001/8/1`
+        `${BASEURL.ENDPOINT_URL}search/recommended-item/10001/1/1`
       );
       setData(response.data.data); // Update the seeds state with the fetched data
     } catch (error) {
@@ -24,6 +25,42 @@ const PopularProducts = () => {
   }, [currentPage]);
 
 
+  const CatgorybyData= async (query)=>{
+    try {
+      const response = await DataService.GetDataByCatorya("1", "10001", query, currentPage)
+      console.log(response)
+      setData(response.data.data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const [allcategory, setAllCategory] = useState([]);
+
+  const GetAllCategory = async () => {
+    try {
+      const response = await DataService.GetAllCateogary("1", "10001");
+      console.log("RES CATEGORY", response);
+
+      if (response && response.data && response.data.data) {
+        setAllCategory(response.data.data);
+        if (response.data.data.length > 0) {
+          CatgorybyData(response.data.data[0].category_name);
+        }
+      } else {
+        console.error("Unexpected response structure:", response);
+      }
+    } catch (error) {
+      console.error("Error fetching categories:", error);
+    }
+  };
+
+
+  useEffect(() => {
+    GetAllCategory();
+  }, []); 
+
+
 
   return (
     <div id="popular-products" className="my-2 mx-auto max-w-[1600px]">
@@ -32,18 +69,15 @@ const PopularProducts = () => {
           Popular Products
         </h2>
         <ul className="flex flex-wrap justify-between gap-4">
-          <li className="px-8 py-3 border-[1px] border-primary rounded-3xl text-primary text-lg font-medium capitalize hover:bg-light">
-            Lanyard
-          </li>
-          <li className="px-8 py-3 border-[1px] border-gray-300 rounded-3xl text-primary text-lg font-medium capitalize hover:bg-light">
-            Badge reels
-          </li>
-          <li className="px-8 py-3 border-[1px] border-gray-300 rounded-3xl text-primary text-lg font-medium capitalize hover:bg-light">
-            Badge holders
-          </li>
-          <li className="px-8 py-3 border-[1px] border-gray-300 rounded-3xl text-primary text-lg font-medium capitalize hover:bg-light">
-            Lanyard
-          </li>
+       {allcategory.map((item, index) => ( <li
+               onClick={() => {
+                // setActiveButton(index);
+                CatgorybyData(item.category_name)
+              }}
+       className="px-8 py-3 border-[1px] cursor-pointer border-primary rounded-3xl text-primary text-lg font-medium capitalize hover:bg-light">
+        {item.category_name}
+          </li>   ))}
+        
         </ul>
       </div>
       <div className="w-full mx-auto my-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">

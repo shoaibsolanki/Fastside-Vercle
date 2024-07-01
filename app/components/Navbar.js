@@ -7,12 +7,24 @@ import {
   PlaceOutlined,
   ShoppingCartRounded,
 } from "@mui/icons-material";
-import React from "react";
+import React, { useState } from "react";
 import Searchbar from "./Searchbar";
 import Link from "next/link";
+import SeachItemMOdal from "./SeachItemMOdal";
 
-const Navbar = () => {
+const Navbar = ({search,setSearch,data}) => {
+
+  const [modal, setModal] = useState(false);
+
+  const toggleModal = () => setModal(!modal);
+
+  const handleSearch = () => {
+    if (search.trim() !== "") {
+      toggleModal();
+    }
+  };
   return (
+    <>
     <nav id="navbar" className="w-full">
       {/* upper navbar */}
       <div className="bg-lightgray text-dark p-8 flex justify-between items-center ">
@@ -36,7 +48,7 @@ const Navbar = () => {
         <div className="flex justify-between items-center gap-8">
           <h2 className="text-[36px] font-bold text-white">FastSide</h2>
           <div id="search-bar">
-            <Searchbar />
+            <Searchbar setSearch={setSearch} search={search}  data={data} toggleModal={toggleModal} modal={modal} handleSearch={handleSearch}/>
           </div>
         </div>
         <div className="flex gap-4 items-center">
@@ -81,6 +93,10 @@ const Navbar = () => {
         </ul>
       </div>
     </nav>
+    
+    <SeachItemMOdal data={data} toggleModal={toggleModal} modal={modal} handleSearch={handleSearch} />
+    
+    </>
   );
 };
 
