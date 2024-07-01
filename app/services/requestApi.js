@@ -5,7 +5,12 @@ class DataService {
   Login(data) {
     return https.post("auth/user-login", data);
   }
-
+  GetAllCateogary(saasId,storeId,){
+    return https.get(`category/get-list/${saasId}/${storeId}`)
+  }
+  GetDataByCatorya(saasId,storeId,category_name, currentPage){
+    return https.get(`item/get-category-list/${saasId}/${storeId}/${category_name}/${currentPage}`)
+  }
   
 }
 export default new DataService();
