@@ -5,24 +5,26 @@ import ProductComponent from "./ProductComponent";
 import { BASEURL } from "../services/http-Pos";
 import axios from "axios";
 import DataService from "../services/requestApi";
+import { useAuth } from "../contexts/AuthConext";
 const PopularProducts = ({data,setData}) => {
-  const [currentPage, setCurrentPage] = useState("1");
+  const { products } = useAuth()
+  // const [currentPage, setCurrentPage] = useState("1");
 
 
-  const GetAllBillingItem = async () => {
-    try {
-      const response = await axios.get(
-        `${BASEURL.ENDPOINT_URL}search/recommended-item/10001/1/1`
-      );
-      setData(response.data.data); // Update the seeds state with the fetched data
-    } catch (error) {
-      console.error("Error fetching billing items:", error);
-    }
-  };
+  // const GetAllBillingItem = async () => {
+  //   try {
+  //     const response = await axios.get(
+  //       `${BASEURL.ENDPOINT_URL}search/recommended-item/10001/1/1`
+  //     );
+  //     setData(response.data.data); // Update the seeds state with the fetched data
+  //   } catch (error) {
+  //     console.error("Error fetching billing items:", error);
+  //   }
+  // };
 
-  useEffect(() => {
-    GetAllBillingItem();
-  }, [currentPage]);
+  // useEffect(() => {
+  //   GetAllBillingItem();
+  // }, [currentPage]);
 
 
   const CatgorybyData= async (query)=>{
@@ -81,7 +83,7 @@ const PopularProducts = ({data,setData}) => {
         </ul>
       </div>
       <div className="w-full mx-auto my-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-        <ProductComponent data={data} />
+        <ProductComponent data={products} />
         {/* <ProductComponent />
         <ProductComponent />
         <ProductComponent />

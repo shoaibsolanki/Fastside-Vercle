@@ -21,7 +21,7 @@ export const AuthProvider = ({ children }) => {
 
   const fetchProductApi = async () => {
     try {
-      const response = await DataService.FetchProductApi();
+      const response = await DataService.FetchProductApi("10001","1","1");
       return response.data;
     } catch (error) {
       console.error("product fetch", error);
@@ -29,19 +29,19 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  // useEffect(() => {
-  //   const fetchAndSetProducts = async () => {
-  //     try {
-  //       const productsData = await fetchProductApi();
-  //       setProducts(productsData.data);
-  //     } catch (error) {
-  //       console.error("Failed to fetch products", error);
-  //     }
-  //   };
+  const fetchAndSetProducts = async () => {
+    try {
+      const productsData = await fetchProductApi();
+      setProducts(productsData.data);
+    } catch (error) {
+      console.error("Failed to fetch products", error);
+    }
+  };
+  useEffect(() => {
 
-  //   fetchAndSetProducts();
-  // }, []);
-  // console.log(products);
+    fetchAndSetProducts();
+  }, []);
+  console.log(products);
 
   useEffect(() => {
     const storedAuthData = JSON.parse(localStorage.getItem("authData"));
@@ -72,6 +72,8 @@ export const AuthProvider = ({ children }) => {
         login,
         logout,
         products,
+        setProducts,
+        fetchAndSetProducts,
       }}
     >
       {children}
