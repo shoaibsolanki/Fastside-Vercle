@@ -1,3 +1,4 @@
+"use client";
 import {
   ArrowDownward,
   FavoriteBorderRounded,
@@ -10,18 +11,8 @@ import {
 import React, { useState } from "react";
 import Searchbar from "./Searchbar";
 import Link from "next/link";
-// import SeachItemMOdal from "./SeachItemMOdal";
 
 const Navbar = ({ search, setSearch, data }) => {
-  // const [modal, setModal] = useState(false);
-
-  // const toggleModal = () => setModal(!modal);
-
-  // const handleSearch = () => {
-  //   if (search.trim() !== "") {
-  //     toggleModal();
-  //   }
-  // };
   return (
     <>
       <nav id="navbar" className="w-full">
@@ -49,14 +40,7 @@ const Navbar = ({ search, setSearch, data }) => {
               <Link href="/">FastSide</Link>
             </h2>
             <div id="search-bar">
-              <Searchbar
-                setSearch={setSearch}
-                search={search}
-                data={data}
-                toggleModal={toggleModal}
-                modal={modal}
-                handleSearch={handleSearch}
-              />
+              <Searchbar />
             </div>
           </div>
           <div className="flex gap-4 items-center">
@@ -101,8 +85,6 @@ const Navbar = ({ search, setSearch, data }) => {
           </ul>
         </div>
       </nav>
-
-      {/* <SeachItemMOdal data={data} toggleModal={toggleModal} modal={modal} handleSearch={handleSearch} /> */}
     </>
   );
 };

@@ -4,11 +4,12 @@ import { BASEURL } from "../services/http-Pos";
 import { FavoriteRounded, Image } from "@mui/icons-material";
 import { Rating } from "@mui/material";
 
-function SeachItemMOdal({handleSearch,modal,toggleModal,data}) {
+function SeachItemMOdal({handleSearch,show,toggleModal,data}) {
 
   
   return (
-    <Modal show={modal} onHide={toggleModal}>
+    
+    <Modal show={show} onHide={toggleModal}>
     <Modal.Header closeButton>
       <Modal.Title>Search Results</Modal.Title>
     </Modal.Header>
@@ -48,4 +49,4 @@ function SeachItemMOdal({handleSearch,modal,toggleModal,data}) {
   )
 }
 
-export default SeachItemMOdal
+export default SeachItemMOdal;
