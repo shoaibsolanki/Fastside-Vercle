@@ -69,13 +69,14 @@ const page = () => {
           <Box display="flex" justifyContent="space-between" mt={2}>
           <button className="bg-second text-white font-medium text-md rounded-2xl p-4 w-[200px] text-center">
           Continue shopping</button>
-            <Button className='rounded-2xl' style={{background:"none", color:"#797979", borderColor:"gray"}} variant="contained" >Update cart</Button>
-            <Button className='rounded-2xl' style={{background:"none", color:"#C33131", borderColor:"red"}} variant="contained" >Clear cart</Button>
+            <button className="btn btn-outline-info rounded-3" style={{background:"none", color:"#797979", borderColor:"gray"}} variant="contained" >Update cart</button>
+            <button className="btn btn-outline-info rounded-3" style={{background:"none", color:"#C33131", borderColor:"red"}} variant="contained" >Clear cart</button>
           </Box>
         </Grid>
         <Grid item xs={12} md={4}>
-          <Box bgcolor="#E6F7FF" p={2} borderRadius={2}>
-            <Typography variant="subtitle1" fontWeight="bold">Cart total</Typography>
+            <Box p={2} className="flex justify-center" bgcolor="#E6F7FF">
+            <Typography variant="subtitle1" fontWeight="bold">Cart total</Typography></Box>
+          <Box  p={2} borderRadius={2}>
             <Box display="flex" justifyContent="space-between" my={1}>
               <Typography variant="body1">Subtotal</Typography>
               <Typography variant="body1">Rs 270</Typography>
