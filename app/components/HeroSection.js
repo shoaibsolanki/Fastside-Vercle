@@ -6,7 +6,7 @@ import { ArrowBackRounded, ArrowForwardRounded } from "@mui/icons-material";
 import CardHolder from "@/public/imgs/CardHolder.png";
 import BadgeReels2 from "@/public/imgs/BadgeReels2.png";
 import Lanyard from "@/public/imgs/Lanyard.png";
-const HeroSection = () => {
+const HeroSection = ({data}) => {
   return (
     <>
       <div className="flex items-center justify-center">
@@ -34,26 +34,9 @@ const HeroSection = () => {
         </button>
         <div className="carousel rounded-box">
           <div className="carousel-item">
-            <SimpleProductComponent img={BadgeReels2} title={"Badge Reels"} />
+            <SimpleProductComponent data={data} img={BadgeReels2} title={"Badge Reels"} />
           </div>
-          <div className="carousel-item">
-            <SimpleProductComponent img={BadgeReels2} title={"Badge Reels"} />
-          </div>
-          <div className="carousel-item">
-            <SimpleProductComponent img={BadgeReels2} title={"Badge Reels"} />
-          </div>
-          <div className="carousel-item">
-            <SimpleProductComponent img={BadgeReels2} title={"Badge Reels"} />
-          </div>
-          <div className="carousel-item">
-            <SimpleProductComponent img={BadgeReels2} title={"Badge Reels"} />
-          </div>
-          <div className="carousel-item">
-            <SimpleProductComponent img={BadgeReels2} title={"Badge Reels"} />
-          </div>
-          <div className="carousel-item">
-            <SimpleProductComponent img={BadgeReels2} title={"Badge Reels"} />
-          </div>
+         
         </div>
         {/* <div id="sample-components" className="flex justify-center ">
           <SimpleProductComponent img={BadgeReels2} title={"Badge Reels"} />
