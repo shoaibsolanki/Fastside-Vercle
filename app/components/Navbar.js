@@ -47,7 +47,9 @@ const Navbar = ({search,setSearch,data}) => {
         className="w-full bg-primary p-8 flex justify-between items-center"
       >
         <div className="flex justify-between items-center gap-8">
-          <h2 className="text-[36px] font-bold text-white">FastSide</h2>
+          <h2 className="text-[36px] font-bold text-white">
+            <Link href="/">FastSide</Link>
+          </h2>
           <div id="search-bar">
             <Searchbar setSearch={setSearch} search={search}  data={data} toggleModal={toggleModal} modal={modal} handleSearch={handleSearch}/>
           </div>
