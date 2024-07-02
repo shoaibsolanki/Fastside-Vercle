@@ -49,4 +49,4 @@ function SeachItemMOdal({handleSearch,show,toggleModal,data}) {
   )
 }
 
-export default SeachItemMOdal
+export default SeachItemMOdal;

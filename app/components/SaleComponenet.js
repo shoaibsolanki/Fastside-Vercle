@@ -4,6 +4,8 @@ import BadgeReels from "../../public/imgs/BadgeReels2.png";
 import ImageSwitchProduct from "./ImageSwitchProduct";
 import ProductComponent from "./ProductComponent";
 const SaleComponenet = () => {
+
+  
   return (
     <>
       <div className="bg-black  my-4 rounded-2xl p-4 flex justify-around items-center max-w-full mx-auto">
