@@ -11,9 +11,10 @@ import {
 import React, { useState } from "react";
 import Searchbar from "./Searchbar";
 import Link from "next/link";
+import { useCart } from "../contexts/CartContext";
 
 const Navbar = ({search,setSearch,data}) => {
-
+  const { cart  } = useCart();
   return (
     <>
     <nav id="navbar" className="w-full">
@@ -56,13 +57,14 @@ const Navbar = ({search,setSearch,data}) => {
             </span>
             <p className="hidden xl:block text-lg">Wishlist</p>
           </h2>
+          <Link href="/Cart">
           <h2 className="flex gap-2 items-center text-white">
             <ShoppingCartRounded className="" fontSize="large" />
             <span className="bg-second rounded-full h-6 w-6 text-center">
-              0
+              {cart.length}
             </span>
             <p className="hidden xl:block text-lg">Cart</p>
-          </h2>
+          </h2> </Link>
         </div>
       </div>
       {/* lower navbar  */}

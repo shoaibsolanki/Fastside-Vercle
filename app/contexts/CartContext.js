@@ -2,7 +2,7 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { useAuth } from "./AuthConext";
 import DataService from "../services/requestApi";
-
+import Swal from 'sweetalert2';
 const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
@@ -39,6 +39,9 @@ export const CartProvider = ({ children }) => {
     try {
       const response = await DataService.GetCartItems(userId);
       const fetchedCart = response?.data?.data?.products;
+
+      // Save cart items to local storage
+      localStorage.setItem('cart', JSON.stringify(fetchedCart));
       setCart(fetchedCart);
       subTotal = fetchedCart.reduce((total, product) => {
         return total + product.price;
@@ -77,7 +80,7 @@ export const CartProvider = ({ children }) => {
   const AddProductInTheCart = async (product, userId = id) => {
     try {
       const response = await DataService.AddItemsToCart(product, userId);
-
+   
       getCartItems(userId);
     } catch (error) {
       console.error(error);
@@ -106,8 +109,14 @@ export const CartProvider = ({ children }) => {
   const isInWishlist = (productId) => {
     return wishlist.some((item) => item.item_id === productId);
   };
-
   const addToCart = (product) => {
+    console.log("itemcart",cart)
+    Swal.fire({
+      title: 'Item Added to Cart',
+      text: 'The item has been successfully added to your cart!',
+      icon: 'success',
+      confirmButtonText: 'OK'
+    });
     const item = product;
 
     if (id) {
