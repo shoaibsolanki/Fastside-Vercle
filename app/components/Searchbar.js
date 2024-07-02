@@ -1,5 +1,6 @@
-import React from "react";
-import { Image } from "@mui/icons-material";
+"use client"
+import React, { useState } from "react";
+// import { Modal, Button } from "react-bootstrap";
 import { BASEURL } from "../services/http-Pos";
 import { Rating } from "@mui/material";
 

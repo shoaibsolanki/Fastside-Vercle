@@ -45,7 +45,7 @@ const PopularProducts = ({data,setData}) => {
       if (response && response.data && response.data.data) {
         setAllCategory(response.data.data);
         if (response.data.data.length > 0) {
-          CatgorybyData(response.data.data[0].category_name);
+          // CatgorybyData(response.data.data[0].category_name);
         }
       } else {
         console.error("Unexpected response structure:", response);

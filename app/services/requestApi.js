@@ -5,7 +5,11 @@ class DataService {
   Login(data) {
     return https.post("auth/user-login", data);
   }
-  GetAllCateogary(saasId,storeId,){
+  Signup(data){
+    return https.post(`customer/create`, data);
+  }
+
+  GetAllCateogary(saasId,storeId){
     return https.get(`category/get-list/${saasId}/${storeId}`)
   }
   GetDataByCatorya(saasId,storeId,category_name, currentPage){
