@@ -9,13 +9,9 @@ import PopularProducts from "./components/PopularProducts";
 import HeroSection from "./components/HeroSection";
 import WhyUs from "./components/MicroComponenets/WhyUs";
 import Testomonials from "./components/Testomonials";
-<<<<<<< HEAD
-import Footer from "./components/Footer";
-=======
 import { useEffect, useState } from "react";
 import { BASEURL } from "./services/http-Pos";
 import axios from "axios";
->>>>>>> 1e3f8c13da9ce1eb0833fdfc833ca2a3b08401eb
 
 export default function Home() {
   const [search, setSearch] = useState("");
@@ -44,14 +40,6 @@ export default function Home() {
   }, [search]);
 
   return (
-<<<<<<< HEAD
-    <main className=" min-h-screen max-w-[1800px] mx-auto px-4 my-2">
-      <HeroSection />
-      <PopularProducts />
-      <SaleComponenet />
-      <WhyUs />
-      {/* <Testomonials /> */}
-=======
     <main className=" min-h-screen ">
       <Navbar setSearch={setSearch} search={search} data={data} />
       <div className="  max-w-[1800px] mx-auto px-4 my-2">
@@ -61,7 +49,6 @@ export default function Home() {
         <WhyUs />
         {/* <Testomonials /> */}
       </div>
->>>>>>> 1e3f8c13da9ce1eb0833fdfc833ca2a3b08401eb
     </main>
   );
 }
