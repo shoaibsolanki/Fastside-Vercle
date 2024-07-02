@@ -4,8 +4,11 @@ import keychain from "../../public/imgs/keychain.png";
 import Rating from "./Rating";
 import { FavoriteRounded } from "@mui/icons-material";
 import { BASEURL } from "../services/http-Pos";
+import { useCart } from "../contexts/CartContext";
 
 const ProductComponent = ({ flex_direction, data }) => {
+  // const { addTocart() } = useCart();
+  console.log("Data in product component", data);
   return (
     <>
       {data?.map((item, index) => (
@@ -18,14 +21,20 @@ const ProductComponent = ({ flex_direction, data }) => {
           } max-w-[400px]`}
         >
           <div className="relative w-full h-[200px]">
-            <Image   src={`${BASEURL.ENDPOINT_URL}item/get-image/${item && item.item_id}`}
-          alt={item.name}layout="fill" objectFit="cover"  />
+            <Image
+              src={`${BASEURL.ENDPOINT_URL}item/get-image/${
+                item && item.item_id
+              }`}
+              alt={item.name}
+              layout="fill"
+              objectFit="cover"
+            />
             <button className="bg-light p-2 rounded-full absolute top-2 right-2 text-red-600">
               <FavoriteRounded fontSize="medium" />
             </button>
           </div>
           <div className={`${flex_direction === "row" ? "ml-4" : "mt-4"}`}>
-            <h2 className="product-title text-primary">   {item.item_name}</h2>
+            <h2 className="product-title text-primary"> {item.item_name}</h2>
             <p className="priceTitle"> ₹{item.price}</p>
             <Rating size={"sm"} />
           </div>

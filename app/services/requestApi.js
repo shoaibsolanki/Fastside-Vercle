@@ -5,20 +5,24 @@ class DataService {
   Login(data) {
     return https.post("auth/user-login", data);
   }
-  Signup(data){
+  Signup(data) {
     return https.post(`customer/create`, data);
   }
 
-  GetAllCateogary(saasId,storeId){
-    return https.get(`category/get-list/${saasId}/${storeId}`)
+  GetAllCateogary(saasId, storeId) {
+    return https.get(`category/get-list/${saasId}/${storeId}`);
   }
-  GetDataByCatorya(saasId,storeId,category_name, currentPage){
-    return https.get(`item/get-category-list/${saasId}/${storeId}/${category_name}/${currentPage}`)
+  GetDataByCatorya(saasId, storeId, category_name, currentPage) {
+    return https.get(
+      `item/get-category-list/${saasId}/${storeId}/${category_name}/${currentPage}`
+    );
   }
 
-  FetchProductApi(storeId,saasId,page) {
+  FetchProductApi(storeId, saasId, page) {
     return https.get(`/search/recommended-item/${storeId}/${saasId}/${page}`);
   }
-  
+  FetchSingleProduct(id) {
+    return https.get(`/item/view-item-detil/${id}`);
+  }
 }
 export default new DataService();
