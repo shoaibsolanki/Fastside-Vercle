@@ -15,6 +15,10 @@ class DataService {
   GetDataByCatorya(saasId,storeId,category_name, currentPage){
     return https.get(`item/get-category-list/${saasId}/${storeId}/${category_name}/${currentPage}`)
   }
+
+  FetchProductApi(storeId,saasId,page) {
+    return https.get(`/search/recommended-item/${storeId}/${saasId}/${page}`);
+  }
   
 }
 export default new DataService();
