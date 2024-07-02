@@ -23,7 +23,7 @@ const SaleComponenet = () => {
           <p className="text-lg text-white font-bold">
             Retractable Badge Holder
           </p>
-          <button className="bg-second text-white font-medium text-md rounded-2xl p-4 w-[130px] text-center">
+          <button className="btn-pri">
             Shop Now
           </button>
         </div>

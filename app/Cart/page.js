@@ -69,8 +69,8 @@ const page = () => {
           <Box display="flex" justifyContent="space-between" mt={2}>
           <button className="bg-second text-white font-medium text-md rounded-2xl p-4 w-[200px] text-center">
           Continue shopping</button>
-            <button className="btn btn-outline-info rounded-3" style={{background:"none", color:"#797979", borderColor:"gray"}} variant="contained" >Update cart</button>
-            <button className="btn btn-outline-info rounded-3" style={{background:"none", color:"#C33131", borderColor:"red"}} variant="contained" >Clear cart</button>
+            <button className="btn  btn-outline-info rounded-2xl w-[150px]" style={{background:"none", color:"#797979", borderColor:"gray"}} variant="contained" >Update cart</button>
+            <button className="btn btn-outline-info rounded-2xl w-[150px]" style={{background:"none", color:"#C33131", borderColor:"red"}} variant="contained" >Clear cart</button>
           </Box>
         </Grid>
         <Grid item xs={12} md={4}>
