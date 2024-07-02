@@ -1,5 +1,6 @@
+"use client"
 import React, { useState } from "react";
-import { Modal, Button } from "react-bootstrap";
+// import { Modal, Button } from "react-bootstrap";
 import { BASEURL } from "../services/http-Pos";
 import { FavoriteRounded, Image } from "@mui/icons-material";
 import { Rating } from "@mui/material";

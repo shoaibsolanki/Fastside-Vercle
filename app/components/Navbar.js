@@ -1,3 +1,4 @@
+"use client"
 import {
   ArrowDownward,
   FavoriteBorderRounded,
@@ -10,7 +11,7 @@ import {
 import React, { useState } from "react";
 import Searchbar from "./Searchbar";
 import Link from "next/link";
-import SeachItemMOdal from "./SeachItemMOdal";
+// import SeachItemMOdal from "./SeachItemMOdal";
 
 const Navbar = ({search,setSearch,data}) => {
 
@@ -94,7 +95,7 @@ const Navbar = ({search,setSearch,data}) => {
       </div>
     </nav>
     
-    <SeachItemMOdal data={data} toggleModal={toggleModal} modal={modal} handleSearch={handleSearch} />
+    {/* <SeachItemMOdal data={data} toggleModal={toggleModal} modal={modal} handleSearch={handleSearch} /> */}
     
     </>
   );
