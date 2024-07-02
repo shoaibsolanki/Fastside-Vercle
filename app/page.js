@@ -12,16 +12,16 @@ import Testomonials from "./components/Testomonials";
 import { useEffect, useState } from "react";
 import { BASEURL } from "./services/http-Pos";
 import axios from "axios";
-
+import { useAuth } from "./contexts/AuthConext";
 export default function Home() {
- 
+  const { products } = useAuth()
 
   return (
     <main className=" min-h-screen ">
       {/* <Navbar setSearch={setSearch} search={search} data={data} /> */}
       <div className="  max-w-[1800px] mx-auto px-4 my-2">
-        <HeroSection data={data}  />
-        <PopularProducts  setData={setData} data={data}/>
+        <HeroSection data={products}  />
+        <PopularProducts />
         <SaleComponenet />
         <WhyUs />
         {/* <Testomonials /> */}
