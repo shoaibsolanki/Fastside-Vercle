@@ -16,21 +16,12 @@
     "@mui/styled-engine-sc": "^6.0.0-alpha.18",
     "@phosphor-icons/react": "^2.1.6",
     "axios": "^1.7.2",
-<<<<<<< HEAD
     "js-cookie": "^3.0.5",
-=======
-    "bootstrap": "^5.3.3",
->>>>>>> 12ddbef39c0d95185b30b92a99623a92d91a242b
     "next": "14.2.4",
     "phosphor-icons": "^1.4.2",
     "react": "^18",
-    "react-bootstrap": "^2.10.4",
     "react-dom": "^18",
-<<<<<<< HEAD
     "react-hook-form": "^7.52.0",
-=======
-    "reactstrap": "^9.2.2",
->>>>>>> 12ddbef39c0d95185b30b92a99623a92d91a242b
     "styled-components": "^6.1.11"
   },
   "devDependencies": {
