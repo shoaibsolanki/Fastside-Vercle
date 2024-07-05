@@ -11,8 +11,12 @@ import {
 import React, { useState } from "react";
 import Searchbar from "./Searchbar";
 import Link from "next/link";
+import { useCart } from "../contexts/CartContext";
+import { useAuth } from "../contexts/AuthConext";
 
 const Navbar = ({ search, setSearch, data }) => {
+  const { cart, totalPrice } = useCart();
+  const { logout } = useAuth();
   return (
     <>
       <nav id="navbar" className="w-full">
@@ -44,24 +48,20 @@ const Navbar = ({ search, setSearch, data }) => {
             </div>
           </div>
           <div className="flex gap-4 items-center">
-            <h2 className="flex gap-2 items-center text-white">
+            <h2 onClick={logout} className="flex gap-2 items-center text-white">
               <Person2Outlined className="" fontSize="large" />
               <p className="hidden xl:block text-xl">Profile</p>
             </h2>
-            <h2 className="flex gap-2 items-center text-white">
-              <FavoriteBorderRounded className="" fontSize="large" />{" "}
-              <span className="bg-second rounded-full h-6 w-6 text-center">
-                0
-              </span>
-              <p className="hidden xl:block text-lg">Wishlist</p>
-            </h2>
-            <h2 className="flex gap-2 items-center text-white">
-              <ShoppingCartRounded className="" fontSize="large" />
-              <span className="bg-second rounded-full h-6 w-6 text-center">
-                0
-              </span>
-              <p className="hidden xl:block text-lg">Cart</p>
-            </h2>
+
+            <Link href="/cart">
+              <h2 className="flex gap-2 items-center text-white">
+                <ShoppingCartRounded className="" fontSize="large" />
+                <span className="bg-second rounded-full h-6 w-6 text-center">
+                  {totalPrice}
+                </span>
+                <p className="hidden xl:block text-lg">Cart</p>
+              </h2>
+            </Link>
           </div>
         </div>
         {/* lower navbar  */}

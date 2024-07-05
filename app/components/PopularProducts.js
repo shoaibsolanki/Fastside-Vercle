@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useEffect, useState } from "react";
 
 import ProductComponent from "./ProductComponent";
@@ -6,10 +6,9 @@ import { BASEURL } from "../services/http-Pos";
 import axios from "axios";
 import DataService from "../services/requestApi";
 import { useAuth } from "../contexts/AuthConext";
-const PopularProducts = ({data,setData}) => {
-  const { products } = useAuth()
+const PopularProducts = ({ data, setData }) => {
+  const { products } = useAuth();
   // const [currentPage, setCurrentPage] = useState("1");
-
 
   // const GetAllBillingItem = async () => {
   //   try {
@@ -26,23 +25,26 @@ const PopularProducts = ({data,setData}) => {
   //   GetAllBillingItem();
   // }, [currentPage]);
 
-
-  const CatgorybyData= async (query)=>{
+  const CatgorybyData = async (query) => {
     try {
-      const response = await DataService.GetDataByCatorya("1", "10001", query, currentPage)
-      console.log(response)
-      setData(response.data.data)
+      const response = await DataService.GetDataByCatorya(
+        "1",
+        "10001",
+        query,
+        currentPage
+      );
+      console.log(response);
+      setData(response.data.data);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   const [allcategory, setAllCategory] = useState([]);
 
   const GetAllCategory = async () => {
     try {
       const response = await DataService.GetAllCateogary("1", "10001");
-      console.log("RES CATEGORY", response);
 
       if (response && response.data && response.data.data) {
         setAllCategory(response.data.data);
@@ -57,12 +59,9 @@ const PopularProducts = ({data,setData}) => {
     }
   };
 
-
   useEffect(() => {
     GetAllCategory();
-  }, []); 
-
-
+  }, []);
 
   return (
     <div id="popular-products" className="my-2 mx-auto max-w-[1600px]">
@@ -71,26 +70,32 @@ const PopularProducts = ({data,setData}) => {
           Popular Products
         </h2>
         <ul className="flex flex-wrap justify-between gap-4">
-       {allcategory.map((item, index) => ( <li
-               onClick={() => {
+          {/* {allcategory.map((item, index) => (
+            <li
+              key={index}
+              onClick={() => {
                 // setActiveButton(index);
-                CatgorybyData(item.category_name)
+                CatgorybyData(item.category_name);
               }}
-       className="px-8 py-3 border-[1px] cursor-pointer border-primary rounded-3xl text-primary text-lg font-medium capitalize hover:bg-light">
-        {item.category_name}
-          </li>   ))}
-        
+              className="px-8 py-3 border-[1px] cursor-pointer border-primary rounded-3xl text-primary text-lg font-medium capitalize hover:bg-light"
+            >
+              {item.category_name}
+            </li>
+          ))} */}
+
+          <li className="px-8 py-3 border-[1px] cursor-pointer border-primary rounded-3xl text-primary text-lg font-medium capitalize hover:bg-light">
+            Lanyards{" "}
+          </li>
         </ul>
       </div>
       <div className="w-full mx-auto my-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-        <ProductComponent data={products} />
-        {/* <ProductComponent />
-        <ProductComponent />
-        <ProductComponent />
-        <ProductComponent />
-        <ProductComponent />
-        <ProductComponent />
-        <ProductComponent /> */}
+        {products
+          ?.filter((item) => item.colorList.length > 0)
+          .map((item, index) => (
+            <div key={index}>
+              <ProductComponent data={item} />
+            </div>
+          ))}
       </div>
     </div>
   );

@@ -24,5 +24,14 @@ class DataService {
   FetchSingleProduct(id) {
     return https.get(`/item/view-item-detil/${id}`);
   }
+  GetCartItems(id) {
+    return https.get(`/price-check/getcart/1/10001/${id}`);
+  }
+  AddItemsToCart(item, id) {
+    return https.post(`/price-check/addproduct/1/10001/${id}`, item);
+  }
+  DeleteItemsFromCart(id, itemid) {
+    return https.delete(`/price-check/deleteproduct/1/10001/${id}/${itemid}`);
+  }
 }
 export default new DataService();

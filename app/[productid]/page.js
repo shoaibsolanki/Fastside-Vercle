@@ -10,7 +10,7 @@ import { BASEURL } from "../services/http-Pos";
 
 const Page = ({ params }) => {
   const id = params.productid;
-  console.log(id);
+  console.log("id", id);
 
   const [singleProduct, setSingleProduct] = useState(null);
   const [mainImage, setMainImage] = useState(null);

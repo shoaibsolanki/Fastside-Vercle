@@ -7,6 +7,7 @@ import Footer from "./components/Footer";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AuthProvider } from "./contexts/AuthConext";
+import { CartProvider } from "./contexts/CartContext";
 
 export default function RootLayout({ children }) {
   const pathname = usePathname();
@@ -15,15 +16,17 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         <AuthProvider>
-          {pathname !== "/login" && pathname !== "/Signup" ? (
-            <div className="bg-white ">
-              <Navbar />
-              <main className="bg-white  mx-auto">{children}</main>
-              <Footer />
-            </div>
-          ) : (
-            <main className="bg-white  mx-auto">{children}</main>
-          )}
+          <CartProvider>
+            {pathname !== "/login" && pathname !== "/Signup" ? (
+              <div className="bg-white ">
+                <Navbar />
+                <main className="bg-white  mx-auto px-28">{children}</main>
+                <Footer />
+              </div>
+            ) : (
+              <main className="bg-white  mx-auto p-11">{children}</main>
+            )}
+          </CartProvider>
         </AuthProvider>
       </body>
     </html>

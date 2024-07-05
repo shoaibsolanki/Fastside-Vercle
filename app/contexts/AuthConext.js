@@ -21,7 +21,7 @@ export const AuthProvider = ({ children }) => {
 
   const fetchProductApi = async () => {
     try {
-      const response = await DataService.FetchProductApi("10001", "1", "1");
+      const response = await DataService.FetchProductApi("24001", "24", "1");
       return response.data;
     } catch (error) {
       console.error("product fetch", error);
@@ -40,7 +40,7 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     fetchAndSetProducts();
   }, []);
-  console.log(products);
+  // console.log(products);
 
   useEffect(() => {
     const storedAuthData = JSON.parse(localStorage.getItem("authData"));
