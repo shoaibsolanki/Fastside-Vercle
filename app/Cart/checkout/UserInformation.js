@@ -1,17 +1,106 @@
 "use client";
-import React, { useState } from "react";
+import { useCart } from "@/app/contexts/CartContext";
+import axios from "axios";
+import { useRouter } from "next/navigation";
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 
 const CheckoutPage = () => {
+  const { totalPrice } = useCart();
+  console.log(totalPrice);
   const [billingAddress, setBillingAddress] = useState(false);
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm();
+  const router = useRouter();
 
-  const onSubmit = (data) => console.log(data);
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://checkout.razorpay.com/v1/checkout.js";
+    script.async = true;
+    script.onload = () => {
+      console.log("Razorpay script loaded successfully.");
+    };
+    script.onerror = () => {
+      console.error("Failed to load Razorpay script.");
+    };
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+
+  const createRazorpayOrder = async () => {
+    try {
+      const data = {
+        amount: totalPrice * 100,
+        currency: "INR",
+      };
+
+      const response = await axios.post(
+        "http://103.139.59.233:8089/prod/api/v1/rezar/pay/1",
+        data,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Basic ${Buffer.from(
+              `${"rzp_test_USk6kNFvt2WXOE"}:${"afZsDDDaTvqhZPxMLH1p0b2t"}`
+            ).toString("base64")}`,
+          },
+        }
+      );
+
+      console.log("Razorpay order created:", response.data);
+      return response.data.id;
+    } catch (error) {
+      console.error("Error creating Razorpay order:", error);
+      throw error;
+    }
+  };
+
+  const handleRazorpayPayment = async (formData) => {
+    try {
+      const orderId = await createRazorpayOrder();
+      console.log(orderId);
+      const options = {
+        key: "rzp_test_USk6kNFvt2WXOE",
+        amount: totalPrice * 100,
+        currency: "INR",
+        name: "IB Shoppy",
+        description: "Test Transaction",
+        image: "",
+        order_id: orderId,
+        handler: function (response) {
+          console.log(response);
+          router.push("/cart/checkout/summary");
+        },
+        prefill: {
+          name: formData.first_name + " " + formData.last_name,
+          email: formData.email,
+          contact: formData.Mobile_numbers,
+        },
+        notes: {
+          address: formData["Street Address"],
+        },
+        theme: {
+          color: "#00B207",
+        },
+      };
+
+      const rzp1 = new window.Razorpay(options);
+      rzp1.open();
+    } catch (error) {
+      console.error("Error handling Razorpay payment:", error);
+    }
+  };
+
+  const onSubmit = (data) => {
+    handleRazorpayPayment(data);
+  };
+
   return (
     <div className="w-full mx-auto p-4">
       <div className="border border-gray-300 p-6 mb-6 rounded-md">
@@ -22,24 +111,26 @@ const CheckoutPage = () => {
               First Name
             </label>
             <input
-              {...register("first_name")}
+              {...register("first_name", { required: true })}
               type="text"
               id="firstName"
               placeholder="First name"
               className=" bg-white mt-1 p-2 border border-gray-300 rounded-md w-full"
             />
+            {errors.first_name && <span>This field is required</span>}
           </div>
           <div className="form-group">
             <label htmlFor="lastName" className="text-sm font-semibold">
               Last Name
             </label>
             <input
-              {...register("last_name")}
+              {...register("last_name", { required: true })}
               type="text"
               id="lastName"
               placeholder="Last name"
               className="bg-white mt-1 p-2 border border-gray-300 rounded-md w-full"
             />
+            {errors.last_name && <span>This field is required</span>}
           </div>
           <div className="form-group col-span-2">
             <label htmlFor="phoneNumber" className="text-sm font-semibold">
@@ -52,6 +143,7 @@ const CheckoutPage = () => {
               placeholder="Phone number"
               className=" bg-white mt-1 p-2 border border-gray-300 rounded-md w-full"
             />
+            {errors.Mobile_numbers && <span>This field is required</span>}
           </div>
           <div className="form-group col-span-2">
             <label htmlFor="email" className="text-sm font-semibold">
@@ -64,6 +156,7 @@ const CheckoutPage = () => {
               placeholder="Your Email"
               className=" bg-white mt-1 p-2 border border-gray-300 rounded-md w-full"
             />
+            {errors.email && <span>This field is required</span>}
           </div>
         </form>
       </div>
@@ -82,6 +175,7 @@ const CheckoutPage = () => {
               placeholder="Street Address"
               className=" bg-white mt-1 p-2 border border-gray-300 rounded-md w-full"
             />
+            {errors["Street Address"] && <span>This field is required</span>}
           </div>
           <div className="form-group">
             <label htmlFor="country" className="text-sm font-semibold">
@@ -92,11 +186,12 @@ const CheckoutPage = () => {
               id="country"
               className=" bg-white mt-1 p-2 border border-gray-300 rounded-md w-full"
             >
-              <option value="India">india</option>
+              <option value="India">India</option>
               <option value="USA">United States</option>
               <option value="Canada">Canada</option>
               <option value="UK">United Kingdom</option>
             </select>
+            {errors.country && <span>This field is required</span>}
           </div>
           <div className="form-group">
             <label htmlFor="city" className="text-sm font-semibold">
@@ -109,6 +204,7 @@ const CheckoutPage = () => {
               placeholder="Town / City"
               className=" bg-white mt-1 p-2 border border-gray-300 rounded-md w-full"
             />
+            {errors.city && <span>This field is required</span>}
           </div>
           <div className="form-group">
             <label htmlFor="state" className="text-sm font-semibold">
@@ -121,6 +217,7 @@ const CheckoutPage = () => {
               placeholder="State"
               className=" bg-white mt-1 p-2 border border-gray-300 rounded-md w-full"
             />
+            {errors.state && <span>This field is required</span>}
           </div>
           <div className="form-group">
             <label htmlFor="zipCode" className="text-sm font-semibold">
@@ -133,84 +230,10 @@ const CheckoutPage = () => {
               placeholder="Zip Code"
               className=" bg-white mt-1 p-2 border border-gray-300 rounded-md w-full"
             />
+            {errors.zipcode && <span>This field is required</span>}
           </div>
-          {/* <div className="form-group col-span-2 flex items-center">
-            <input
-              type="checkbox"
-              id="billingAddress"
-              checked={billingAddress}
-              onChange={() => setBillingAddress(!billingAddress)}
-              className="mr-2"
-            />
-            <label htmlFor="billingAddress" className="text-sm font-semibold">
-              Use a different billing address (optional)
-            </label>
-          </div> */}
         </form>
       </div>
-
-      {/* <div className="border border-gray-300 p-6 mb-6 rounded-md">
-        <h2 className="text-lg font-semibold mb-4">Payment Method</h2>
-        <form className="grid grid-cols-1 gap-4">
-          <div className="form-group">
-            <input
-              type="radio"
-              id="creditCard"
-              name="paymentMethod"
-              value="creditCard"
-              className="mr-2"
-            />
-            <label htmlFor="creditCard" className="text-sm font-semibold">
-              Pay by Card Credit
-            </label>
-          </div>
-          <div className="form-group">
-            <input
-              type="radio"
-              id="paypal"
-              name="paymentMethod"
-              value="paypal"
-              className="mr-2"
-            />
-            <label htmlFor="paypal" className="text-sm font-semibold">
-              Paypal
-            </label>
-          </div>
-          <div className="form-group">
-            <label htmlFor="cardNumber" className="text-sm font-semibold">
-              Card Number
-            </label>
-            <input
-              type="text"
-              id="cardNumber"
-              placeholder="1234 1234 1234 1234"
-              className=" bg-white mt-1 p-2 border border-gray-300 rounded-md w-full"
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="expirationDate" className="text-sm font-semibold">
-              Expiration Date
-            </label>
-            <input
-              type="text"
-              id="expirationDate"
-              placeholder="MM/YY"
-              className=" bg-white mt-1 p-2 border border-gray-300 rounded-md w-full"
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="cvc" className="text-sm font-semibold">
-              CVC
-            </label>
-            <input
-              type="text"
-              id="cvc"
-              placeholder="CVC code"
-              className=" bg-white mt-1 p-2 border border-gray-300 rounded-md w-full"
-            />
-          </div>
-        </form>
-      </div> */}
 
       <button
         onClick={handleSubmit(onSubmit)}
