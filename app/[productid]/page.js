@@ -13,14 +13,14 @@ const Page = ({ params }) => {
   console.log("id", id);
 
   const [singleProduct, setSingleProduct] = useState(null);
-  const [mainImage, setMainImage] = useState(null);
-
+  const [index, setIndex] = useState(0);
+   
   const fetchSingleProduct = async (id) => {
     try {
       const response = await DataService.FetchSingleProduct(id);
       const productData = response.data.data;
       setSingleProduct(productData);
-      setMainImage(productData.image_name1); // Set the initial main image
+      // setMainImage(productData.image_name1); // Set the initial main image
     } catch (error) {
       console.log(error);
     }
@@ -40,44 +40,40 @@ const Page = ({ params }) => {
       ].filter((image) => image && image !== "unavailable")
     : [];
 
-  const handleImageClick = (image) => {
-    setMainImage(image);
-  };
-
+  console.log(images)
   return (
-    <section className="container mx-auto my-8 p-4">
+    <section className="container mx-auto my-8 p-4 ">
       <div className="flex flex-col lg:flex-row gap-8 justify-center items-start">
         <div className="flex flex-col items-center">
           <div
             className="border-2 rounded-xl overflow-hidden w-[500px] h-[500px] mb-4 flex items-center justify-center"
             id="main-image"
           >
-            {singleProduct && (
+            {singleProduct?.colorList[index]?.image_url && (
               <Image
                 alt="product image"
-                src={`http://103.148.165.246:8088/test/api/v1/item/get-image-filename/${mainImage}`}
+                src={ singleProduct?.colorList[index]?.image_url}
+                width={40}
+                height={50}
                 layout="responsive"
-                width={400}
-                height={500}
                 objectFit="cover"
               />
             )}
           </div>
           <div className="flex gap-4" id="other-image">
-            {images.map((image, index) => (
+            {singleProduct?.colorList?.map((image, index) => (
               <div
                 key={index}
                 className="w-[240px] h-[120px] flex items-center justify-center border-2 rounded-xl overflow-hidden cursor-pointer"
-                onClick={() => handleImageClick(image)}
               >
-                <Image
-                  src={`http://103.148.165.246:8088/test/api/v1/item/get-image-filename/${image}`}
+               {singleProduct?.colorList[index]?.image_url  && <Image
+                  src={ image?.image_url}
                   alt="product_images"
                   layout="responsive"
                   width={180}
                   height={180}
                   objectFit="cover"
-                />
+                />}
               </div>
             ))}
           </div>
@@ -104,8 +100,11 @@ const Page = ({ params }) => {
               </p>
               <div className="flex items-center gap-4 my-4">
                 Color:
-                <div className="w-[20px] h-[20px] bg-green-500 rounded-full border-2 border-gray-300"></div>
-                <div className="w-[20px] h-[20px] bg-gray-800 rounded-full border-2 border-gray-300"></div>
+                {singleProduct?.colorList?.map((el,index)=>{return <div onClick={()=>{setIndex(index)}} className={`w-[20px] h-[20px] cursor-pointer  rounded-full border-2 border-gray-300`} style={{
+                  background:el?.product_color.toLowerCase()
+                }}></div>
+                // <div className="w-[20px] h-[20px] bg-gray-800 rounded-full border-2 border-gray-300"></div>
+                })}
               </div>
               <div className="flex items-center gap-4 my-4">
                 Size:
