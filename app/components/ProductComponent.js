@@ -40,8 +40,8 @@ const ProductComponent = ({ flex_direction, data }) => {
             <Image
               src={Productimage ? Productimage : keychain}
               alt=""
-              width={40}
-              height={40}
+              width={200}
+              height={200}
               // layout="fill"
               // objectFit="cover"
               className="rounded-xl"

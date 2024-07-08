@@ -164,7 +164,18 @@ export const CartProvider = ({ children }) => {
     }
   };
 
+  const clearCartFromServer = async (UserId) => {
+    try {
+      const response = await DeleteAllItemsFromCart(id);
+      console.log(response);
+    } catch (error) {
+      console.error(error);
+    }
+  };
   const clearCart = () => {
+    if (id) {
+      clearCartFromServer(id);
+    }
     setCart([]);
     setTotalPrice(0);
   };

@@ -7,6 +7,8 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
+  const [isPaymentSuccessful, setIsPaymentSuccessful] = useState(false);
+
   const [authData, setAuthData] = useState(() => {
     const storedAuthData = JSON.parse(localStorage.getItem("authData"));
     if (storedAuthData) {
@@ -73,6 +75,8 @@ export const AuthProvider = ({ children }) => {
         products,
         setProducts,
         fetchAndSetProducts,
+        isPaymentSuccessful,
+        setIsPaymentSuccessful,
       }}
     >
       {children}

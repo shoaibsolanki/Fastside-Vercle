@@ -7,14 +7,16 @@ import { Check, FavoriteRounded } from "@mui/icons-material";
 import ProductComponent from "../components/ProductComponent";
 import DataService from "../services/requestApi";
 import { BASEURL } from "../services/http-Pos";
+import { useCart } from "../contexts/CartContext";
 
 const Page = ({ params }) => {
+  const { addToCart } = useCart();
   const id = params.productid;
   console.log("id", id);
 
   const [singleProduct, setSingleProduct] = useState(null);
   const [index, setIndex] = useState(0);
-   
+
   const fetchSingleProduct = async (id) => {
     try {
       const response = await DataService.FetchSingleProduct(id);
@@ -40,43 +42,46 @@ const Page = ({ params }) => {
       ].filter((image) => image && image !== "unavailable")
     : [];
 
-  console.log(images)
+  console.log(images);
   return (
     <section className="container mx-auto my-8 p-4 ">
       <div className="flex flex-col lg:flex-row gap-8 justify-center items-start">
         <div className="flex flex-col items-center">
           <div
-            className="border-2 rounded-xl overflow-hidden w-[500px] h-[500px] mb-4 flex items-center justify-center"
+            className=" overflow-hidden w-[500px] h-[500px] mb-4 flex items-center justify-center"
             id="main-image"
           >
             {singleProduct?.colorList[index]?.image_url && (
               <Image
                 alt="product image"
-                src={ singleProduct?.colorList[index]?.image_url}
+                src={singleProduct?.colorList[index]?.image_url}
                 width={40}
                 height={50}
                 layout="responsive"
                 objectFit="cover"
+                className="rounded-xl"
               />
             )}
           </div>
-          <div className="flex gap-4" id="other-image">
+          {/* <div className="flex gap-4" id="other-image max-w-[400px]">
             {singleProduct?.colorList?.map((image, index) => (
               <div
                 key={index}
                 className="w-[240px] h-[120px] flex items-center justify-center border-2 rounded-xl overflow-hidden cursor-pointer"
               >
-               {singleProduct?.colorList[index]?.image_url  && <Image
-                  src={ image?.image_url}
-                  alt="product_images"
-                  layout="responsive"
-                  width={180}
-                  height={180}
-                  objectFit="cover"
-                />}
+                {singleProduct?.colorList[index]?.image_url && (
+                  <Image
+                    src={image?.image_url}
+                    alt="product_images"
+                    layout="responsive"
+                    width={180}
+                    height={180}
+                    objectFit="cover"
+                  />
+                )}
               </div>
             ))}
-          </div>
+          </div> */}
         </div>
 
         <div className="flex flex-col max-w-lg">
@@ -100,10 +105,20 @@ const Page = ({ params }) => {
               </p>
               <div className="flex items-center gap-4 my-4">
                 Color:
-                {singleProduct?.colorList?.map((el,index)=>{return <div onClick={()=>{setIndex(index)}} className={`w-[20px] h-[20px] cursor-pointer  rounded-full border-2 border-gray-300`} style={{
-                  background:el?.product_color.toLowerCase()
-                }}></div>
-                // <div className="w-[20px] h-[20px] bg-gray-800 rounded-full border-2 border-gray-300"></div>
+                {singleProduct?.colorList?.map((el, index) => {
+                  return (
+                    <div
+                      key={index}
+                      onClick={() => {
+                        setIndex(index);
+                      }}
+                      className={`w-[20px] h-[20px] cursor-pointer  rounded-full border-2 border-gray-300`}
+                      style={{
+                        background: el?.product_color.toLowerCase(),
+                      }}
+                    ></div>
+                  );
+                  // <div className="w-[20px] h-[20px] bg-gray-800 rounded-full border-2 border-gray-300"></div>
                 })}
               </div>
               <div className="flex items-center gap-4 my-4">
@@ -122,7 +137,10 @@ const Page = ({ params }) => {
                 </div>
               </div>
               <div className="flex gap-4 my-6">
-                <button className="bg-yellow-500 text-white px-6 py-2 rounded-full shadow hover:bg-yellow-600 transition">
+                <button
+                  onClick={() => addToCart(singleProduct)}
+                  className="bg-yellow-500 text-white px-6 py-2 rounded-full shadow hover:bg-yellow-600 transition"
+                >
                   Add to cart
                 </button>
                 <button className="bg-yellow-500 text-white px-6 py-2 rounded-full shadow hover:bg-yellow-600 transition">

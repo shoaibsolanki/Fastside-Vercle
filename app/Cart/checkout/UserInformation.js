@@ -1,4 +1,5 @@
 "use client";
+import { useAuth } from "@/app/contexts/AuthConext";
 import { useCart } from "@/app/contexts/CartContext";
 import axios from "axios";
 import { useRouter } from "next/navigation";
@@ -6,8 +7,9 @@ import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 
 const CheckoutPage = () => {
-  const { totalPrice } = useCart();
-  console.log(totalPrice);
+  const { setIsPaymentSuccessful } = useAuth();
+  console.log();
+  const { totalPrice, clearCart } = useCart();
   const [billingAddress, setBillingAddress] = useState(false);
   const {
     register,
@@ -75,7 +77,9 @@ const CheckoutPage = () => {
         order_id: orderId,
         handler: function (response) {
           console.log(response);
+          setIsPaymentSuccessful(true); // Update payment status
           router.push("/cart/checkout/summary");
+          clearCart();
         },
         prefill: {
           name: formData.first_name + " " + formData.last_name,

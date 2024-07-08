@@ -33,5 +33,8 @@ class DataService {
   DeleteItemsFromCart(id, itemid) {
     return https.delete(`/price-check/deleteproduct/1/10001/${id}/${itemid}`);
   }
+  DeleteAllItemsFromCart(id) {
+    return https.delete(`price-check/delete-all-products/1/10001/${id}`);
+  }
 }
 export default new DataService();

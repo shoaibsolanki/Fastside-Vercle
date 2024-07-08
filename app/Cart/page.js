@@ -72,8 +72,14 @@ const CartItem = ({ item, removeFromCart, handleIncrease, handleDecrease }) => (
 );
 
 const Page = () => {
-  const { totalPrice, removeFromCart, cart, handleIncrease, handleDecrease } =
-    useCart();
+  const {
+    clearCart,
+    totalPrice,
+    removeFromCart,
+    cart,
+    handleIncrease,
+    handleDecrease,
+  } = useCart();
 
   if (cart.length === 0) {
     return <div>No item in the cart</div>;
@@ -146,7 +152,7 @@ const Page = () => {
                   borderColor: "red",
                 }}
                 variant="contained"
-                // onClick={clearCart}
+                onClick={clearCart}
               >
                 Clear cart
               </button>
