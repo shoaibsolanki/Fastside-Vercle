@@ -23,7 +23,7 @@ export const AuthProvider = ({ children }) => {
 
   const fetchProductApi = async () => {
     try {
-      const response = await DataService.FetchProductApi("24001", "24", "1");
+      const response = await DataService.FetchProductApi("10001", "1", "1");
       return response.data;
     } catch (error) {
       console.error("product fetch", error);
@@ -34,7 +34,13 @@ export const AuthProvider = ({ children }) => {
   const fetchAndSetProducts = async () => {
     try {
       const productsData = await fetchProductApi();
-      setProducts(productsData.data);
+      console.log(productsData.data)
+      const updatedProducts = productsData.data.map(item => 
+        item.product_qty === 0
+          ? { ...item, product_qty: 1 }
+          : item
+      );
+      setProducts(updatedProducts);
     } catch (error) {
       console.error("Failed to fetch products", error);
     }

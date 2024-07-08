@@ -24,7 +24,7 @@ const CartItem = ({ item, removeFromCart, handleIncrease, handleDecrease }) => (
         <Image
           src={
             item.image_name1
-              ? `${BASEURL.ENDPOINT_URL}item/get-image/${item.item_id}`
+              ? item.image_url
               : "/default-image.jpg"
           }
           alt={item.itemName}

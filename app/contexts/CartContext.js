@@ -111,7 +111,7 @@ export const CartProvider = ({ children }) => {
     const item = product;
 
     if (id) {
-      console.log("added on the sever api");
+      console.log("added on the sever api",item);
       AddProductInTheCart(item);
     } else {
       setCart((prevCart) => {
