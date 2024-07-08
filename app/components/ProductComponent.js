@@ -21,6 +21,11 @@ const ProductComponent = ({ flex_direction, data }) => {
     setIsHovering(false);
   };
 
+  const selectedProduct = {
+    ...data,
+    colorList: [data?.colorList[0]]
+  };
+
   return (
     <>
       <div
@@ -61,7 +66,7 @@ const ProductComponent = ({ flex_direction, data }) => {
               isHovering ? "opacity-100" : "opacity-0"
             }`}
           >
-            <AddToCartButton item={data} />
+            <AddToCartButton item={selectedProduct} />
           </div>
 
           <div className={`${isHovering ? "invisible" : "visible"}`}>

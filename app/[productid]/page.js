@@ -16,23 +16,38 @@ const Page = ({ params }) => {
 
   const [singleProduct, setSingleProduct] = useState(null);
   const [index, setIndex] = useState(0);
+  const [selectedColor, setSelectedColor] = useState(null);
 
   const fetchSingleProduct = async (id) => {
     try {
       const response = await DataService.FetchSingleProduct(id);
       const productData = response.data.data;
       setSingleProduct(productData);
-      // setMainImage(productData.image_name1); // Set the initial main image
+      setSelectedColor(productData?.colorList[0]?.product_color);
     } catch (error) {
       console.log(error);
     }
   };
 
   useEffect(() => {
-    fetchSingleProduct(id);
+    if(id){
+      fetchSingleProduct(id);
+    }
   }, [id]);
 
-  console.log("single", singleProduct);
+  const handleColorClick = (color, index) => {
+    setIndex(index);
+    setSelectedColor(color);
+  };
+
+  const handleAddToCart = () => {
+    const selectedProduct = {
+      ...singleProduct,
+      colorList: [singleProduct?.colorList[index]]
+    };
+    addToCart(selectedProduct);
+  };
+
 
   const images = singleProduct
     ? [
@@ -48,7 +63,7 @@ const Page = ({ params }) => {
       <div className="flex flex-col lg:flex-row gap-8 justify-center items-start">
         <div className="flex flex-col items-center">
           <div
-            className=" overflow-hidden w-[500px] h-[500px] mb-4 flex items-center justify-center"
+            className="overflow-hidden w-[500px] h-[500px] mb-4 flex items-center justify-center"
             id="main-image"
           >
             {singleProduct?.colorList[index]?.image_url && (
@@ -63,25 +78,6 @@ const Page = ({ params }) => {
               />
             )}
           </div>
-          {/* <div className="flex gap-4" id="other-image max-w-[400px]">
-            {singleProduct?.colorList?.map((image, index) => (
-              <div
-                key={index}
-                className="w-[240px] h-[120px] flex items-center justify-center border-2 rounded-xl overflow-hidden cursor-pointer"
-              >
-                {singleProduct?.colorList[index]?.image_url && (
-                  <Image
-                    src={image?.image_url}
-                    alt="product_images"
-                    layout="responsive"
-                    width={180}
-                    height={180}
-                    objectFit="cover"
-                  />
-                )}
-              </div>
-            ))}
-          </div> */}
         </div>
 
         <div className="flex flex-col max-w-lg">
@@ -109,16 +105,15 @@ const Page = ({ params }) => {
                   return (
                     <div
                       key={index}
-                      onClick={() => {
-                        setIndex(index);
-                      }}
-                      className={`w-[20px] h-[20px] cursor-pointer  rounded-full border-2 border-gray-300`}
+                      onClick={() => handleColorClick(el?.product_color, index)}
+                      className={`w-[20px] h-[20px] cursor-pointer rounded-full border-2 border-gray-300 ${
+                        el?.product_color === selectedColor ? "border-black" : ""
+                      }`}
                       style={{
                         background: el?.product_color.toLowerCase(),
                       }}
                     ></div>
                   );
-                  // <div className="w-[20px] h-[20px] bg-gray-800 rounded-full border-2 border-gray-300"></div>
                 })}
               </div>
               <div className="flex items-center gap-4 my-4">
@@ -138,7 +133,7 @@ const Page = ({ params }) => {
               </div>
               <div className="flex gap-4 my-6">
                 <button
-                  onClick={() => addToCart(singleProduct)}
+                  onClick={handleAddToCart}
                   className="bg-yellow-500 text-white px-6 py-2 rounded-full shadow hover:bg-yellow-600 transition"
                 >
                   Add to cart
