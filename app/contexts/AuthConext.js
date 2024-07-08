@@ -7,6 +7,7 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
+  const [allOrders, setAllOrders] = useState();
   const [isPaymentSuccessful, setIsPaymentSuccessful] = useState(false);
 
   const [authData, setAuthData] = useState(() => {
@@ -17,7 +18,7 @@ export const AuthProvider = ({ children }) => {
       return { token: null, user: null };
     }
   });
-  // console.log("auth", authData);
+  const id = authData?.data?.data?.customer_data?.id;
 
   const isAuthenticated = authData.data;
 
@@ -30,6 +31,7 @@ export const AuthProvider = ({ children }) => {
       throw new Error(error);
     }
   };
+  console.log(id);
 
   const fetchAndSetProducts = async () => {
     try {
@@ -39,6 +41,19 @@ export const AuthProvider = ({ children }) => {
       console.error("Failed to fetch products", error);
     }
   };
+
+  const getOrderHistory = async (id) => {
+    try {
+      const response = await DataService.OrderHistory(id);
+      console.log(response);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  useEffect(() => {
+    getOrderHistory(id);
+  }, [id]);
+
   useEffect(() => {
     fetchAndSetProducts();
   }, []);

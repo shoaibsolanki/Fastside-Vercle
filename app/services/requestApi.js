@@ -36,5 +36,8 @@ class DataService {
   DeleteAllItemsFromCart(id) {
     return https.delete(`price-check/delete-all-products/1/10001/${id}`);
   }
+  OrderHistory(id) {
+    return https.get(`order/view-order-detail-app/1/10001/${id}`);
+  }
 }
 export default new DataService();

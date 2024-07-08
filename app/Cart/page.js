@@ -81,6 +81,7 @@ const Page = () => {
     handleDecrease,
   } = useCart();
 
+  console.log(cart);
   if (cart.length === 0) {
     return <div>No item in the cart</div>;
   }

@@ -1,25 +1,24 @@
-"use client"
+"use client";
 import Image from "next/image";
 import React, { useState } from "react";
-import Form from "./Form";
-import Form1 from "./Form1";
 import OrderHistory from "./OrderHistory";
+import Address from "./Address";
+import Account from "./Account";
 
-const page = () => {
-  const [Activetab, setActivetab] = useState("account")
-  
-  const RenderUi =()=>{
-    if(Activetab == 'account'){
-      return <>
-      <Form />
-      <Form1 />
-      </>
-    }if (Activetab == 'order') {
-      <OrderHistory/>
-    } else {
-      
-    }
+const Page = () => {
+  const [activeTab, setActiveTab] = useState("account");
 
+  let content;
+  switch (activeTab) {
+    case "account":
+      content = <Account />;
+      break;
+    case "order":
+      content = <OrderHistory />;
+      break;
+    case "address":
+      content = <Address />;
+      break;
   }
 
   return (
@@ -65,24 +64,34 @@ const page = () => {
             </div>
           </div>
           <div className="self-stretch flex flex-col items-start justify-start gap-[12px] text-base text-neutral-04-100">
-            <div onClick={()=>{setActivetab("account")}} className="self-stretch flex flex-row items-start justify-start pt-2 px-0 pb-1.5 text-neutral-07-100 border-b-[1px] border-solid border-neutral-07-100">
+            <div
+              onClick={() => {
+                setActiveTab("account");
+              }}
+              className="self-stretch flex flex-row items-start justify-start pt-2 px-0 pb-1.5 text-neutral-07-100 border-b-[1px] border-solid border-neutral-07-100"
+            >
               <div className="flex-1 relative leading-[26px] font-semibold">
                 Account
               </div>
             </div>
-            <div onClick={()=>{setActivetab("address")}} className="self-stretch flex flex-row items-start justify-start pt-2 px-0 pb-1.5 border-b-[1px] border-solid border-transparent">
+            <div
+              onClick={() => {
+                setActiveTab("address");
+              }}
+              className="self-stretch flex flex-row items-start justify-start pt-2 px-0 pb-1.5 border-b-[1px] border-solid border-transparent"
+            >
               <div className="flex-1 relative leading-[26px] font-semibold">
                 Address
               </div>
             </div>
-            <div onClick={()=>{setActivetab("order")}} className="self-stretch flex flex-row items-start justify-start pt-2 px-0 pb-1.5 border-b-[1px] border-solid border-transparent">
+            <div
+              onClick={() => {
+                setActiveTab("order");
+              }}
+              className="self-stretch flex flex-row items-start justify-start pt-2 px-0 pb-1.5 border-b-[1px] border-solid border-transparent"
+            >
               <div className="flex-1 relative leading-[26px] font-semibold">
                 Orders
-              </div>
-            </div>
-            <div className="self-stretch flex flex-row items-start justify-start pt-2 px-0 pb-1.5 border-b-[1px] border-solid border-transparent">
-              <div className="flex-1 relative leading-[26px] font-semibold">
-                Wishlist
               </div>
             </div>
             <div className="self-stretch flex flex-row items-start justify-start pt-2 px-0 pb-1.5 border-b-[1px] border-solid border-transparent">
@@ -92,12 +101,12 @@ const page = () => {
             </div>
           </div>
         </div>
-        <section className="flex-1 flex flex-col items-start justify-start py-0 px-[72px] box-border gap-[40px] max-w-[calc(100%_-_269px)] mq750:max-w-full mq450:gap-[20px] mq1050:pl-9 mq1050:pr-9 mq1050:box-border">
-        <RenderUi/>
+        <section className="flex-1 flex flex-col items-start justify-start px-[72px] box-border gap-[40px] max-w-[calc(100%_-_269px)] mq750:max-w-full mq450:gap-[20px] mq1050:pl-9 mq1050:pr-9 mq1050:box-border ">
+          {content}
         </section>
       </main>
     </div>
   );
 };
 
-export default page;
+export default Page;
