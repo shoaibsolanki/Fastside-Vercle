@@ -11,7 +11,7 @@ const CheckoutPage = () => {
   const { authData, setIsPaymentSuccessful } = useAuth();
   const { cart, totalPrice, clearCart } = useCart();
   const router = useRouter();
-  const id = authData?.data?.data?.customer_data?.id;
+  const {id ,saasId,storeId} = authData;
 
   const [billingAddress, setBillingAddress] = useState(false);
   const [savedAddresses, setSavedAddresses] = useState([]);
@@ -173,7 +173,7 @@ const CheckoutPage = () => {
 
   const getSavedData = async () => {
     try {
-      const response = await DataService.GetSavedAddress(id);
+      const response = await DataService.GetSavedAddress(id,saasId,storeId);
       console.log("Saved addresses:", response.data.data);
       setSavedAddresses(response.data.data);
     } catch (error) {

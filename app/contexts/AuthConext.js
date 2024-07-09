@@ -18,7 +18,7 @@ export const AuthProvider = ({ children }) => {
       return { token: null, user: null };
     }
   });
-  const {id} = authData
+  const {id,saasId,storeId} = authData
   const isAuthenticated = authData.data;
 
   const fetchProductApi = async () => {
@@ -45,7 +45,7 @@ export const AuthProvider = ({ children }) => {
 
   const getOrderHistory = async (id) => {
     try {
-      const response = await DataService.OrderHistory(id);
+      const response = await DataService.OrderHistory(saasId,storeId,id);
       setAllOrders(response.data.data);
     } catch (error) {
       console.error(error);

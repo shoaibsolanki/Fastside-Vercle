@@ -28,8 +28,8 @@ const PopularProducts = ({ data, setData }) => {
   const CatgorybyData = async (query) => {
     try {
       const response = await DataService.GetDataByCatorya(
-        "1",
-        "10001",
+        "33",
+        "33001",
         query,
         currentPage
       );
@@ -44,7 +44,7 @@ const PopularProducts = ({ data, setData }) => {
 
   const GetAllCategory = async () => {
     try {
-      const response = await DataService.GetAllCateogary("1", "10001");
+      const response = await DataService.GetAllCateogary("33", "33001");
 
       if (response && response.data && response.data.data) {
         setAllCategory(response.data.data);
