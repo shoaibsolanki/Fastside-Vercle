@@ -18,8 +18,7 @@ export const AuthProvider = ({ children }) => {
       return { token: null, user: null };
     }
   });
-  const id = authData?.data?.data?.customer_data?.id;
-
+  const {id} = authData
   const isAuthenticated = authData.data;
 
   const fetchProductApi = async () => {

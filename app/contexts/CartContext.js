@@ -8,7 +8,7 @@ const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
   const { authData } = useAuth();
-  const id = authData?.data?.data?.customer_data?.id;
+  const {id} = authData;
   const [totalItems, setTotalItems] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
 
