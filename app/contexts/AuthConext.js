@@ -31,16 +31,12 @@ export const AuthProvider = ({ children }) => {
       throw new Error(error);
     }
   };
-  console.log(id);
 
   const fetchAndSetProducts = async () => {
     try {
       const productsData = await fetchProductApi();
-      console.log(productsData.data)
-      const updatedProducts = productsData.data.map(item => 
-        item.product_qty === 0
-          ? { ...item, product_qty: 1 }
-          : item
+      const updatedProducts = productsData.data.map((item) =>
+        item.product_qty === 0 ? { ...item, product_qty: 1 } : item
       );
       setProducts(updatedProducts);
     } catch (error) {

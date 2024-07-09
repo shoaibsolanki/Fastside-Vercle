@@ -17,16 +17,13 @@ import Link from "next/link";
 import { BASEURL } from "../services/http-Pos";
 import Image from "next/image";
 import Stepper from "@/app/components/MicroComponenets/Stepper";
+import emptyCart from "@/public/imgs/shopping.png";
 const CartItem = ({ item, removeFromCart, handleIncrease, handleDecrease }) => (
   <Box className="my-2 items-center">
     <Grid container spacing={4} alignItems="center">
       <Grid item xs={2}>
         <Image
-          src={
-            item.image_name1
-              ? item.image_url
-              : "/default-image.jpg"
-          }
+          src={item.image_name1 ? item.image_url : "/default-image.jpg"}
           alt={item.itemName}
           width={50}
           height={50}
@@ -81,9 +78,21 @@ const Page = () => {
     handleDecrease,
   } = useCart();
 
-  console.log(cart);
   if (cart.length === 0) {
-    return <div>No item in the cart</div>;
+    return (
+      <div className="flex items-center justify-center p-8 flex-col text-center">
+        <Image height={200} width={200} alt="empty_cart" src={emptyCart} />
+        <h2 className="text-4xl font-semibold text-primary">
+          Your cart is empty
+        </h2>
+        <p className="text-2xl text-black text-medium">
+          Looks like you have not added anything to your cart
+        </p>
+        <Link href="/" className="btn bg-primary my-4 px-16 text-white">
+          Shop Now
+        </Link>
+      </div>
+    );
   }
   return (
     <div div className="my-4">

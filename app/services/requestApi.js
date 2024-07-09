@@ -39,5 +39,14 @@ class DataService {
   OrderHistory(id) {
     return https.get(`order/view-order-detail-app/1/10001/${id}`);
   }
+  CreateOrder(data) {
+    return https.post(`/order/create/order/master`, data);
+  }
+  SaveAddress(data, id) {
+    return https.post(`customer/create-address/${id}`, data);
+  }
+  GetSavedAddress(id) {
+    return https.get(`/customer/get-all-customer-address-app/${id}/1/10001`);
+  }
 }
 export default new DataService();
