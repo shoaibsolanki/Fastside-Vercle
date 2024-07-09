@@ -9,9 +9,9 @@ const CartContext = createContext();
 export const CartProvider = ({ children }) => {
   const { authData } = useAuth();
   const id = authData?.data?.data?.customer_data?.id;
-
   const [totalItems, setTotalItems] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
+
   const [cart, setCart] = useState(() => {
     if (typeof window !== "undefined") {
       const storedCart = localStorage.getItem("cart");
@@ -19,6 +19,7 @@ export const CartProvider = ({ children }) => {
     }
     return [];
   });
+
   let subTotal;
   const [wishlist, setWishlist] = useState(() => {
     if (typeof window !== "undefined") {
@@ -40,7 +41,6 @@ export const CartProvider = ({ children }) => {
       const response = await DataService.GetCartItems(userId);
       const fetchedCart = response?.data?.data?.products;
       setTotalItems(fetchedCart.length);
-      // console.log("fetchedCart", fetchedCart);
       setCart(fetchedCart);
       subTotal = fetchedCart.reduce((total, product) => {
         return total + product.price;
@@ -212,7 +212,7 @@ export const CartProvider = ({ children }) => {
   const handleIncrease = (item) => {
     setCart((prevCart) => {
       const updatedCart = prevCart.map((cartItem) => {
-        if (cartItem.item_id === item.item_id) {
+        if (cartItem.id === item.id) {
           return { ...cartItem, product_qty: cartItem.product_qty + 1 };
         }
         return cartItem;
@@ -235,7 +235,7 @@ export const CartProvider = ({ children }) => {
 
     setCart((prevCart) => {
       const updatedCart = prevCart.map((cartItem) => {
-        if (cartItem.item_id === item.item_id) {
+        if (cartItem.id === item.id) {
           return { ...cartItem, product_qty: cartItem.product_qty - 1 };
         }
         return cartItem;
@@ -262,7 +262,7 @@ export const CartProvider = ({ children }) => {
         cart,
         wishlist,
         subTotal,
-        totalPrice,
+        totalItems,
         setCart,
         addToCart,
         removeFromCart,

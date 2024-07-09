@@ -138,7 +138,7 @@ const Page = () => {
               );
             })}
             <Box display="flex" justifyContent="space-between" mt={2}>
-              <Link href="/shop">
+              <Link href="/">
                 <button className="bg-second text-white font-medium text-md rounded-2xl p-4 w-[200px] text-center">
                   Continue shopping
                 </button>

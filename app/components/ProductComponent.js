@@ -23,7 +23,7 @@ const ProductComponent = ({ flex_direction, data }) => {
 
   const selectedProduct = {
     ...data,
-    colorList: [data?.colorList[0]]
+    colorList: [data?.colorList[0]],
   };
 
   return (
@@ -71,8 +71,8 @@ const ProductComponent = ({ flex_direction, data }) => {
 
           <div className={`${isHovering ? "invisible" : "visible"}`}>
             <h2 className="product-title text-primary">
-              {data?.item_name.length > 40
-                ? `${data?.item_name.slice(0, 40)}...`
+              {data?.item_name.length > 35
+                ? `${data?.item_name.slice(0, 35)}...`
                 : data?.item_name}
             </h2>
             <p className="priceTitle">₹Rs {data?.price}/-</p>

@@ -15,7 +15,7 @@ import { useCart } from "../contexts/CartContext";
 import { useAuth } from "../contexts/AuthConext";
 
 const Navbar = ({ search, setSearch, data }) => {
-  const { cart, totalPrice } = useCart();
+  const { cart, totalItems } = useCart();
   const { logout } = useAuth();
   return (
     <>
@@ -48,16 +48,18 @@ const Navbar = ({ search, setSearch, data }) => {
             </div>
           </div>
           <div className="flex gap-4 items-center">
-            <h2 onClick={logout} className="flex gap-2 items-center text-white">
-              <Person2Outlined className="" fontSize="large" />
-              <p className="hidden xl:block text-xl">Profile</p>
-            </h2>
+            <Link href={"/profile"}>
+              <h2 className="flex gap-2 items-center text-white">
+                <Person2Outlined className="" fontSize="large" />
+                <p className="hidden xl:block text-xl">Profile</p>
+              </h2>
+            </Link>
 
             <Link href="/cart">
               <h2 className="flex gap-2 items-center text-white">
                 <ShoppingCartRounded className="" fontSize="large" />
                 <span className="bg-second rounded-full h-6 w-6 text-center">
-                  {totalPrice}
+                  {totalItems}
                 </span>
                 <p className="hidden xl:block text-lg">Cart</p>
               </h2>

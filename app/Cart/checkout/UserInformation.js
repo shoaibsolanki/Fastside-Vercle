@@ -147,47 +147,12 @@ const CheckoutPage = () => {
         razorpay_payment_id: paymentResponse.razorpay_payment_id,
         order_date: new Date(),
         order_type: "",
-        item_list: [
-          {
-            item_id: 1220178,
-            item_name: "Freash Item",
-            description: "New",
-            price: 90,
-            price_pcs: null,
-            product_qty: 1,
-            discount: 0,
-            tax: null,
-            tax_percent: 0,
-            status: null,
-            category: "MB",
-            saas_id: "1",
-            store_id: "10001",
-            promo_id: null,
-            image_name: null,
-            hsn_code: "0",
-            tax_rate: 0,
-            barcode: null,
-            supplier_name: null,
-            opening_qty: 10,
-            received_qty: null,
-            sold_qty: null,
-            closing_qty: null,
-            product_cost: null,
-            product_price: null,
-            product_av_cost: null,
-            mrp: null,
-            sku: null,
-            bill_qty: 0,
-            name: "New",
-            new_price: 90,
-            discount_menu_is_open: null,
-            discount_value: null,
-            amount_value: null,
-            zero_price: null,
-            finalDisc: 0,
-          },
-        ],
+        item_list: cart,
       };
+      localStorage.setItem(
+        "orderInformations",
+        JSON.stringify(orderInformations)
+      );
 
       const response = await DataService.CreateOrder(orderInformations);
       console.log("Order placed:", response);
