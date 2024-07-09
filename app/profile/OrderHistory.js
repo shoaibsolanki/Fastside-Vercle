@@ -1,8 +1,27 @@
+import { ArrowLeft, ArrowRight } from "@mui/icons-material";
 import { useAuth } from "../contexts/AuthConext";
 import Item from "./Componenets/items";
 import PropTypes from "prop-types";
+import { useState } from "react";
 
 const Orders = ({ className = "" }) => {
+  const { allOrders } = useAuth();
+  const itemsPerPage = 5;
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const totalPages = Math.ceil(allOrders.length / itemsPerPage);
+
+  const handleNextPage = () => {
+    setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages));
+  };
+
+  const handlePrevPage = () => {
+    setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
+  };
+
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const currentOrders = allOrders.slice(startIndex, startIndex + itemsPerPage);
+
   return (
     <div
       className={`w-full flex flex-col items-start justify-start py-0 px-[72px] box-border gap-[40px] leading-[normal] tracking-[normal] text-left text-[20px] text-black font-caption-1 mq450:gap-[20px] mq450:pl-5 mq450:pr-5 mq450:box-border ${className}`}
@@ -25,26 +44,31 @@ const Orders = ({ className = "" }) => {
             Price
           </a>
         </div>
-        <Item
-          prop="#3456_768"
-          october172023="October 17, 2023"
-          rs123400="Rs 1234.00"
-        />
-        <Item
-          prop="#3456_980"
-          october172023="October 11, 2023"
-          rs123400="Rs 345.00"
-        />
-        <Item
-          prop="#3456_120"
-          october172023="August 24, 2023"
-          rs123400="Rs 2345.00"
-        />
-        <Item
-          prop="#3456_030"
-          october172023="August 12, 2023"
-          rs123400="Rs 845.00"
-        />
+        {currentOrders.map((item, index) => (
+          <Item
+            key={index}
+            prop={item.order_id}
+            date={item.order_date}
+            price={item.order_value}
+            status={item.status}
+          />
+        ))}
+        <div className="flex justify-between mt-4 w-full">
+          <button
+            onClick={handlePrevPage}
+            disabled={currentPage === 1}
+            className="py-2 px-4 bg-gray-200 rounded disabled:opacity-50"
+          >
+            <ArrowLeft />
+          </button>
+          <button
+            onClick={handleNextPage}
+            disabled={currentPage === totalPages}
+            className="py-2 px-4 bg-gray-200 rounded disabled:opacity-50"
+          >
+            <ArrowRight />
+          </button>
+        </div>
       </section>
     </div>
   );

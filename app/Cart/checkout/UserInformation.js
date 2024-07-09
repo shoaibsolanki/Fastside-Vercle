@@ -112,6 +112,10 @@ const CheckoutPage = () => {
   };
 
   const onSubmit = async (data) => {
+    handleRazorpayPayment(data);
+  };
+  console.log(selectedAddress);
+  const handleSaveAddress = async (data) => {
     const addressForSave = {
       address: `${data.street},${data.city},${data.state},${data.zipcode} at ${data.address_type}`,
       address_type: data.address_type,
@@ -126,13 +130,11 @@ const CheckoutPage = () => {
     };
 
     await saveAddress(addressForSave);
-    handleRazorpayPayment(data);
   };
-
   const handlePlaceOrder = async (data, paymentResponse) => {
     try {
       const orderInformations = {
-        address_id: 697,
+        address_id: data.selectedAddress,
         customer_id: id,
         customer_name: `${data.first_name} ${data.last_name}`,
         mobile_number: data.Mobile_numbers,
@@ -149,10 +151,7 @@ const CheckoutPage = () => {
         order_type: "",
         item_list: cart,
       };
-      localStorage.setItem(
-        "orderInformations",
-        JSON.stringify(orderInformations)
-      );
+      localStorage.setItem("orderInformations", JSON.stringify(cart));
 
       const response = await DataService.CreateOrder(orderInformations);
       console.log("Order placed:", response);
@@ -248,32 +247,109 @@ const CheckoutPage = () => {
       </div>
 
       {showNewAddressForm ? (
-        <div className="border border-gray-300 p-6 mb-6 rounded-md bg-white shadow-md">
-          {savedAddresses.map((item, index) => (
-            <div
-              key={index}
-              className="flex justify-between border-2 rounded-xl p-4 mx-4 my-2 text-gray-700 bg-gray-100 shadow-sm"
-            >
-              <div>
-                <h2 className="text-lg font-semibold mb-2">
-                  <span className="font-semibold">Address:</span> {item.address}
-                </h2>
-                <p className="mb-1">
-                  <span className="font-semibold">Place:</span>{" "}
-                  {item.addressType}
-                </p>
-                <p>
-                  <span className="font-semibold">Pincode:</span> {item.pincode}
-                </p>
-              </div>
+        <div className="border border-gray-300 p-6 mb-6 rounded-md">
+          <h2 className="text-lg font-semibold mb-4">Shipping Address</h2>
+          <form
+            className="grid grid-cols-1 md:grid-cols-2 gap-4"
+            onSubmit={handleSubmit(handleSaveAddress)}
+          >
+            <div className="form-group col-span-2">
+              <label htmlFor="streetAddress" className="text-sm font-semibold">
+                Street Address *
+              </label>
               <input
-                type="radio"
-                className="bg-none focus:ring-2 focus:ring-blue-500 focus:outline-none h-full"
-                checked={selectedAddress === item.id}
-                onChange={() => handleAddressSelect(item.id)}
+                {...register("street", { required: true })}
+                type="text"
+                id="streetAddress"
+                placeholder="Street Address"
+                className="bg-white mt-1 p-2 border border-gray-300 rounded-md w-full"
               />
+              {errors.street && <span>This field is required</span>}
             </div>
-          ))}
+
+            <div className="form-group">
+              <label htmlFor="city" className="text-sm font-semibold">
+                Town / City *
+              </label>
+              <input
+                {...register("city", { required: true })}
+                type="text"
+                id="city"
+                placeholder="Town / City"
+                className="bg-white mt-1 p-2 border border-gray-300 rounded-md w-full"
+              />
+              {errors.city && <span>This field is required</span>}
+            </div>
+            <div className="form-group">
+              <label htmlFor="state" className="text-sm font-semibold">
+                State
+              </label>
+              <input
+                {...register("state", { required: true })}
+                type="text"
+                id="state"
+                placeholder="State"
+                className="bg-white mt-1 p-2 border border-gray-300 rounded-md w-full"
+              />
+              {errors.state && <span>This field is required</span>}
+            </div>
+            <div className="form-group">
+              <label htmlFor="zipCode" className="text-sm font-semibold">
+                Zip Code
+              </label>
+              <input
+                {...register("zipcode", { required: true })}
+                type="number"
+                id="zipCode"
+                placeholder="Zip Code"
+                className="bg-white mt-1 p-2 border border-gray-300 rounded-md w-full"
+              />
+              {errors.zipcode && <span>This field is required</span>}
+            </div>
+            <div className="form-group col-span-2">
+              <label className="text-sm font-semibold">Address Type *</label>
+              <div className="mt-2 flex space-x-4">
+                <label className="flex items-center space-x-2">
+                  <input
+                    {...register("address_type", { required: true })}
+                    type="radio"
+                    value="Home"
+                    className="form-radio h-4 w-4 text-blue-600 transition duration-150 ease-in-out"
+                  />
+                  <span className="text-gray-700">Home</span>
+                </label>
+                <label className="flex items-center space-x-2">
+                  <input
+                    {...register("address_type", { required: true })}
+                    type="radio"
+                    value="Work"
+                    className="form-radio h-4 w-4 text-blue-600 transition duration-150 ease-in-out"
+                  />
+                  <span className="text-gray-700">Work</span>
+                </label>
+              </div>
+              {errors.address_type && (
+                <span className="text-red-500 text-sm">
+                  This field is required
+                </span>
+              )}
+            </div>
+
+            <button
+              type="submit"
+              className="w-full py-3 bg-second text-white text-lg font-semibold hover:bg-yellow-600 transition-colors"
+            >
+              Save address
+            </button>
+            {savedAddresses.length != [] && (
+              <button
+                onClick={() => setShowNewAddressForm(false)}
+                className="w-full py-3 bg-second text-white text-lg font-semibold hover:bg-yellow-600 transition-colors"
+              >
+                Use existing address
+              </button>
+            )}
+          </form>
         </div>
       ) : (
         <div className="border border-gray-300 p-6 mb-6 rounded-md">
@@ -281,9 +357,9 @@ const CheckoutPage = () => {
             return (
               <div
                 key={index}
-                className=" flex justify-between border-2 rounded-xl p-4 mx-4 my-2 text-gray-700"
+                className="flex justify-between border-2 rounded-xl p-4 mx-4 my-2 text-gray-700"
               >
-                <div className=" ">
+                <div>
                   <h2 className="text-lg font-semibold mb-2">
                     <span className="font-semibold">Address:</span>{" "}
                     {item.address}
@@ -299,7 +375,12 @@ const CheckoutPage = () => {
                 </div>
                 <input
                   type="radio"
-                  class="bg-none focus:ring-2 focus:ring-blue-500 focus:outline-none h-full"
+                  id={`address_${index}`} // Unique id for each radio button
+                  {...register("address_id", { required: true })}
+                  value={item.id.toString()} // Convert id to string if needed
+                  checked={selectedAddress === item.id}
+                  onChange={() => handleAddressSelect(item.id)}
+                  className="bg-none focus:ring-2 focus:ring-blue-500 focus:outline-none h-full"
                 />
               </div>
             );

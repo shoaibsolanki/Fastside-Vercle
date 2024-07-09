@@ -11,25 +11,25 @@ import { useEffect, useState } from "react";
 import { useAuth } from "@/app/contexts/AuthConext";
 
 const OrderComplete = ({ className = "" }) => {
-  const { cart } = useCart();
-  console.log(cart);
-  const [item, setItem] = useState([]);
+  const { cart, totalPrice } = useCart();
+  const [orderInformations, setOrderInformations] = useState(null);
 
-  const getitemImageAndQuantity = () => {
-    const items = cart.map(({ itemName, image_name1, product_qty }) => ({
-      itemName,
-      image_name1,
-      product_qty,
-    }));
-    setItem(items);
-    console.log(item);
-  };
   useEffect(() => {
-    getitemImageAndQuantity();
+    const savedOrderInformations = localStorage.getItem("orderInformations");
+    if (savedOrderInformations) {
+      setOrderInformations(JSON.parse(savedOrderInformations));
+    }
   }, []);
+  console.log("order_informations", orderInformations);
   const { isPaymentSuccessful } = useAuth();
   const router = useRouter();
+  const today = new Date();
 
+  const formattedDate = today.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
   if (!isPaymentSuccessful) {
     router.push("/cart");
   } else
@@ -53,7 +53,15 @@ const OrderComplete = ({ className = "" }) => {
           </section>
           <section className="w-[548px] flex flex-row items-start justify-start py-0 px-px box-border max-w-full">
             <div className="flex-1 flex flex-row items-start justify-center py-0 px-[89px] box-border max-w-full gap-[20px] mq450:pl-5 mq450:pr-5 mq450:box-border mq600:flex-wrap mq600:pl-11 mq600:pr-11 mq600:box-border ">
-              <Placeholder image={keychain} semicolons="3" />
+              {orderInformations?.map((item, index) => {
+                return (
+                  <Placeholder
+                    key={index}
+                    image={item.image_url}
+                    semicolons={item.product_qty}
+                  />
+                );
+              })}
             </div>
           </section>
           <section className="flex flex-row items-center justify-center py-0 px-[139px] box-border gap-[32px] max-w-full text-left text-sm text-neutral-04-100 font-caption-1-semi mq450:pl-5 mq450:pr-5 mq450:box-border mq600:flex-wrap mq600:gap-[16px] mq600:pl-[69px] mq600:pr-[69px] mq600:box-border">
@@ -84,10 +92,10 @@ const OrderComplete = ({ className = "" }) => {
                 #0123_45678
               </div>
               <div className="relative leading-[22px] font-semibold inline-block min-w-[118px] text-black">
-                October 19, 2023
+                {formattedDate}
               </div>
               <div className="relative leading-[22px] font-semibold inline-block min-w-[69px] text-black">
-                Rs 875.00
+                Rs {totalPrice}
               </div>
               <div className="relative leading-[22px] font-semibold inline-block min-w-[78px] text-black">
                 Online{" "}

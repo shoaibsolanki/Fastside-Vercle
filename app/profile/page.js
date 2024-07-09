@@ -70,7 +70,7 @@ const Page = () => {
               }}
               className="self-stretch flex flex-row items-start justify-start pt-2 px-0 pb-1.5 text-neutral-07-100 border-b-[1px] border-solid border-neutral-07-100"
             >
-              <div className="flex-1 relative leading-[26px] font-semibold">
+              <div className="flex-1 relative cursor-pointer leading-[26px] font-semibold">
                 Account
               </div>
             </div>
@@ -80,7 +80,7 @@ const Page = () => {
               }}
               className="self-stretch flex flex-row items-start justify-start pt-2 px-0 pb-1.5 border-b-[1px] border-solid border-transparent"
             >
-              <div className="flex-1 relative leading-[26px] font-semibold">
+              <div className="flex-1 relative cursor-pointer leading-[26px] font-semibold">
                 Address
               </div>
             </div>
@@ -90,12 +90,12 @@ const Page = () => {
               }}
               className="self-stretch flex flex-row items-start justify-start pt-2 px-0 pb-1.5 border-b-[1px] border-solid border-transparent"
             >
-              <div className="flex-1 relative leading-[26px] font-semibold">
+              <div className="flex-1 relative cursor-pointer leading-[26px] font-semibold">
                 Orders
               </div>
             </div>
             <div className="self-stretch flex flex-row items-start justify-start pt-2 px-0 pb-1.5 border-b-[1px] border-solid border-transparent">
-              <div className="flex-1 relative leading-[26px] font-semibold">
+              <div className="flex-1 relative cursor-pointer leading-[26px] font-semibold">
                 Log Out
               </div>
             </div>

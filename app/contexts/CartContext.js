@@ -195,7 +195,7 @@ export const CartProvider = ({ children }) => {
 
   const clearCartFromServer = async (UserId) => {
     try {
-      const response = await DeleteAllItemsFromCart(id);
+      const response = await DataService.DeleteAllItemsFromCart(UserId);
       console.log(response);
     } catch (error) {
       console.error(error);

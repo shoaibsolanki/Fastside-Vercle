@@ -7,9 +7,11 @@ const Placeholder = ({ className = "", image, semicolons }) => {
       className={`h-28 w-24 relative text-center text-base text-neutrals-8 font-caption-1-semi ${className} w-24 h-24`}
     >
       <Image
-        className="absolute top-[16px] left-[0px] w-full h-full overflow-hidden object-cover"
+        className="absolute top-[16px] left-[0px] w-full h-full overflow-hidden object-cover rounded-xl mx-auto"
         loading="lazy"
         layout="fit"
+        width={100}
+        height={100}
         alt=""
         src={image}
       />

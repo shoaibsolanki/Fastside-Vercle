@@ -47,7 +47,7 @@ export const AuthProvider = ({ children }) => {
   const getOrderHistory = async (id) => {
     try {
       const response = await DataService.OrderHistory(id);
-      console.log(response);
+      setAllOrders(response.data.data);
     } catch (error) {
       console.error(error);
     }
@@ -87,6 +87,7 @@ export const AuthProvider = ({ children }) => {
       value={{
         authData,
         isAuthenticated,
+        allOrders,
         login,
         logout,
         products,
