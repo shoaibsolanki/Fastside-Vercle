@@ -20,7 +20,7 @@ export default function RootLayout({ children }) {
             {pathname !== "/login" && pathname !== "/Signup" ? (
               <div className="bg-white ">
                 <Navbar />
-                <main className="bg-white  mx-auto px-28">{children}</main>
+                <main className="bg-white  w-full ">{children}</main>
                 <Footer />
               </div>
             ) : (

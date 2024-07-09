@@ -9,7 +9,7 @@ const Orders = ({ className = "" }) => {
   const itemsPerPage = 5;
   const [currentPage, setCurrentPage] = useState(1);
 
-  const totalPages = Math.ceil(allOrders.length / itemsPerPage);
+  const totalPages = Math.ceil(allOrders?.length / itemsPerPage);
 
   const handleNextPage = () => {
     setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages));
@@ -20,7 +20,7 @@ const Orders = ({ className = "" }) => {
   };
 
   const startIndex = (currentPage - 1) * itemsPerPage;
-  const currentOrders = allOrders.slice(startIndex, startIndex + itemsPerPage);
+  const currentOrders = allOrders?.slice(startIndex, startIndex + itemsPerPage);
 
   return (
     <div
@@ -44,7 +44,7 @@ const Orders = ({ className = "" }) => {
             Price
           </a>
         </div>
-        {currentOrders.map((item, index) => (
+        {currentOrders?.map((item, index) => (
           <Item
             key={index}
             prop={item.order_id}
