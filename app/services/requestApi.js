@@ -37,7 +37,7 @@ class DataService {
     return https.delete(`price-check/delete-all-products/1/10001/${id}`);
   }
   OrderHistory(id) {
-    return https.get(`order/view-order-detail-app/1/10001/${id}`);
+    return https.get(`order/view-order-detail-app/10001/1/${id}`);
   }
   CreateOrder(data) {
     return https.post(`/order/create/order/master`, data);

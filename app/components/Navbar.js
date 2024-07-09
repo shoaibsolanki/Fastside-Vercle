@@ -67,7 +67,7 @@ const Navbar = ({ search, setSearch, data }) => {
           </div>
         </div>
         {/* lower navbar  */}
-        <div className="bg-lightgray h-16 flex gap-8 items-center px-16">
+        {/* <div className="bg-lightgray h-16 flex gap-8 items-center px-16">
           <h2 className="bg-second text-white font-semibold h-full flex items-center px-4 text-lg">
             Browse Category <KeyboardArrowDownRounded fontSize="large" />
           </h2>
@@ -85,7 +85,7 @@ const Navbar = ({ search, setSearch, data }) => {
               <Link href="/">About Us</Link>
             </li>
           </ul>
-        </div>
+        </div> */}
       </nav>
     </>
   );
