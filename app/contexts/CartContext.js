@@ -2,6 +2,7 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { useAuth } from "./AuthConext";
 import DataService from "../services/requestApi";
+import Swal from "sweetalert2";
 
 const CartContext = createContext();
 
@@ -111,14 +112,34 @@ export const CartProvider = ({ children }) => {
     const item = product;
 
     if (id) {
-      console.log("added on the sever api",item);
-      AddProductInTheCart(item);
+      console.log("Added on the server API", item);
+      AddProductInTheCart(item)
+        .then(() => {
+          Swal.fire({
+            icon: "success",
+            title: "Added to Cart",
+            text: `${item.item_name} has been added to your cart successfully!`,
+            timer: 2000,
+            showConfirmButton: false,
+          });
+        })
+        .catch((error) => {
+          console.error(
+            "Error adding product to the cart on the server:",
+            error
+          );
+          Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "There was a problem adding the product to your cart. Please try again.",
+          });
+        });
     } else {
       setCart((prevCart) => {
         const existingProductIndex = prevCart.findIndex(
           (item) => item.item_id === product.item_id
         );
-        console.log("added on the Local storage");
+        console.log("Added on the local storage");
 
         let updatedCart;
         if (existingProductIndex >= 0) {
@@ -137,6 +158,14 @@ export const CartProvider = ({ children }) => {
         }, 0);
 
         setTotalPrice(newTotalPrice);
+
+        Swal.fire({
+          icon: "success",
+          title: "Added to Cart",
+          text: `${item.item_name} has been added to your cart successfully!`,
+          timer: 2000,
+          showConfirmButton: false,
+        });
 
         return updatedCart;
       });
