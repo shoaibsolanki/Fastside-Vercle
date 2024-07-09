@@ -25,7 +25,7 @@
     "react-hook-form": "^7.52.0",
     "reactstrap": "^9.2.2",
     "styled-components": "^6.1.11",
-    "sweetalert2": "^11.12.1"
+    "sweetalert2": "^11.12.2"
   },
   "devDependencies": {
     "daisyui": "^4.12.10",
