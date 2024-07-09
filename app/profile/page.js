@@ -4,10 +4,11 @@ import React, { useState } from "react";
 import OrderHistory from "./OrderHistory";
 import Address from "./Address";
 import Account from "./Account";
+import { useAuth } from "../contexts/AuthConext";
 
 const Page = () => {
   const [activeTab, setActiveTab] = useState("account");
-
+ const {logout}= useAuth()
   let content;
   switch (activeTab) {
     case "account":
@@ -94,7 +95,7 @@ const Page = () => {
                 Orders
               </div>
             </div>
-            <div className="self-stretch flex flex-row items-start justify-start pt-2 px-0 pb-1.5 border-b-[1px] border-solid border-transparent">
+            <div onClick={logout} className="self-stretch flex flex-row items-start justify-start pt-2 px-0 pb-1.5 border-b-[1px] border-solid border-transparent">
               <div className="flex-1 relative cursor-pointer leading-[26px] font-semibold">
                 Log Out
               </div>

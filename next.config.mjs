@@ -1,9 +1,9 @@
 /** @type {import('next').NextConfig} */
+const isDev = false
 const nextConfig = {
     images: {
-      domains: ['103.148.165.246'],
+      domains: [isDev?'103.148.165.246':'103.139.59.233'],
     },
   };
-  
-  export default nextConfig;
-  
+
+export default nextConfig;

@@ -68,7 +68,7 @@ const Page = ({ params }) => {
             className="overflow-hidden w-[500px] h-[500px] mb-4 flex items-center justify-center"
             id="main-image"
           >
-            {singleProduct?.colorList[index]?.image_url && (
+            {singleProduct?.colorList && singleProduct?.colorList[index]?.image_url && (
               <Image
                 alt="product image"
                 src={singleProduct?.colorList[index]?.image_url}
