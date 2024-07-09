@@ -4,8 +4,10 @@ import React, { useState } from "react";
 import Form from "./Form";
 import Form1 from "./Form1";
 import OrderHistory from "./OrderHistory";
+import { useAuth } from "../contexts/AuthConext";
 
 const page = () => {
+  const { logout } = useAuth();
   const [Activetab, setActivetab] = useState("account")
   
   const RenderUi =()=>{
@@ -85,7 +87,7 @@ const page = () => {
                 Wishlist
               </div>
             </div>
-            <div className="self-stretch flex flex-row items-start justify-start pt-2 px-0 pb-1.5 border-b-[1px] border-solid border-transparent">
+            <div onClick={logout} className="cursor-pointer self-stretch flex flex-row items-start justify-start pt-2 px-0 pb-1.5 border-b-[1px] border-solid border-transparent">
               <div className="flex-1 relative leading-[26px] font-semibold">
                 Log Out
               </div>

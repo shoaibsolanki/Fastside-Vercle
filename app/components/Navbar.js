@@ -48,10 +48,12 @@ const Navbar = ({ search, setSearch, data }) => {
             </div>
           </div>
           <div className="flex gap-4 items-center">
-            <h2 onClick={logout} className="flex gap-2 items-center text-white">
+            <Link href={'/profile'}>
+            <h2  className="flex gap-2 items-center text-white">
               <Person2Outlined className="" fontSize="large" />
               <p className="hidden xl:block text-xl">Profile</p>
             </h2>
+            </Link>
 
             <Link href="/cart">
               <h2 className="flex gap-2 items-center text-white">

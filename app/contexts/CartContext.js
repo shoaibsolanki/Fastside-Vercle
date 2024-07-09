@@ -183,7 +183,7 @@ export const CartProvider = ({ children }) => {
   const handleIncrease = (item) => {
     setCart((prevCart) => {
       const updatedCart = prevCart.map((cartItem) => {
-        if (cartItem.item_id === item.item_id) {
+        if (cartItem.id === item.id) {
           return { ...cartItem, product_qty: cartItem.product_qty + 1 };
         }
         return cartItem;
@@ -206,7 +206,7 @@ export const CartProvider = ({ children }) => {
 
     setCart((prevCart) => {
       const updatedCart = prevCart.map((cartItem) => {
-        if (cartItem.item_id === item.item_id) {
+        if (cartItem.id === item.id) {
           return { ...cartItem, product_qty: cartItem.product_qty - 1 };
         }
         return cartItem;
