@@ -2,11 +2,14 @@ import React, { useState } from "react";
 import Image from "next/image";
 import BadgeReel from "@/public/imgs/keychain.png";
 import Lanyard from "@/public/imgs/Lanyard.png";
+import { useCart } from "@/app/contexts/CartContext";
 
 const ItemsShowInSide = ({ items }) => {
+  const { totalPrice } = useCart();
   const [coupon, setCoupon] = useState("");
   const [discount, setDiscount] = useState(25);
-  const [total, setTotal] = useState(875);
+  const [total, setTotal] = useState(totalPrice);
+  console.log(items);
 
   const handleApplyCoupon = () => {};
 
@@ -21,7 +24,12 @@ const ItemsShowInSide = ({ items }) => {
         {items?.map((item, index) => {
           return (
             <div className="flex items-center space-x-4" key={index}>
-              <Image src={BadgeReel} alt="Badge Reel" width={50} height={50} />
+              <Image
+                src={item.image_url}
+                alt="Badge Reel"
+                width={50}
+                height={50}
+              />
               <div className="flex-1">
                 <h3 className="font-semibold">{item.itemName}</h3>
                 <p>Color: Black</p>
@@ -55,12 +63,12 @@ const ItemsShowInSide = ({ items }) => {
 
         <div className="flex justify-between text-sm">
           <p>Subtotal</p>
-          <p>Rs 875.00</p>
+          <p>Rs {totalPrice}</p>
         </div>
 
         <div className="flex justify-between text-lg font-semibold">
           <p>Total</p>
-          <p>Rs {total - discount}.00</p>
+          <p>Rs {totalPrice - discount}.00</p>
         </div>
       </div>
     </div>
