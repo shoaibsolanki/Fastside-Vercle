@@ -52,9 +52,6 @@ const ProductComponent = ({ flex_direction, data }) => {
               className="rounded-xl"
             />
           </Link>
-          <button className="bg-light p-2 rounded-full absolute top-2 right-2 text-red-600">
-            <FavoriteRounded fontSize="medium" />
-          </button>
         </div>
         <div
           className={`${
@@ -75,7 +72,7 @@ const ProductComponent = ({ flex_direction, data }) => {
                 ? `${data?.item_name.slice(0, 35)}...`
                 : data?.item_name}
             </h2>
-            <p className="priceTitle">₹Rs {data?.price}/-</p>
+            <p className="priceTitle">₹{data?.price}/-</p>
             <Rating size={"sm"} />
           </div>
         </div>

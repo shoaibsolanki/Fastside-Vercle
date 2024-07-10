@@ -18,8 +18,8 @@ export const AuthProvider = ({ children }) => {
       return { token: null, user: null };
     }
   });
-  const {id,saasId,storeId} = authData
-  const isAuthenticated = authData.data;
+  const { id, saasId, storeId } = authData;
+  const isAuthenticated = authData.data.data;
 
   const fetchProductApi = async () => {
     try {
@@ -45,7 +45,7 @@ export const AuthProvider = ({ children }) => {
 
   const getOrderHistory = async (id) => {
     try {
-      const response = await DataService.OrderHistory(saasId,storeId,id);
+      const response = await DataService.OrderHistory(saasId, storeId, id);
       setAllOrders(response.data.data);
     } catch (error) {
       console.error(error);
@@ -77,7 +77,7 @@ export const AuthProvider = ({ children }) => {
     console.log("Logged Out");
     setAuthData({ token: null, user: null });
     localStorage.removeItem("authData");
-    localStorage.clear()
+    localStorage.clear();
     Cookies.remove("authToken");
     window.location.reload();
   };
@@ -88,6 +88,7 @@ export const AuthProvider = ({ children }) => {
         authData,
         isAuthenticated,
         allOrders,
+        id,
         login,
         logout,
         products,
