@@ -8,7 +8,7 @@ const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
   const { authData } = useAuth();
-  const id = authData?.data?.data?.customer_data?.id;
+  const {id ,saasId,storeId} = authData;
   const [totalItems, setTotalItems] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
 
@@ -38,7 +38,7 @@ export const CartProvider = ({ children }) => {
 
   const getCartItems = async (userId) => {
     try {
-      const response = await DataService.GetCartItems(userId);
+      const response = await DataService.GetCartItems(saasId,storeId, userId);
       const fetchedCart = response?.data?.data?.products;
       setTotalItems(fetchedCart.length);
       setCart(fetchedCart);
@@ -78,7 +78,7 @@ export const CartProvider = ({ children }) => {
 
   const AddProductInTheCart = async (product, userId = id) => {
     try {
-      const response = await DataService.AddItemsToCart(product, userId);
+      const response = await DataService.AddItemsToCart(product,saasId,storeId, userId);
       getCartItems(userId);
     } catch (error) {
       console.error(error);
@@ -87,7 +87,7 @@ export const CartProvider = ({ children }) => {
 
   const deleteItem = async (itemid) => {
     try {
-      await DataService.DeleteItemsFromCart(id, itemid);
+      await DataService.DeleteItemsFromCart(saasId,storeId,id, itemid);
       console.log("itemidd", itemid);
       getCartItems(id);
     } catch (error) {
@@ -195,7 +195,7 @@ export const CartProvider = ({ children }) => {
 
   const clearCartFromServer = async (UserId) => {
     try {
-      const response = await DataService.DeleteAllItemsFromCart(UserId);
+      const response = await DataService.DeleteAllItemsFromCart(saasId,storeId,UserId);
       console.log(response);
     } catch (error) {
       console.error(error);
