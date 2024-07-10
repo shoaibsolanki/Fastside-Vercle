@@ -23,7 +23,7 @@ const CartItem = ({ item, removeFromCart, handleIncrease, handleDecrease }) => (
     <Grid container spacing={4} alignItems="center">
       <Grid item xs={2}>
         <Image
-          src={item.image_name1 ? item.image_url : "/default-image.jpg"}
+          src={item.image_url ? item.image_url : "/default-image.jpg"}
           alt={item.itemName}
           width={50}
           height={50}
