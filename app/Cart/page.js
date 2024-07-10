@@ -95,7 +95,7 @@ const Page = () => {
     );
   }
   return (
-    <div div className="my-4">
+    <div className="my-4">
       <Stepper activeStep={0} />
 
       <Box className="mt-5" p={5}>
@@ -137,14 +137,18 @@ const Page = () => {
                 />
               );
             })}
-            <Box display="flex" justifyContent="space-between" mt={2}>
-              <Link href="/">
-                <button className="bg-second text-white font-medium text-md rounded-2xl p-4 w-[200px] text-center">
-                  Continue shopping
-                </button>
-              </Link>
+            <Box
+              display="flex"
+              flexDirection={{ xs: "column", sm: "row" }}
+              justifyContent="space-between"
+              alignItems={{ xs: "center", sm: "flex-start" }}
+              mt={2}
+            >
+              <button className="bg-second text-white font-medium text-md rounded-2xl p-4 w-full sm:w-[200px] text-center mb-2 sm:mb-0">
+                <Link href="/">Continue shopping</Link>
+              </button>
               <button
-                className="btn btn-outline-info rounded-2xl w-[150px]"
+                className="btn btn-outline-info rounded-2xl w-full sm:w-[150px] mb-2 sm:mb-0"
                 style={{
                   background: "none",
                   color: "#797979",
@@ -155,7 +159,7 @@ const Page = () => {
                 Update cart
               </button>
               <button
-                className="btn btn-outline-info rounded-2xl w-[150px]"
+                className="btn btn-outline-info rounded-2xl w-full sm:w-[150px]"
                 style={{
                   background: "none",
                   color: "#C33131",
@@ -195,7 +199,7 @@ const Page = () => {
               </Box>
               <div className="flex justify-center">
                 <Link href="/cart/checkout">
-                  <button className="bg-second text-white font-medium text-md rounded-2xl p-2 w-[250px] text-center">
+                  <button className="bg-second text-white font-medium text-md rounded-2xl p-2 w-full sm:w-[250px] text-center">
                     Proceed to checkout
                   </button>
                 </Link>

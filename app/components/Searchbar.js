@@ -42,23 +42,19 @@ const Searchbar = () => {
   }, [search]);
 
   return (
-    <>
-      <div className="flex bg-white rounded-2xl ">
-        <input
-          className="bg-white rounded-xl w-[400px] px-4 outline-none text-primary font-semibold"
-          placeholder="Search your item here"
-          // onChange={(e) => setSearch(e.target.value)}
-        />
-        <button
-          className="bg-second text-white p-4 font-semibold rounded-2xl"
-          onClick={handleSearch}
-        >
-          Search
-        </button>
-      </div>
-
-      {/* <SeachItemMOdal show={show} data={products}/> */}
-    </>
+    <div className="flex items-center max-md:w-full  rounded-2xl shadow-md">
+      <input
+        className="bg-white rounded-l-2xl w-[300px] md:w-[400px] px-4 py-2 outline-none text-primary font-semibold"
+        placeholder="Search your item here"
+        // onChange={(e) => setSearch(e.target.value)}
+      />
+      <button
+        className="bg-second text-white py-2 px-4 font-semibold rounded-r-2xl"
+        onClick={handleSearch}
+      >
+        Search
+      </button>
+    </div>
   );
 };
 
