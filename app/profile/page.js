@@ -9,7 +9,6 @@ import { useAuth } from "../contexts/AuthConext";
 const Page = () => {
   const { logout } = useAuth();
   const [activeTab, setActiveTab] = useState("account");
-
   let content;
   switch (activeTab) {
     case "account":
@@ -30,8 +29,8 @@ const Page = () => {
           My Account
         </h1>
       </div>
-      <main className="w-[1120px] flex flex-row items-start justify-start gap-[7px] max-w-full text-left text-xl text-black font-hairline-2">
-        <div className="w-[262px] bg-[#F3F5F7] rounded-lg bg-neutral-02-100 flex flex-col items-start justify-start py-10 px-4 box-border gap-[40px] mq750:hidden mq750:pt-[26px] mq750:pb-[26px] mq750:box-border mq450:gap-[20px]">
+      <main className="w-[1120px] flex flex-col md:flex-row items-start justify-start gap-[7px] max-w-full text-left text-xl text-black font-hairline-2">
+        <div className="w-full md:w-[262px] bg-[#F3F5F7] rounded-lg bg-neutral-02-100 flex flex-col items-start justify-start py-10 px-4 box-border gap-[40px] mq750:hidden mq750:pt-[26px] mq750:pb-[26px] mq750:box-border mq450:gap-[20px]">
           <div className="self-stretch flex flex-row items-start justify-start py-0 px-[66px]">
             <div className="flex-1 flex flex-col items-start justify-start gap-[6px]">
               <div className="self-stretch flex flex-row items-start justify-start py-0 px-[7px]">
@@ -48,7 +47,7 @@ const Page = () => {
                       src="/image@2x.png"
                     />
                   </div>
-                  <div className=" absolute top-[52px] left-[50px] rounded-[125px] bg-neutral-07-100 box-border w-[30px] h-[30px] flex flex-row items-start justify-start py-[7px] px-[5px] z-[2] border-[1.5px] border-solid border-white1">
+                  <div className="absolute top-[52px] left-[50px] rounded-[125px] bg-neutral-07-100 box-border w-[30px] h-[30px] flex flex-row items-start justify-start py-[7px] px-[5px] z-[2] border-[1.5px] border-solid border-white1">
                     <Image
                       className="h-4 w-4 relative overflow-hidden shrink-0"
                       loading="lazy"
@@ -96,17 +95,17 @@ const Page = () => {
                 Orders
               </div>
             </div>
-            <div className="self-stretch flex flex-row items-start justify-start pt-2 px-0 pb-1.5 border-b-[1px] border-solid border-transparent">
-              <div
-                onClick={logout}
-                className="flex-1 relative cursor-pointer leading-[26px] font-semibold"
-              >
+            <div
+              onClick={logout}
+              className="self-stretch flex flex-row items-start justify-start pt-2 px-0 pb-1.5 border-b-[1px] border-solid border-transparent"
+            >
+              <div className="flex-1 relative cursor-pointer leading-[26px] font-semibold">
                 Log Out
               </div>
             </div>
           </div>
         </div>
-        <section className="flex-1 flex flex-col items-start justify-start px-[72px] box-border gap-[40px] max-w-[calc(100%_-_269px)] mq750:max-w-full mq450:gap-[20px] mq1050:pl-9 mq1050:pr-9 mq1050:box-border ">
+        <section className="flex-1 flex flex-col items-start justify-start px-[72px] box-border gap-[40px] max-w-full mq750:max-w-full mq450:gap-[20px] mq1050:pl-9 mq1050:pr-9 mq1050:box-border">
           {content}
         </section>
       </main>

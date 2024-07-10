@@ -24,7 +24,7 @@ export const AuthProvider = ({ children }) => {
 
   const fetchProductApi = async () => {
     try {
-      const response = await DataService.FetchProductApi("10001", "1", "1");
+      const response = await DataService.FetchProductApi("33001", "33", "1");
       return response.data;
     } catch (error) {
       console.error("product fetch", error);
@@ -78,6 +78,7 @@ export const AuthProvider = ({ children }) => {
     console.log("Logged Out");
     setAuthData({ token: null, user: null });
     localStorage.removeItem("authData");
+    localStorage.clear()
     Cookies.remove("authToken");
     window.location.reload();
   };
