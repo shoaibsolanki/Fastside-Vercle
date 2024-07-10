@@ -47,7 +47,7 @@ export default function DrawerForNavbarMenu({ open, toggleDrawer }) {
     <div>
       <Drawer open={open} onClose={toggleDrawer(false)}>
         {DrawerList}
-        <Searchbar />{" "}
+        {/* <Searchbar />{" "} */}
       </Drawer>
     </div>
   );
