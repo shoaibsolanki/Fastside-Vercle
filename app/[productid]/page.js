@@ -30,7 +30,7 @@ const Page = ({ params }) => {
   };
 
   useEffect(() => {
-    if(id){
+    if (id) {
       fetchSingleProduct(id);
     }
   }, [id]);
@@ -44,12 +44,12 @@ const Page = ({ params }) => {
     const selectedProduct = {
       ...singleProduct,
       colorList: [singleProduct?.colorList[index]],
-      product_qty: singleProduct.product_qty ==0?1:singleProduct.product_qty
+      product_qty:
+        singleProduct.product_qty == 0 ? 1 : singleProduct.product_qty,
     };
-    
+
     addToCart(selectedProduct);
   };
-
 
   const images = singleProduct
     ? [
@@ -61,28 +61,29 @@ const Page = ({ params }) => {
 
   console.log(images);
   return (
-    <section className="container mx-auto my-8 p-4 ">
+    <section className="container mx-auto my-8 p-4">
       <div className="flex flex-col lg:flex-row gap-8 justify-center items-start">
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center w-full lg:w-auto">
           <div
             className="overflow-hidden w-[500px] h-[500px] mb-4 flex items-center justify-center"
             id="main-image"
           >
-            {singleProduct?.colorList && singleProduct?.colorList[index]?.image_url && (
-              <Image
-                alt="product image"
-                src={singleProduct?.colorList[index]?.image_url}
-                width={40}
-                height={50}
-                layout="responsive"
-                objectFit="cover"
-                className="rounded-xl"
-              />
-            )}
+            {singleProduct?.colorList &&
+              singleProduct?.colorList[index]?.image_url && (
+                <Image
+                  alt="product image"
+                  src={singleProduct?.colorList[index]?.image_url}
+                  width={40}
+                  height={50}
+                  layout="responsive"
+                  objectFit="cover"
+                  className="rounded-xl"
+                />
+              )}
           </div>
         </div>
 
-        <div className="flex flex-col max-w-lg">
+        <div className="flex flex-col max-w-full lg:max-w-lg w-full">
           {singleProduct && (
             <>
               <h2 className="text-3xl text-primary font-semibold mb-4">
@@ -109,7 +110,9 @@ const Page = ({ params }) => {
                       key={index}
                       onClick={() => handleColorClick(el?.product_color, index)}
                       className={`w-[20px] h-[20px] cursor-pointer rounded-full border-2 border-gray-300 ${
-                        el?.product_color === selectedColor ? "border-black" : ""
+                        el?.product_color === selectedColor
+                          ? "border-black"
+                          : ""
                       }`}
                       style={{
                         background: el?.product_color.toLowerCase(),
@@ -118,7 +121,7 @@ const Page = ({ params }) => {
                   );
                 })}
               </div>
-              <div className="flex items-center gap-4 my-4">
+              <div className="flex items-center gap-4 my-4 flex-wrap">
                 Size:
                 <div className="bg-gray-200 border px-3 py-1 rounded">4*3</div>
                 <div className="bg-gray-200 border px-3 py-1 rounded">3*4</div>
@@ -133,7 +136,7 @@ const Page = ({ params }) => {
                   <button className="px-3 border-l">+</button>
                 </div>
               </div>
-              <div className="flex gap-4 my-6">
+              <div className="flex gap-4 my-6 flex-wrap justify-center lg:justify-start">
                 <button
                   onClick={handleAddToCart}
                   className="bg-yellow-500 text-white px-6 py-2 rounded-full shadow hover:bg-yellow-600 transition"
@@ -182,7 +185,7 @@ const Page = ({ params }) => {
           )}
         </div>
       </div>
-      <div className="flex justify-center mt-8 gap-4">
+      <div className="flex justify-center mt-8 gap-4 flex-wrap">
         <button className="btn-second">Description</button>
         <button className="text-white border-[1px] bg-primary px-8 py-4 rounded-xl">
           Reviews
@@ -192,7 +195,7 @@ const Page = ({ params }) => {
         <h2 className="text-3xl text-primary font-semibold">
           Related Products
         </h2>
-        <div className="grid grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
           <ProductComponent />
           <ProductComponent />
           <ProductComponent />

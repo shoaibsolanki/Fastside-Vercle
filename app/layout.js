@@ -18,9 +18,11 @@ export default function RootLayout({ children }) {
         <AuthProvider>
           <CartProvider>
             {pathname !== "/login" && pathname !== "/Signup" ? (
-              <div className="bg-white ">
+              <div className="bg-white w-full ">
                 <Navbar />
-                <main className="bg-white  mx-auto px-28">{children}</main>
+                <main className="bg-white  w-full max-w-[1600px] mx-auto px-4 ">
+                  {children}
+                </main>
                 <Footer />
               </div>
             ) : (

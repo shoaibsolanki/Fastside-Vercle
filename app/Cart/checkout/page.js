@@ -6,11 +6,10 @@ import ItemsShowInSide from "./ItemsShowInSide";
 import { useCart } from "@/app/contexts/CartContext";
 const Page = () => {
   const { cart, totalPirce } = useCart();
-  console.log(cart, totalPirce);
   return (
-    <div className="my-4">
+    <div className="my-4  ">
       <Stepper activeStep={1} />
-      <div className="flex  justify-center ">
+      <div className="flex  justify-center max-md:flex-col-reverse ">
         <UserInformation />
         <ItemsShowInSide items={cart} />
       </div>

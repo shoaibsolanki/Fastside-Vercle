@@ -9,7 +9,6 @@ const ItemsShowInSide = ({ items }) => {
   const [coupon, setCoupon] = useState("");
   const [discount, setDiscount] = useState(25);
   const [total, setTotal] = useState(totalPrice);
-  console.log(items);
 
   const handleApplyCoupon = () => {};
 
@@ -18,7 +17,7 @@ const ItemsShowInSide = ({ items }) => {
   };
 
   return (
-    <div className="my-4 w-[500px] h-full mx-auto border border-gray-300 p-6 rounded-md">
+    <div className="my-4 w-full md:w-[500px] h-full mx-auto border border-gray-300 p-6 rounded-md">
       <h2 className="text-lg font-semibold mb-4">Order summary</h2>
       <div className="space-y-4">
         {items?.map((item, index) => {
