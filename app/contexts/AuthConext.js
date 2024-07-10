@@ -34,9 +34,10 @@ export const AuthProvider = ({ children }) => {
   const fetchAndSetProducts = async () => {
     try {
       const productsData = await fetchProductApi();
-      const updatedProducts = productsData.data.map((item) =>
-        item.product_qty === 0 ? { ...item, product_qty: 1 } : item
-      );
+      const updatedProducts =productsData.data.map((item) => ({
+        ...item,
+        new_price: item.price
+      }))
       setProducts(updatedProducts);
     } catch (error) {
       console.error("Failed to fetch products", error);

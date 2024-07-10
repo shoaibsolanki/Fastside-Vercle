@@ -44,8 +44,8 @@ const Page = ({ params }) => {
     const selectedProduct = {
       ...singleProduct,
       colorList: [singleProduct?.colorList[index]],
-      product_qty:
-        singleProduct.product_qty == 0 ? 1 : singleProduct.product_qty,
+      new_price: singleProduct.price
+
     };
 
     addToCart(selectedProduct);
