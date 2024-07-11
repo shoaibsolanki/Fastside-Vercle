@@ -120,8 +120,8 @@ const CheckoutPage = () => {
       address: `${data.street},${data.city},${data.state},${data.zipcode} at ${data.address_type}`,
       address_type: data.address_type,
       street: data.street,
-      store_id: "10001",
-      saas_id: "1",
+      store_id: storeId,
+      saas_id: saasId,
       pincode: data.zipcode,
       city: data.city,
       state: data.state,
@@ -201,7 +201,7 @@ const CheckoutPage = () => {
               type="text"
               id="firstName"
               placeholder="First name"
-              className=" bg-white mt-1 p-2 border border-gray-300 rounded-md w-full"
+              className="bg-white mt-1 p-2 border border-gray-300 rounded-md w-full"
             />
             {errors.first_name && <span>This field is required</span>}
           </div>
@@ -218,7 +218,7 @@ const CheckoutPage = () => {
             />
             {errors.last_name && <span>This field is required</span>}
           </div>
-          <div className="form-group col-span-2">
+          <div className="form-group">
             <label htmlFor="phoneNumber" className="text-sm font-semibold">
               Phone Number
             </label>
@@ -227,11 +227,11 @@ const CheckoutPage = () => {
               type="number"
               id="phoneNumber"
               placeholder="Phone number"
-              className=" bg-white mt-1 p-2 border border-gray-300 rounded-md w-full"
+              className="bg-white mt-1 p-2 border border-gray-300 rounded-md w-full"
             />
-            {errors.Mobile_numbers && <span>This field is required</span>}
+            {errors.mobile_numbers && <span>This field is required</span>}
           </div>
-          <div className="form-group col-span-2">
+          <div className="form-group">
             <label htmlFor="email" className="text-sm font-semibold">
               Email Address
             </label>
@@ -240,7 +240,7 @@ const CheckoutPage = () => {
               type="email"
               id="email"
               placeholder="Your Email"
-              className=" bg-white mt-1 p-2 border border-gray-300 rounded-md w-full"
+              className="bg-white mt-1 p-2 border border-gray-300 rounded-md w-full"
             />
             {errors.email && <span>This field is required</span>}
           </div>
@@ -353,12 +353,12 @@ const CheckoutPage = () => {
           </form>
         </div>
       ) : (
-        <div className="border border-gray-300 p-6 mb-6 rounded-md">
+        <div className="border  gap-4 border-gray-300 p-6 mb-6 rounded-md">
           {savedAddresses.map((item, index) => {
             return (
               <div
                 key={index}
-                className="flex justify-between border-2 rounded-xl p-4 mx-4 my-2 text-gray-700"
+                className=" mx-auto flex  w-full justify-between border-2 rounded-xl p-4  my-2 text-gray-700"
               >
                 <div>
                   <h2 className="text-lg font-semibold mb-2">
@@ -387,7 +387,7 @@ const CheckoutPage = () => {
             );
           })}
           <button
-            className="border-2 rounded-xl p-4 mx-4 my-2 text-gray-400 flex items-center justify-center hover:bg-gray-100 w-full"
+            className="border-2 rounded-xl p-4 mx-auto my-2 text-gray-400 flex items-center justify-center hover:bg-gray-100 w-full"
             onClick={() => setShowNewAddressForm(true)}
           >
             <Add fontSize="large" />
