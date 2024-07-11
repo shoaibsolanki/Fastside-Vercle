@@ -69,7 +69,7 @@ const PopularProducts = ({ data, setData }) => {
           Popular Products
         </h2>
         <ul className="flex flex-wrap justify-between gap-4">
-          {/* {allcategory.map((item, index) => (
+          {allcategory.map((item, index) => (
             <li
               key={index}
               onClick={() => {
@@ -80,7 +80,7 @@ const PopularProducts = ({ data, setData }) => {
             >
               {item.category_name}
             </li>
-          ))} */}
+          ))}
 
           <li className="px-8 py-3 border-[1px] cursor-pointer border-primary rounded-3xl text-primary text-lg font-medium capitalize hover:bg-light">
             Lanyards{" "}

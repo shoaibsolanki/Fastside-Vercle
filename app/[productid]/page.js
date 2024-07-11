@@ -59,6 +59,34 @@ const Page = ({ params }) => {
     : [];
 
   console.log(images);
+
+  const addQty =()=>{
+    try {
+      const updatedProduct = {
+        ...singleProduct,
+        product_qty: singleProduct.product_qty + 1
+    };
+    console.log(updatedProduct);
+    setSingleProduct(updatedProduct);
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  const DecQty =()=>{
+    try {
+      if(singleProduct.product_qty >1){
+        const updatedProduct = {
+          ...singleProduct,
+          product_qty: singleProduct.product_qty - 1
+      };
+      console.log(updatedProduct);
+      setSingleProduct(updatedProduct);
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return (
     <section className="container mx-auto my-8 p-4">
       <div className="flex flex-col lg:flex-row gap-8 justify-center items-start">
@@ -124,9 +152,9 @@ const Page = ({ params }) => {
               <div className="flex items-center gap-4 my-4">
                 Quantity:
                 <div className="bg-gray-200 flex items-center border">
-                  <button className="px-3 border-r">-</button>
-                  <p className="px-3">1</p>
-                  <button className="px-3 border-l">+</button>
+                  <button className="px-3 border-r" onClick={()=>{DecQty()}}>-</button>
+                  <p className="px-3">{singleProduct.product_qty}</p>
+                  <button className="px-3 border-l" onClick={()=>{addQty()}}>+</button>
                 </div>
               </div>
               <div className="flex gap-4 my-6 flex-wrap justify-center lg:justify-start">
