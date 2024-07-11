@@ -23,7 +23,6 @@ export default function Home() {
         <PopularProducts />
         <SaleComponenet />
         <WhyUs />
-        {/* <Testomonials /> */}
       </div>
         
     </main>

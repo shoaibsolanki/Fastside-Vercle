@@ -18,54 +18,112 @@ import { BASEURL } from "../services/http-Pos";
 import Image from "next/image";
 import Stepper from "@/app/components/MicroComponenets/Stepper";
 import emptyCart from "@/public/imgs/shopping.png";
+import Product from "../components/ProductCard";
+import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
 const CartItem = ({ item, removeFromCart, handleIncrease, handleDecrease }) => (
-  <Box className="my-2 items-center">
-    <Grid container spacing={4} alignItems="center">
-      <Grid item xs={2}>
-        <Image
+  <>
+    <Box className="my-2 items-center max-md:hidden">
+      <Grid container spacing={4} alignItems="center">
+        <Grid item xs={2}>
+          <Image
+            src={item.image_url ? item.image_url : "/default-image.jpg"}
+            alt={item.itemName}
+            width={50}
+            height={50}
+            style={{ width: "50%", borderRadius: "10px" }}
+          />
+        </Grid>
+        <Grid item xs={4}>
+          <Typography variant="subtitle1" fontWeight="bold">
+            {item.itemName}
+          </Typography>
+          <Typography variant="body2">Color: {item.color || "N/A"}</Typography>
+        </Grid>
+        <Grid item xs={2}>
+          <Typography className="fw-bold" variant="body1">
+            Rs {item.price}
+          </Typography>
+        </Grid>
+        <Grid item xs={2}>
+          <Box display="flex" alignItems="center">
+            <IconButton onClick={() => handleDecrease(item)}>
+              <Remove />
+            </IconButton>
+            <Typography variant="body1">{item.product_qty}</Typography>
+            <IconButton onClick={() => handleIncrease(item)}>
+              <Add />
+            </IconButton>
+          </Box>
+        </Grid>
+        <Grid item xs={1}>
+          <Typography className="fw-bold" variant="body1">
+            Rs {item.price * item.product_qty}
+          </Typography>
+        </Grid>
+        <Grid item xs={1}>
+          <IconButton onClick={() => removeFromCart(item)}>
+            <Delete />
+          </IconButton>
+        </Grid>
+      </Grid>
+      <Divider />
+    </Box>
+    <div className="hidden max-md:block">
+      <div
+        className={`w-full flex flex-row items-start justify-start p-4 box-border relative gap-[12px] leading-[normal] tracking-[normal] text-left text-xs text-neutral-dark font-heading-h6`}
+      >
+        <section className="h-full w-full absolute !m-[0] top-[0px] right-[0px] bottom-[0px] left-[0px] rounded-8xs bg-background-white box-border border-[1px] border-solid border-neutral-light" />
+        <img
           src={item.image_url ? item.image_url : "/default-image.jpg"}
-          alt={item.itemName}
-          width={50}
-          height={50}
-          style={{ width: "50%", borderRadius: "10px" }}
+          className="h-[72px] w-[72px] relative rounded-8xs object-cover z-[1]"
+          loading="lazy"
+          alt=""
         />
-      </Grid>
-      <Grid item xs={4}>
-        <Typography variant="subtitle1" fontWeight="bold">
-          {item.itemName}
-        </Typography>
-        <Typography variant="body2">Color: {item.color || "N/A"}</Typography>
-        <Typography variant="body2">Size: {item.UOM || "N/A"}</Typography>
-      </Grid>
-      <Grid item xs={2}>
-        <Typography className="fw-bold" variant="body1">
-          Rs {item.price}
-        </Typography>
-      </Grid>
-      <Grid item xs={2}>
-        <Box display="flex" alignItems="center">
-          <IconButton onClick={() => handleDecrease(item)}>
-            <Remove />
-          </IconButton>
-          <Typography variant="body1">{item.product_qty}</Typography>
-          <IconButton onClick={() => handleIncrease(item)}>
-            <Add />
-          </IconButton>
-        </Box>
-      </Grid>
-      <Grid item xs={1}>
-        <Typography className="fw-bold" variant="body1">
-          Rs {item.price * item.product_qty}
-        </Typography>
-      </Grid>
-      <Grid item xs={1}>
-        <IconButton onClick={() => removeFromCart(item)}>
-          <Delete />
-        </IconButton>
-      </Grid>
-    </Grid>
-    <Divider />
-  </Box>
+        <div className="flex-1 flex flex-col items-start justify-start gap-[12px]">
+          <div className="self-stretch flex flex-row items-start justify-start gap-[13px]">
+            <b className="flex-1 relative tracking-[0.5px] leading-[150%] z-[1]">
+              {item.itemName}{" "}
+            </b>
+            <div
+              onClick={() => handleDecrease(item)}
+              className="flex flex-row items-start justify-start gap-[8px]"
+            >
+              <Delete />
+            </div>
+          </div>
+          <div className="self-stretch flex flex-row items-start justify-between gap-[20px] text-primary-blue">
+            <div className="flex flex-col items-start justify-start pt-1.5 px-0 pb-0">
+              <b className="relative tracking-[0.5px] leading-[150%] inline-block min-w-[52px] whitespace-nowrap z-[1]">
+                Rs.{item.price}/-
+                <br />
+                Total.{item.price * item.product_qty}
+              </b>
+            </div>
+            <div className="flex flex-row items-center justify-start py-0 px-2 relative gap-[8px] z-[1] text-center text-darkslateblue">
+              <div className="flex flex-col items-start justify-start pt-1 px-0 pb-0">
+                <Remove />
+              </div>
+              <div className="h-6 flex flex-row items-start justify-start py-0 pr-[17px] pl-0 box-border">
+                <div className="h-[25px] w-[41px] relative bg-neutral-light box-border  border-neutral-light" />
+                <div className="flex flex-col items-start justify-start pt-[3px] px-0 pb-0 ml-[-22px]">
+                  <div className="relative tracking-[0.01em] leading-[150%] inline-block min-w-[4px] z-[1] text-black">
+                    {item.product_qty}
+                  </div>
+                </div>
+              </div>
+              <div
+                onClick={() => handleIncrease(item)}
+                className=" flex flex-col items-start justify-start pt-1 px-0 pb-0"
+              >
+                <AddIcon />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>{" "}
+    </div>
+  </>
 );
 
 const Page = () => {

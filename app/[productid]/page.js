@@ -44,8 +44,7 @@ const Page = ({ params }) => {
     const selectedProduct = {
       ...singleProduct,
       colorList: [singleProduct?.colorList[index]],
-      new_price: singleProduct.price
-
+      new_price: singleProduct.price,
     };
 
     addToCart(selectedProduct);
@@ -60,6 +59,34 @@ const Page = ({ params }) => {
     : [];
 
   console.log(images);
+
+  const addQty =()=>{
+    try {
+      const updatedProduct = {
+        ...singleProduct,
+        product_qty: singleProduct.product_qty + 1
+    };
+    console.log(updatedProduct);
+    setSingleProduct(updatedProduct);
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  const DecQty =()=>{
+    try {
+      if(singleProduct.product_qty >1){
+        const updatedProduct = {
+          ...singleProduct,
+          product_qty: singleProduct.product_qty - 1
+      };
+      console.log(updatedProduct);
+      setSingleProduct(updatedProduct);
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return (
     <section className="container mx-auto my-8 p-4">
       <div className="flex flex-col lg:flex-row gap-8 justify-center items-start">
@@ -121,33 +148,21 @@ const Page = ({ params }) => {
                   );
                 })}
               </div>
-              <div className="flex items-center gap-4 my-4 flex-wrap">
-                Size:
-                <div className="bg-gray-200 border px-3 py-1 rounded">4*3</div>
-                <div className="bg-gray-200 border px-3 py-1 rounded">3*4</div>
-                <div className="bg-gray-200 border px-3 py-1 rounded">H(4)</div>
-                <div className="bg-gray-200 border px-3 py-1 rounded">W(3)</div>
-              </div>
+
               <div className="flex items-center gap-4 my-4">
                 Quantity:
                 <div className="bg-gray-200 flex items-center border">
-                  <button className="px-3 border-r">-</button>
-                  <p className="px-3">1</p>
-                  <button className="px-3 border-l">+</button>
+                  <button className="px-3 border-r" onClick={()=>{DecQty()}}>-</button>
+                  <p className="px-3">{singleProduct.product_qty}</p>
+                  <button className="px-3 border-l" onClick={()=>{addQty()}}>+</button>
                 </div>
               </div>
               <div className="flex gap-4 my-6 flex-wrap justify-center lg:justify-start">
                 <button
                   onClick={handleAddToCart}
-                  className="bg-yellow-500 text-white px-6 py-2 rounded-full shadow hover:bg-yellow-600 transition"
+                  className="w-full bg-yellow-500 text-white px-6 py-2  shadow hover:bg-yellow-600 transition"
                 >
                   Add to cart
-                </button>
-                <button className="bg-yellow-500 text-white px-6 py-2 rounded-full shadow hover:bg-yellow-600 transition">
-                  Buy it now
-                </button>
-                <button className="text-red-500 bg-gray-200 rounded-full p-4">
-                  <FavoriteRounded />
                 </button>
               </div>
               <div className="flex items-center gap-2 my-4">
@@ -191,7 +206,7 @@ const Page = ({ params }) => {
           Reviews
         </button>
       </div>
-      <div className="w-full mx-auto my-4">
+      {/* <div className="w-full mx-auto my-4">
         <h2 className="text-3xl text-primary font-semibold">
           Related Products
         </h2>
@@ -201,7 +216,7 @@ const Page = ({ params }) => {
           <ProductComponent />
           <ProductComponent />
         </div>
-      </div>
+      </div> */}
     </section>
   );
 };

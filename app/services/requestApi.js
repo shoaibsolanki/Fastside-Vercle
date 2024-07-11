@@ -24,19 +24,26 @@ class DataService {
   FetchSingleProduct(id) {
     return https.get(`/item/view-item-detil/${id}`);
   }
-  GetCartItems(saasId,storeId,id) {
+  GetCartItems(saasId, storeId, id) {
     return https.get(`/price-check/getcart/${saasId}/${storeId}/${id}`);
   }
-  AddItemsToCart(item,saasId,storeId, id) {
-    return https.post(`/price-check/addproduct/${saasId}/${storeId}/${id}`, item);
+  AddItemsToCart(item, saasId, storeId, id) {
+    return https.post(
+      `/price-check/addproduct/${saasId}/${storeId}/${id}`,
+      item
+    );
   }
-  DeleteItemsFromCart(saasId,storeId,id, itemid) {
-    return https.delete(`/price-check/deleteproduct/${saasId}/${storeId}/${id}/${itemid}`);
+  DeleteItemsFromCart(saasId, storeId, id, itemid) {
+    return https.delete(
+      `/price-check/deleteproduct/${saasId}/${storeId}/${id}/${itemid}`
+    );
   }
-  DeleteAllItemsFromCart(saasId,storeId,id) {
-    return https.delete(`price-check/delete-all-products/${saasId}/${storeId}/${id}`);
+  DeleteAllItemsFromCart(saasId, storeId, id) {
+    return https.delete(
+      `price-check/delete-all-products/${saasId}/${storeId}/${id}`
+    );
   }
-  OrderHistory(saasId,storeId,id) {
+  OrderHistory(saasId, storeId, id) {
     return https.get(`order/view-order-detail-app/${storeId}/${saasId}/${id}`);
   }
   CreateOrder(data) {
@@ -45,8 +52,10 @@ class DataService {
   SaveAddress(data, id) {
     return https.post(`customer/create-address/${id}`, data);
   }
-  GetSavedAddress(id,saasId,storeId) {
-    return https.get(`/customer/get-all-customer-address-app/${id}/${saasId}/${storeId}`);
+  GetSavedAddress(id, saasId, storeId) {
+    return https.get(
+      `customer/get-all-customer-address-app/${id}/${saasId}/${storeId}`
+    );
   }
 }
 export default new DataService();

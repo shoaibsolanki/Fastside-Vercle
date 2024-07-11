@@ -24,7 +24,7 @@ const SaleComponenet = () => {
           <button className="btn-pri">Shop Now</button>
         </div>
       </div>
-      <div style={{marginTop:"150px"}} className="w-full mx-auto max-w-[900px] p-4 grid grid-cols-1 lg:grid-cols-2s gap-4">
+      <div style={{marginTop:"50px"}} className="w-full mx-auto max-w-[1000px]  grid grid-cols-1 lg:grid-cols-2s gap-4">
       <ImageSwitchProduct />
 
       
