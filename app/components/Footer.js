@@ -5,6 +5,7 @@ import facebook from "../../public/imgs/facebook.png";
 import whatsapp from "../../public/imgs/whatsapp.png";
 import sendIcon from "../../public/imgs/send-2.png";
 import headphones from "../../public/imgs/headphone.png";
+import Link from "next/link";
 const Footer = () => {
   return (
     <footer className="bg-light text-primary p-10 ">
@@ -28,7 +29,7 @@ const Footer = () => {
           <Image src={headphones} alt="Call-us-now" />
           <div>
             <h3 className="text-md font-semibold">Call us 24/7</h3>
-            <h3 className="text-md font-semibold ">(+91) 00000-99999</h3>
+            <h3 className="text-md font-semibold ">(+91) 775-582-1175</h3>
           </div>
         </div>
       </section>
@@ -54,16 +55,18 @@ const Footer = () => {
           <a className="link link-hover">Badge Holders</a>
         </nav>
         <nav>
-          <h6 className="footer-title">Get help</h6>
-          <a className="link link-hover">About us</a>
-          <a className="link link-hover">Contact</a>
-          <a className="link link-hover">Return policy</a>
-          <a className="link link-hover">Privacy policy</a>
-          <a className="link link-hover">Payment policy</a>
+          <Link href="/about" className="footer-title underline">
+            About & Policy
+          </Link>{" "}
+          <p className="link link-hover">Return policy</p>
+          <p className="link link-hover">Privacy policy</p>
+          <p className="link link-hover">Payment policy</p>
         </nav>
         <nav>
-          <h6 className="footer-title">About us</h6>
-          <a className="link link-hover">News</a>
+          <Link href="/gethelp" className="footer-title underline">
+            Get Help
+          </Link>
+          {/* <a className="link link-hover">News</a> */}
           <a className="link link-hover">Custmer care</a>
           <a className="link link-hover">Faq’s</a>
         </nav>
