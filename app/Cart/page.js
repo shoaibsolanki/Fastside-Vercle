@@ -77,6 +77,7 @@ const Page = () => {
     handleIncrease,
     handleDecrease,
   } = useCart();
+  console.log(cart);
 
   if (cart.length === 0) {
     return (

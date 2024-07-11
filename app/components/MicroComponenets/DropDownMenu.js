@@ -1,103 +1,85 @@
-import React from "react";
-import { Button, Dropdown, Space } from "antd";
+import React, { useState } from "react";
+import {
+  AppstoreOutlined,
+  MailOutlined,
+  SettingOutlined,
+} from "@ant-design/icons";
+import { Menu } from "antd";
 const items = [
   {
     key: "1",
-    label: (
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://www.antgroup.com"
-      >
-        1st menu item
-      </a>
-    ),
-  },
-  {
-    key: "2",
-    label: (
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://www.aliyun.com"
-      >
-        2nd menu item
-      </a>
-    ),
-  },
-  {
-    key: "3",
-    label: (
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://www.luohanacademy.com"
-      >
-        3rd menu item
-      </a>
-    ),
+    icon: <MailOutlined />,
+    label: "Navigation One",
+    children: [
+      {
+        key: "11",
+        label: "Option 1",
+      },
+      {
+        key: "12",
+        label: "Option 2",
+      },
+      {
+        key: "13",
+        label: "Option 3",
+      },
+      {
+        key: "14",
+        label: "Option 4",
+      },
+    ],
   },
 ];
-const DropDownMenu = () => (
-  <Space direction="vertical">
-    <Space wrap>
-      <Dropdown
-        menu={{
-          items,
-        }}
-        placement="bottomLeft"
-        arrow
-      >
-        <Button>bottomLeft</Button>
-      </Dropdown>
-      <Dropdown
-        menu={{
-          items,
-        }}
-        placement="bottom"
-        arrow
-      >
-        <Button>bottom</Button>
-      </Dropdown>
-      <Dropdown
-        menu={{
-          items,
-        }}
-        placement="bottomRight"
-        arrow
-      >
-        <Button>bottomRight</Button>
-      </Dropdown>
-    </Space>
-    <Space wrap>
-      <Dropdown
-        menu={{
-          items,
-        }}
-        placement="topLeft"
-        arrow
-      >
-        <Button>topLeft</Button>
-      </Dropdown>
-      <Dropdown
-        menu={{
-          items,
-        }}
-        placement="top"
-        arrow
-      >
-        <Button>top</Button>
-      </Dropdown>
-      <Dropdown
-        menu={{
-          items,
-        }}
-        placement="topRight"
-        arrow
-      >
-        <Button>topRight</Button>
-      </Dropdown>
-    </Space>
-  </Space>
-);
-export default App;
+const getLevelKeys = (items1) => {
+  const key = {};
+  const func = (items2, level = 1) => {
+    items2.forEach((item) => {
+      if (item.key) {
+        key[item.key] = level;
+      }
+      if (item.children) {
+        func(item.children, level + 1);
+      }
+    });
+  };
+  func(items1);
+  return key;
+};
+const levelKeys = getLevelKeys(items);
+const DropDownMenu = () => {
+  const [stateOpenKeys, setStateOpenKeys] = useState(["2", "23"]);
+  const onOpenChange = (openKeys) => {
+    const currentOpenKey = openKeys.find(
+      (key) => stateOpenKeys.indexOf(key) === -1
+    );
+    // open
+    if (currentOpenKey !== undefined) {
+      const repeatIndex = openKeys
+        .filter((key) => key !== currentOpenKey)
+        .findIndex((key) => levelKeys[key] === levelKeys[currentOpenKey]);
+      setStateOpenKeys(
+        openKeys
+          // remove repeat key
+          .filter((_, index) => index !== repeatIndex)
+          // remove current level all child
+          .filter((key) => levelKeys[key] <= levelKeys[currentOpenKey])
+      );
+    } else {
+      // close
+      setStateOpenKeys(openKeys);
+    }
+  };
+  return (
+    <Menu
+      mode="inline"
+      defaultSelectedKeys={["231"]}
+      openKeys={stateOpenKeys}
+      onOpenChange={onOpenChange}
+      style={{
+        width: 256,
+      }}
+      items={items}
+    />
+  );
+};
+export default DropDownMenu;
