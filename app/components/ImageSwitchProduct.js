@@ -1,37 +1,75 @@
-import Image from "next/image";
-import React from "react";
-import CardHolder from "@/public/imgs/CardHolder2.png";
-import Rating from "./Rating";
-import AddToCartButton from "./MicroComponenets/AddToCartButton";
+"use client"; // <===== REQUIRED
+import React, { useRef, useEffect } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import SwiperCore, { Autoplay, Pagination, Navigation } from "swiper";
+
+SwiperCore.use([Autoplay, Pagination, Navigation]);
+
 const ImageSwitchProduct = () => {
+  const swiperRef = useRef(null);
+
+  useEffect(() => {
+    const swiper = swiperRef.current.swiper;
+    const interval = setInterval(() => {
+      if (swiper) {
+        swiper.slideNext(); // Slide to the next image
+      }
+    }, 3000); // Slide every 3 seconds
+
+    // Clear interval on component unmount or cleanup
+    return () => clearInterval(interval);
+  }, []); // Only run on initial mount
+
+  const images = [
+    "/imgs/anna.jpg",
+    "/imgs/BadgeReels2.png",
+    "/imgs/crown.png",
+  ];
+
+  const swiperStyles = {
+    width: "100%",
+    height: "45%",
+  };
+
+  const imgStyles = {
+    width: "100%",
+    height: "100%",
+    objectFit: "cover",
+  };
+
+  const autoplayOptions = {
+    delay: 2000, // Autoplay delay between slides
+    disableOnInteraction: false, // Enable autoplay even when user interacts with swiper
+  };
+
   return (
-    <div className="gap-8 items-center border-gray-400 border-[1px] flex flex-col md:flex-row p-8 rounded-badge h-full justify-between w-full">
-      <div className="w-full md:w-auto">
-        <Image alt="item_image" src={CardHolder} objectFit="contain" />
-      </div>
-      <div className="w-full">
-        <h2 className="product-title text-primary">Badge Holders</h2>
-        <p className="priceTitle">Rs. 169/-</p>
-        <Rating />
-        <ul className="flex flex-wrap gap-4 mt-4 justify-center md:justify-start">
-          <li className="bg-light font-bold text-xl text-second p-8 rounded-full w-16 h-16 flex items-center justify-center">
-            W(4)
-          </li>
-          <li className="bg-light font-bold text-xl text-second p-8 rounded-full w-16 h-16 flex items-center justify-center">
-            H(4)
-          </li>
-          <li className="bg-light font-bold text-xl text-second p-8 rounded-full w-16 h-16 flex items-center justify-center">
-            W(3)
-          </li>
-          <li className="bg-light font-bold text-xl text-second p-8 rounded-full w-16 h-16 flex items-center justify-center">
-            H(4)
-          </li>
-        </ul>
-        <div className="flex justify-center md:justify-start">
-          <AddToCartButton />
-        </div>
-      </div>
-    </div>
+    <Swiper
+      ref={swiperRef}
+      spaceBetween={30}
+      centeredSlides={true}
+      autoplay={autoplayOptions}
+      loop={true} // Enable looping through images
+      pagination={{
+        clickable: true,
+      }}
+      navigation={true}
+      className="mySwiper"
+      style={swiperStyles}
+    >
+      {images.map((image, index) => (
+        <SwiperSlide key={index}>
+          <img
+            src={image}
+            className="rounded-3"
+            alt={`Slide ${index + 1}`}
+            style={imgStyles}
+          />
+        </SwiperSlide>
+      ))}
+    </Swiper>
   );
 };
 
