@@ -8,7 +8,7 @@ import { useAuth } from "../contexts/AuthConext";
 
 const Page = () => {
   const { logout } = useAuth();
-  const [activeTab, setActiveTab] = useState("account");
+  const [activeTab, setActiveTab] = useState("order");
   let content;
   switch (activeTab) {
     case "account":
@@ -29,7 +29,7 @@ const Page = () => {
           My Account
         </h1>
       </div>
-      <main className="w-[1120px] flex flex-col md:flex-row items-start justify-start gap-[7px] max-w-full text-left text-xl text-black font-hairline-2">
+      <main className="w-[1120px] flex flex-col md:flex-row md:items-start items-start justify-start gap-[7px] max-w-full text-left text-xl text-black font-hairline-2">
         <div className="w-full md:w-[262px] bg-[#F3F5F7] rounded-lg bg-neutral-02-100 flex flex-col items-start justify-start py-10 px-4 box-border gap-[40px] mq750:hidden mq750:pt-[26px] mq750:pb-[26px] mq750:box-border mq450:gap-[20px]">
           <div className="self-stretch flex flex-row items-start justify-start py-0 px-[66px]">
             <div className="flex-1 flex flex-col items-start justify-start gap-[6px]">

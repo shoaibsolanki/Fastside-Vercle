@@ -86,10 +86,10 @@ const CartItem = ({ item, removeFromCart, handleIncrease, handleDecrease }) => (
               {item.itemName}{" "}
             </b>
             <div
-              onClick={() => handleDecrease(item)}
+              onClick={() => removeFromCart(item)}
               className="flex flex-row items-start justify-start gap-[8px]"
             >
-              <Delete />
+              <Delete onClick={() => removeFromCart(item)} />
             </div>
           </div>
           <div className="self-stretch flex flex-row items-start justify-between gap-[20px] text-primary-blue">
@@ -102,7 +102,7 @@ const CartItem = ({ item, removeFromCart, handleIncrease, handleDecrease }) => (
             </div>
             <div className="flex flex-row items-center justify-start py-0 px-2 relative gap-[8px] z-[1] text-center text-darkslateblue">
               <div className="flex flex-col items-start justify-start pt-1 px-0 pb-0">
-                <Remove />
+                <Remove onClick={() => handleIncrease(item)} />
               </div>
               <div className="h-6 flex flex-row items-start justify-start py-0 pr-[17px] pl-0 box-border">
                 <div className="h-[25px] w-[41px] relative bg-neutral-light box-border  border-neutral-light" />

@@ -1,7 +1,27 @@
+import { useAuth } from "../contexts/AuthConext";
 import AddressBox from "./Componenets/AddressBox";
 import PropTypes from "prop-types";
-
+import DataService from "../services/requestApi";
+import { useEffect, useState } from "react";
 const Address = ({ className = "" }) => {
+  const { allOrders, authData } = useAuth();
+  const { id, saasId, storeId } = authData;
+  const [savedAddresses, setSavedAddresses] = useState();
+  const getSavedData = async () => {
+    try {
+      const response = await DataService.GetSavedAddress(id, saasId, storeId);
+      console.log("Saved addresses:", response.data.data);
+      setSavedAddresses(response.data.data);
+    } catch (error) {
+      console.error("Error fetching saved addresses:", error);
+    }
+  };
+
+  useEffect(() => {
+    if (id) {
+      getSavedData();
+    }
+  }, [id]);
   return (
     <div
       className={`w-full flex flex-col items-start justify-start py-0 px-[72px] box-border gap-[19px] leading-[normal] tracking-[normal] text-left text-[20px] text-black font-caption-1 mq450:pl-5 mq450:pr-5 mq450:box-border ${className}`}
@@ -10,8 +30,9 @@ const Address = ({ className = "" }) => {
         Address
       </a>
       <section className="self-stretch flex flex-row flex-wrap items-start justify-start gap-[23px] max-w-full">
-        <AddressBox billingAddress="Billing Address" />
-        <AddressBox billingAddress="Shipping Address" />
+        {savedAddresses?.map((item, index) => {
+          return <AddressBox key={index} address={item} />;
+        })}{" "}
       </section>
     </div>
   );
