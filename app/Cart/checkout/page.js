@@ -4,8 +4,16 @@ import UserInformation from "./UserInformation";
 import Stepper from "../../components/MicroComponenets/Stepper";
 import ItemsShowInSide from "./ItemsShowInSide";
 import { useCart } from "@/app/contexts/CartContext";
+import { useAuth } from "@/app/contexts/AuthConext";
+import { useRouter } from "next/navigation";
+
 const Page = () => {
   const { cart, totalPirce } = useCart();
+  const { isAuthenticated } = useAuth();
+  const router = useRouter();
+  if (!isAuthenticated) {
+    return router.push("/login");
+  }
   return (
     <div className="my-4  ">
       <Stepper activeStep={1} />

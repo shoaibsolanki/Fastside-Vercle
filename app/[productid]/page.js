@@ -12,13 +12,8 @@ import { useCart } from "../contexts/CartContext";
 const Page = ({ params }) => {
   const { addToCart } = useCart();
   const id = params.productid;
-  const [quantity, setQuantity] = useState(1);
-  const increase = () => {
-    setQuantity((prev) => prev + 1);
-  };
-  const decrease = () => {
-    setQuantity((prev) => prev + 1);
-  };
+  console.log("id", id);
+
   const [singleProduct, setSingleProduct] = useState(null);
   const [index, setIndex] = useState(0);
   const [selectedColor, setSelectedColor] = useState(null);
@@ -64,6 +59,7 @@ const Page = ({ params }) => {
       ].filter((image) => image && image !== "unavailable")
     : [];
 
+  console.log(images);
   return (
     <section className="container mx-auto my-8 p-4">
       <div className="flex flex-col lg:flex-row gap-8 justify-center items-start">
@@ -135,13 +131,9 @@ const Page = ({ params }) => {
               <div className="flex items-center gap-4 my-4">
                 Quantity:
                 <div className="bg-gray-200 flex items-center border">
-                  <button className="px-3 border-r" onClick={decrease}>
-                    -
-                  </button>
-                  <p className="px-3">{quantity}</p>
-                  <button className="px-3 border-l" nClick={increase}>
-                    +
-                  </button>
+                  <button className="px-3 border-r">-</button>
+                  <p className="px-3">1</p>
+                  <button className="px-3 border-l">+</button>
                 </div>
               </div>
               <div className="flex gap-4 my-6 flex-wrap justify-center lg:justify-start">

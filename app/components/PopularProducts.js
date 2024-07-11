@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect, useState } from "react";
-
 import ProductComponent from "./ProductComponent";
 import { BASEURL } from "../services/http-Pos";
 import axios from "axios";
