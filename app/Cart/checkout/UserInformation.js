@@ -12,7 +12,7 @@ const CheckoutPage = () => {
   const { authData, setIsPaymentSuccessful } = useAuth();
   const { cart, totalPrice, clearCart } = useCart();
   const router = useRouter();
-  const {id ,saasId,storeId} = authData;
+  const { id, saasId, storeId } = authData;
 
   const [billingAddress, setBillingAddress] = useState(false);
   const [savedAddresses, setSavedAddresses] = useState([]);
@@ -121,8 +121,8 @@ const CheckoutPage = () => {
       address: `${data.street},${data.city},${data.state},${data.zipcode} at ${data.address_type}`,
       address_type: data.address_type,
       street: data.street,
-      store_id: "10001",
-      saas_id: "1",
+      store_id: storeId,
+      saas_id: saasId,
       pincode: data.zipcode,
       city: data.city,
       state: data.state,
@@ -135,12 +135,12 @@ const CheckoutPage = () => {
   const handlePlaceOrder = async (data, paymentResponse) => {
     try {
       const orderInformations = {
-        address_id: data.selectedAddress,
+        address_id: data.address_id,
         customer_id: id,
         customer_name: `${data.first_name} ${data.last_name}`,
         mobile_number: data.Mobile_numbers,
-        saas_id: "1",
-        store_id: "10001",
+        saas_id: saasId,
+        store_id: storeId,
         order_tax: 0,
         order_value: totalPrice,
         order_discount: 0,
@@ -161,6 +161,7 @@ const CheckoutPage = () => {
     }
   };
 
+  console.log(selectedAddress);
   const saveAddress = async (data) => {
     try {
       const response = await DataService.SaveAddress(data, id);
@@ -174,7 +175,7 @@ const CheckoutPage = () => {
 
   const getSavedData = async () => {
     try {
-      const response = await DataService.GetSavedAddress(id,saasId,storeId);
+      const response = await DataService.GetSavedAddress(id, saasId, storeId);
       console.log("Saved addresses:", response.data.data);
       setSavedAddresses(response.data.data);
     } catch (error) {
@@ -201,7 +202,7 @@ const CheckoutPage = () => {
               type="text"
               id="firstName"
               placeholder="First name"
-              className=" bg-white mt-1 p-2 border border-gray-300 rounded-md w-full"
+              className="bg-white mt-1 p-2 border border-gray-300 rounded-md w-full"
             />
             {errors.first_name && <span>This field is required</span>}
           </div>
@@ -218,7 +219,7 @@ const CheckoutPage = () => {
             />
             {errors.last_name && <span>This field is required</span>}
           </div>
-          <div className="form-group col-span-2">
+          <div className="form-group">
             <label htmlFor="phoneNumber" className="text-sm font-semibold">
               Phone Number
             </label>
@@ -227,11 +228,11 @@ const CheckoutPage = () => {
               type="number"
               id="phoneNumber"
               placeholder="Phone number"
-              className=" bg-white mt-1 p-2 border border-gray-300 rounded-md w-full"
+              className="bg-white mt-1 p-2 border border-gray-300 rounded-md w-full"
             />
-            {errors.Mobile_numbers && <span>This field is required</span>}
+            {errors.mobile_numbers && <span>This field is required</span>}
           </div>
-          <div className="form-group col-span-2">
+          <div className="form-group">
             <label htmlFor="email" className="text-sm font-semibold">
               Email Address
             </label>
@@ -240,7 +241,7 @@ const CheckoutPage = () => {
               type="email"
               id="email"
               placeholder="Your Email"
-              className=" bg-white mt-1 p-2 border border-gray-300 rounded-md w-full"
+              className="bg-white mt-1 p-2 border border-gray-300 rounded-md w-full"
             />
             {errors.email && <span>This field is required</span>}
           </div>
@@ -353,12 +354,12 @@ const CheckoutPage = () => {
           </form>
         </div>
       ) : (
-        <div className="border border-gray-300 p-6 mb-6 rounded-md">
+        <div className="border  gap-4 border-gray-300 p-6 mb-6 rounded-md">
           {savedAddresses.map((item, index) => {
             return (
               <div
                 key={index}
-                className="flex justify-between border-2 rounded-xl p-4 mx-4 my-2 text-gray-700"
+                className=" mx-auto flex  w-full justify-between border-2 rounded-xl p-4  my-2 text-gray-700"
               >
                 <div>
                   <h2 className="text-lg font-semibold mb-2">
@@ -376,9 +377,9 @@ const CheckoutPage = () => {
                 </div>
                 <input
                   type="radio"
-                  id={`address_${index}`} // Unique id for each radio button
+                  id={`address_${index}`}
                   {...register("address_id", { required: true })}
-                  value={item.id.toString()} // Convert id to string if needed
+                  value={item.id.toString()}
                   checked={selectedAddress === item.id}
                   onChange={() => handleAddressSelect(item.id)}
                   className="bg-none focus:ring-2 focus:ring-blue-500 focus:outline-none h-full"
@@ -387,7 +388,7 @@ const CheckoutPage = () => {
             );
           })}
           <button
-            className="border-2 rounded-xl p-4 mx-4 my-2 text-gray-400 flex items-center justify-center hover:bg-gray-100 w-full"
+            className="border-2 rounded-xl p-4 mx-auto my-2 text-gray-400 flex items-center justify-center hover:bg-gray-100 w-full"
             onClick={() => setShowNewAddressForm(true)}
           >
             <Add fontSize="large" />

@@ -34,7 +34,7 @@ const Page = () => {
           <div className="self-stretch flex flex-row items-start justify-start py-0 px-[66px]">
             <div className="flex-1 flex flex-col items-start justify-start gap-[6px]">
               <div className="self-stretch flex flex-row items-start justify-start py-0 px-[7px]">
-                <div className="h-[82px] flex-1 relative">
+                {/* <div className="h-[82px] flex-1 relative">
                   <div className="absolute w-[calc(100%_-_2px)] top-[0px] right-[2px] left-[0px] rounded-[58px] h-20">
                     <div className="absolute h-full w-full top-[0%] right-[0%] bottom-[0%] left-[0%] flex flex-row items-start justify-start">
                       <div className="h-20 w-20 relative rounded-[93px] bg-black-900" />
@@ -57,7 +57,7 @@ const Page = () => {
                       src="/outlinecamera.svg"
                     />
                   </div>
-                </div>
+                </div> */}
               </div>
               <div className="relative leading-[32px] font-semibold inline-block min-w-[97px] mq450:text-base mq450:leading-[26px]">
                 Jeet Patel

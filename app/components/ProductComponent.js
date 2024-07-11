@@ -53,28 +53,25 @@ const ProductComponent = ({ flex_direction, data }) => {
             />
           </Link>
         </div>
-        <div
-          className={`${
-            flex_direction === "row" ? "ml-4" : "mt-4"
-          } hover:opacity-100 relative`}
-        >
-          <div
+        <div className="flex justify-between">
+          {/* <div
             className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 ${
               isHovering ? "opacity-100" : "opacity-0"
             }`}
           >
             <AddToCartButton item={selectedProduct} />
-          </div>
+          </div> */}
 
-          <div className={`${isHovering ? "invisible" : "visible"}`}>
+          <div>
             <h2 className="product-title text-primary">
-              {data?.item_name.length > 35
-                ? `${data?.item_name.slice(0, 35)}...`
+              {data?.item_name.length > 30
+                ? `${data?.item_name.slice(0, 30)}...`
                 : data?.item_name}
             </h2>
             <p className="priceTitle">₹{data?.price}/-</p>
             <Rating size={"sm"} />
           </div>
+          <AddToCartButton item={selectedProduct} />
         </div>
       </div>
     </>

@@ -34,17 +34,17 @@ export const AuthProvider = ({ children }) => {
   const fetchAndSetProducts = async () => {
     try {
       const productsData = await fetchProductApi();
-      const updatedProducts =productsData.data.map((item) => ({
+      const updatedProducts = productsData.data.map((item) => ({
         ...item,
-        new_price: item.price
-      }))
+        new_price: item.price,
+      }));
       setProducts(updatedProducts);
     } catch (error) {
       console.error("Failed to fetch products", error);
     }
   };
 
-  const getOrderHistory = async (id) => {
+  const getOrderHistory = async (saasId, storeId, id) => {
     try {
       const response = await DataService.OrderHistory(saasId, storeId, id);
       setAllOrders(response.data.data);
@@ -53,13 +53,12 @@ export const AuthProvider = ({ children }) => {
     }
   };
   useEffect(() => {
-    getOrderHistory(id);
+    getOrderHistory(saasId, storeId, id);
   }, [id]);
 
   useEffect(() => {
     fetchAndSetProducts();
   }, []);
-  // console.log(products);
 
   useEffect(() => {
     const storedAuthData = JSON.parse(localStorage.getItem("authData"));

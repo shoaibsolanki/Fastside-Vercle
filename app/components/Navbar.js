@@ -15,9 +15,11 @@ import { useAuth } from "../contexts/AuthConext";
 import Image from "next/image";
 import DrawerForNavbarMenu from "./MicroComponenets/DrawerForNavbarMenu";
 import menuButton from "@/public/svgs/Menu_lines.svg";
+import DropdownMenu from "./DropDownMenu";
 
 const Navbar = ({ search, setSearch, data }) => {
   const { cart, totalItems } = useCart();
+  console.log(totalItems);
   const { logout } = useAuth();
   const [open, setOpen] = useState(false);
 
@@ -97,7 +99,8 @@ const Navbar = ({ search, setSearch, data }) => {
         <h2 className="bg-second text-white font-semibold h-full flex items-center px-4 text-lg">
           Browse Category <KeyboardArrowDownRounded fontSize="large" />
         </h2>
-        <ul className="text-dark font-semibold h-full flex items-center px-4 text-lg gap-4">
+
+        <ul className="text-dark font-semibold h-full flex items-center  text-lg gap-4">
           <li>
             <Link href="/blog">Blog</Link>
           </li>
