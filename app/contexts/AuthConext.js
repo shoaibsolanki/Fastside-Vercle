@@ -19,11 +19,11 @@ export const AuthProvider = ({ children }) => {
     }
   });
   const { id, saasId, storeId } = authData;
-  const isAuthenticated = authData?.data?.data;
+  const isAuthenticated =  Cookies.get('authToken')
 
   const fetchProductApi = async () => {
     try {
-      const response = await DataService.FetchProductApi("10001", "1", "1");
+      const response = await DataService.FetchProductApi("33001", "33", "1");
       return response.data;
     } catch (error) {
       console.error("product fetch", error);
@@ -68,10 +68,10 @@ export const AuthProvider = ({ children }) => {
     }
   }, []);
 
-  const login = (data) => {
+  const login = (data,token) => {
     setAuthData(data);
     localStorage.setItem("authData", JSON.stringify(data));
-    Cookies.set("authToken", data.token, { expires: 7 });
+    Cookies.set("authToken", token, { expires: 7 });
   };
 
   const logout = () => {

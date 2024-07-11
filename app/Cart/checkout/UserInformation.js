@@ -7,6 +7,7 @@ import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import DataService from "@/app/services/requestApi";
 import { Add } from "@mui/icons-material";
+import { BASEURL } from "@/app/services/http-Pos";
 const CheckoutPage = () => {
   const { authData, setIsPaymentSuccessful } = useAuth();
   const { cart, totalPrice, clearCart } = useCart();
@@ -53,7 +54,7 @@ const CheckoutPage = () => {
       };
 
       const response = await axios.post(
-        "http://103.139.59.233:8089/prod/api/v1/rezar/pay/1",
+        `${BASEURL.ENDPOINT_URL}rezar/pay/1`,
         data,
         {
           headers: {

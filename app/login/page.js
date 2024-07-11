@@ -30,7 +30,7 @@ const page = () => {
         const user = response.data.data.customer_data;
 
         if (token && user) {
-          login(user);
+          login(user,token);
 
           setUser(response.data);
           if (redirectUrl) {
