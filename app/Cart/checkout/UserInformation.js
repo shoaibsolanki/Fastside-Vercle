@@ -11,7 +11,7 @@ const CheckoutPage = () => {
   const { authData, setIsPaymentSuccessful } = useAuth();
   const { cart, totalPrice, clearCart } = useCart();
   const router = useRouter();
-  const {id ,saasId,storeId} = authData;
+  const { id, saasId, storeId } = authData;
 
   const [billingAddress, setBillingAddress] = useState(false);
   const [savedAddresses, setSavedAddresses] = useState([]);
@@ -134,12 +134,12 @@ const CheckoutPage = () => {
   const handlePlaceOrder = async (data, paymentResponse) => {
     try {
       const orderInformations = {
-        address_id: data.selectedAddress,
+        address_id: data.address_id,
         customer_id: id,
         customer_name: `${data.first_name} ${data.last_name}`,
         mobile_number: data.Mobile_numbers,
-        saas_id: "1",
-        store_id: "10001",
+        saas_id: saasId,
+        store_id: storeId,
         order_tax: 0,
         order_value: totalPrice,
         order_discount: 0,
@@ -160,6 +160,7 @@ const CheckoutPage = () => {
     }
   };
 
+  console.log(selectedAddress);
   const saveAddress = async (data) => {
     try {
       const response = await DataService.SaveAddress(data, id);
@@ -173,7 +174,7 @@ const CheckoutPage = () => {
 
   const getSavedData = async () => {
     try {
-      const response = await DataService.GetSavedAddress(id,saasId,storeId);
+      const response = await DataService.GetSavedAddress(id, saasId, storeId);
       console.log("Saved addresses:", response.data.data);
       setSavedAddresses(response.data.data);
     } catch (error) {
@@ -375,9 +376,9 @@ const CheckoutPage = () => {
                 </div>
                 <input
                   type="radio"
-                  id={`address_${index}`} // Unique id for each radio button
+                  id={`address_${index}`}
                   {...register("address_id", { required: true })}
-                  value={item.id.toString()} // Convert id to string if needed
+                  value={item.id.toString()}
                   checked={selectedAddress === item.id}
                   onChange={() => handleAddressSelect(item.id)}
                   className="bg-none focus:ring-2 focus:ring-blue-500 focus:outline-none h-full"

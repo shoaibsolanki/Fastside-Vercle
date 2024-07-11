@@ -11,9 +11,9 @@ const Page = () => {
   const { cart, totalPirce } = useCart();
   const { isAuthenticated } = useAuth();
   const router = useRouter();
-  if (!isAuthenticated) {
-    return router.push("/login");
-  }
+  // if (!isAuthenticated) {
+  //   return router.push("/login");
+  // }
   return (
     <div className="my-4  ">
       <Stepper activeStep={1} />

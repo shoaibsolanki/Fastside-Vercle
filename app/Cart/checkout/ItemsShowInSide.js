@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import BadgeReel from "@/public/imgs/keychain.png";
-import Lanyard from "@/public/imgs/Lanyard.png";
+import Lanyard from "@/public/imgs/lanyard.png";
 import { useCart } from "@/app/contexts/CartContext";
 
 const ItemsShowInSide = ({ items }) => {

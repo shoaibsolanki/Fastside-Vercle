@@ -24,13 +24,13 @@ const SaleComponenet = () => {
           <button className="btn-pri">Shop Now</button>
         </div>
       </div>
-      <div className="w-full mx-auto max-w-[1600px] p-4 grid grid-cols-1 lg:grid-cols-3 gap-4">
+      {/* <div className="w-full mx-auto max-w-[1600px] p-4 grid grid-cols-1 lg:grid-cols-3 gap-4">
         <div className="lg:col-span-2 row-span-2">
           <ImageSwitchProduct />
         </div>
         <ProductComponent flex_direction="row" />
         <ProductComponent flex_direction="row" />
-      </div>
+      </div> */}
     </>
   );
 };

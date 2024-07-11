@@ -122,7 +122,6 @@ export const CartProvider = ({ children }) => {
     const item = product;
 
     if (id) {
-      console.log("Added on the server API", item);
       AddProductInTheCart(item)
         .then(() => {
           Swal.fire({
