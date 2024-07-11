@@ -14,15 +14,18 @@ const Page = () => {
   // if (!isAuthenticated) {
   //   return router.push("/login");
   // }
-  return (
-    <div className="my-4  ">
-      <Stepper activeStep={1} />
-      <div className="flex  justify-center max-md:flex-col-reverse ">
-        <UserInformation />
-        <ItemsShowInSide items={cart} />
+  if (cart.lenght == []) {
+    return router.push("/");
+  } else
+    return (
+      <div className="my-4  ">
+        <Stepper activeStep={1} />
+        <div className="flex  justify-center max-md:flex-col-reverse ">
+          <UserInformation />
+          <ItemsShowInSide items={cart} />
+        </div>
       </div>
-    </div>
-  );
+    );
 };
 
 export default Page;

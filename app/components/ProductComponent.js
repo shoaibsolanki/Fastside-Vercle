@@ -64,8 +64,8 @@ const ProductComponent = ({ flex_direction, data }) => {
 
           <div>
             <h2 className="product-title text-primary">
-              {data?.item_name.length > 35
-                ? `${data?.item_name.slice(0, 35)}...`
+              {data?.item_name.length > 30
+                ? `${data?.item_name.slice(0, 30)}...`
                 : data?.item_name}
             </h2>
             <p className="priceTitle">₹{data?.price}/-</p>

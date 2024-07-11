@@ -7,7 +7,7 @@ import { useCart } from "@/app/contexts/CartContext";
 const ItemsShowInSide = ({ items }) => {
   const { totalPrice } = useCart();
   const [coupon, setCoupon] = useState("");
-  const [discount, setDiscount] = useState(25);
+  const [discount, setDiscount] = useState(0);
   const [total, setTotal] = useState(totalPrice);
 
   const handleApplyCoupon = () => {};
@@ -44,16 +44,6 @@ const ItemsShowInSide = ({ items }) => {
             </div>
           );
         })}
-
-        <div className="flex items-center justify-between text-sm">
-          <p>JenkateMW</p>
-          <div className="flex items-center space-x-2 text-green-500">
-            <span>-Rs 25.00</span>
-            <button className="text-red-500" onClick={handleRemoveCoupon}>
-              [Remove]
-            </button>
-          </div>
-        </div>
 
         <div className="flex justify-between text-sm">
           <p>Shipping</p>
