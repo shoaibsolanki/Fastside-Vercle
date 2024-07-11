@@ -19,7 +19,7 @@ export const AuthProvider = ({ children }) => {
     }
   });
   const { id, saasId, storeId } = authData;
-  const isAuthenticated = authData.data.data;
+  const isAuthenticated = authData?.data?.data;
 
   const fetchProductApi = async () => {
     try {
