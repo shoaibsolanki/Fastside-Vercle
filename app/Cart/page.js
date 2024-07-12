@@ -90,8 +90,9 @@ const CartItem = ({ item, removeFromCart, handleIncrease, handleDecrease }) => (
               {item?.itemName?.length > 30 ? "..." : ""}
             </b>
             <div
-              onClick={() => removeFromCart(item)}
-              className="flex flex-row items-start justify-start gap-[8px]"
+              onClick={() =>{ removeFromCart(item)
+              }}
+              className="flex flex-row items-start justify-start gap-[8px] z-10"
             >
               <Delete fontSize="small" onClick={() => removeFromCart(item)} />
             </div>
