@@ -24,9 +24,13 @@ const ImageSwitchProduct = () => {
   }, []); // Only run on initial mount
 
   const images = [
-    "/imgs/keychain.png",
-    "/imgs/BadgeReels2.png",
-    "/imgs/CardHolder2.png",
+    "/imgs/slid1.jpg",
+    "/imgs/slid2.jpg",
+    "/imgs/slid3.jpg",
+    "/imgs/slid4.jpg",
+    "/imgs/slid5.jpg",
+    "/imgs/slid6.jpg",
+    "/imgs/slid7.jpg",
   ];
 
   const swiperStyles = {

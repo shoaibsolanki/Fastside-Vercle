@@ -68,7 +68,7 @@ const PopularProducts = ({ data, setData }) => {
         <h2 className="text-primary text-3xl font-semibold">
           Popular Products
         </h2>
-        <ul className="flex flex-wrap justify-between gap-4">
+        {/* <ul className="flex flex-wrap justify-between gap-4">
           {allcategory.map((item, index) => (
             <li
               key={index}
@@ -84,8 +84,8 @@ const PopularProducts = ({ data, setData }) => {
 
           {/* <li className="px-8 py-3 border-[1px] cursor-pointer border-primary rounded-3xl text-primary text-lg font-medium capitalize hover:bg-light">
             Lanyards{" "}
-          </li> */}
-        </ul>
+          </li>
+        </ul> */}
       </div>
       <div className="w-full mx-auto my-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
         {products

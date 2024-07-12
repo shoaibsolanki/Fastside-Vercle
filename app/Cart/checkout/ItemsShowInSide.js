@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import Image from "next/image";
-import BadgeReel from "@/public/imgs/keychain.png";
-import Lanyard from "@/public/imgs/lanyard.png";
 import { useCart } from "@/app/contexts/CartContext";
 import { Remove } from "@mui/icons-material";
 import AddIcon from "@mui/icons-material/Add";

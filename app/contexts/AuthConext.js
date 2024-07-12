@@ -20,7 +20,7 @@ export const AuthProvider = ({ children }) => {
   });
   const { id, saasId, storeId } = authData;
   const isAuthenticated = Cookies.get("authToken");
-  console.log("authenticated", isAuthenticated);
+  console.log("isAuthenticated", isAuthenticated);
   const fetchProductApi = async () => {
     try {
       const response = await DataService.FetchProductApi("33001", "33", "1");

@@ -30,8 +30,8 @@ const CartItem = ({ item, removeFromCart, handleIncrease, handleDecrease }) => (
       <Grid container spacing={4} alignItems="center">
         <Grid item xs={2}>
           <Image
-            src={item.image_url ? item.image_url : "/default-image.jpg"}
-            alt={item.itemName}
+            src={item?.image_url ? item?.image_url : "/default-image.jpg"}
+            alt={item?.itemName}
             width={50}
             height={50}
             style={{ width: "50%", borderRadius: "10px" }}
@@ -39,7 +39,7 @@ const CartItem = ({ item, removeFromCart, handleIncrease, handleDecrease }) => (
         </Grid>
         <Grid item xs={4}>
           <Typography variant="subtitle1" fontWeight="bold">
-            {item.itemName}
+            {item?.itemName}
           </Typography>
           <Typography variant="body2">Color: {item.color || "N/A"}</Typography>
         </Grid>
@@ -66,7 +66,7 @@ const CartItem = ({ item, removeFromCart, handleIncrease, handleDecrease }) => (
         </Grid>
         <Grid item xs={1}>
           <IconButton onClick={() => removeFromCart(item)}>
-            <Delete />
+            <Delete onClick={() => removeFromCart(item)} />
           </IconButton>
         </Grid>
       </Grid>
@@ -86,8 +86,8 @@ const CartItem = ({ item, removeFromCart, handleIncrease, handleDecrease }) => (
         <div className="flex-1 flex flex-col items-start justify-start gap-[12px]">
           <div className="self-stretch flex flex-row items-start justify-start gap-[13px]">
             <b className="flex-1 relative tracking-[0.5px] leading-[150%] z-[1]">
-              {item.itemName.slice(0, 30)}
-              {item.itemName.length > 30 ? "..." : ""}
+              {item?.itemName?.slice(0, 30)}
+              {item?.itemName?.length > 30 ? "..." : ""}
             </b>
             <div
               onClick={() => removeFromCart(item)}
@@ -177,7 +177,7 @@ const Page = () => {
     <div className="my-4">
       <Stepper activeStep={0} />
 
-      <Box className="mt-5" p={5}>
+      <Box className="mt-5 " p={5}>
         <Grid container spacing={2}>
           <Grid item xs={12} md={8}>
             <div className="mb-4 hidden max-md:block text-primary font-semibold">

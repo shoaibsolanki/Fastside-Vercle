@@ -8,7 +8,7 @@ import { useAuth } from "../contexts/AuthConext";
 import { useRouter } from "next/navigation";
 
 const Page = () => {
-  const { logout, authData } = useAuth();
+  const { logout, authData, isAuthenticated } = useAuth();
   const [activeTab, setActiveTab] = useState("order");
   const router = useRouter();
   const { name } = authData;
@@ -26,8 +26,8 @@ const Page = () => {
       content = <Address />;
       break;
   }
-  if (!userAuthenticated) {
-    return router.push("/");
+  if (!isAuthenticated) {
+    return router.push("/login");
   } else
     return (
       <div className="w-full relative bg-white1 flex flex-col items-center justify-start py-20 px-5 box-border gap-[80px] leading-[normal] tracking-[normal] text-left text-35xl text-black font-headline-3 mq750:gap-[20px] mq1125:gap-[40px]">
@@ -103,11 +103,11 @@ const Page = () => {
                 </div>
               </div>
               <div
-                onClick={logout}
+                // onClick={logout}
                 className="self-stretch flex flex-row items-start justify-start pt-2 px-0 pb-1.5 border-b-[1px] border-solid border-transparent"
               >
                 <div className="flex-1 relative cursor-pointer leading-[26px] font-semibold">
-                  Log Out
+                  <LogoutModal />
                 </div>
               </div>
             </div>
@@ -121,3 +121,78 @@ const Page = () => {
 };
 
 export default Page;
+
+import Backdrop from "@mui/material/Backdrop";
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
+import Fade from "@mui/material/Fade";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
+
+function LogoutModal() {
+  const { logout } = useAuth();
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  return (
+    <div>
+      <button className="text-red-500" onClick={handleOpen}>
+        Logout
+      </button>
+      <Modal
+        aria-labelledby="transition-modal-title"
+        aria-describedby="transition-modal-description"
+        open={open}
+        onClose={handleClose}
+        closeAfterTransition
+        slots={{ backdrop: Backdrop }}
+        slotProps={{
+          backdrop: {
+            timeout: 500,
+          },
+        }}
+      >
+        <Fade in={open}>
+          <Box sx={style}>
+            <Typography
+              id="transition-modal-title"
+              variant="h6"
+              component="h2"
+              gutterBottom
+            >
+              Do you want to logout?
+            </Typography>
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "flex-end",
+                gap: 2,
+                mt: 2,
+              }}
+            >
+              <Button onClick={logout} variant="outlined" color="error">
+                Logout
+              </Button>
+              <Button variant="contained" color="primary" onClick={handleClose}>
+                Close
+              </Button>
+            </Box>
+          </Box>
+        </Fade>
+      </Modal>
+    </div>
+  );
+}
