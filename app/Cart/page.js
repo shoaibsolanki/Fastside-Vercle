@@ -24,13 +24,13 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import { useAuth } from "../contexts/AuthConext";
 import { useRouter } from "next/navigation";
 
-const CartItem = ({ item, removeFromCart, handleIncrease, handleDecrease }) => (
+const CartItem = ({ item, removeFromCart, handleIncrease, handleDecrease,isAuthenticated }) => (
   <>
     <Box className="my-2 items-center max-md:hidden">
       <Grid container spacing={4} alignItems="center">
         <Grid item xs={2}>
           <Image
-            src={item?.image_url ? item?.image_url : "/default-image.jpg"}
+            src={isAuthenticated?item?.image_url ? item?.image_url : "/default-image.jpg":item?.colorList[0].image_url}
             alt={item?.itemName}
             width={50}
             height={50}
@@ -39,7 +39,7 @@ const CartItem = ({ item, removeFromCart, handleIncrease, handleDecrease }) => (
         </Grid>
         <Grid item xs={4}>
           <Typography variant="subtitle1" fontWeight="bold">
-            {item?.itemName}
+          {isAuthenticated?item?.itemName?.slice(0, 30):item.item_name}
           </Typography>
           <Typography variant="body2">Color: {item.color || "N/A"}</Typography>
         </Grid>
@@ -78,7 +78,7 @@ const CartItem = ({ item, removeFromCart, handleIncrease, handleDecrease }) => (
       >
         <section className="h-full w-full absolute !m-[0] top-[0px] right-[0px] bottom-[0px] left-[0px] rounded-8xs bg-background-white box-border border-[1px] border-solid border-neutral-light" />
         <img
-          src={item.image_url ? item.image_url : "/default-image.jpg"}
+          src={isAuthenticated?item?.image_url ? item?.image_url : "/default-image.jpg":item?.colorList[0].image_url}
           className="h-[72px] w-[72px] relative rounded-8xs object-cover z-[1]"
           loading="lazy"
           alt=""
@@ -86,7 +86,7 @@ const CartItem = ({ item, removeFromCart, handleIncrease, handleDecrease }) => (
         <div className="flex-1 flex flex-col items-start justify-start gap-[12px]">
           <div className="self-stretch flex flex-row items-start justify-start gap-[13px]">
             <b className="flex-1 relative tracking-[0.5px] leading-[150%] z-[1]">
-              {item?.itemName?.slice(0, 30)}
+              {isAuthenticated?item?.itemName?.slice(0, 30):item.item_name?.slice(0, 30)}
               {item?.itemName?.length > 30 ? "..." : ""}
             </b>
             <div
@@ -141,7 +141,7 @@ const Page = () => {
     handleIncrease,
     handleDecrease,
   } = useCart();
-  const { authData } = useAuth();
+  const { authData ,isAuthenticated} = useAuth();
   console.log(authData);
   const router = useRouter();
   const [userId, setUserId] = useState(null);
@@ -222,6 +222,7 @@ const Page = () => {
                 <CartItem
                   key={index}
                   item={item}
+                  isAuthenticated={isAuthenticated}
                   removeFromCart={removeFromCart}
                   handleIncrease={handleIncrease}
                   handleDecrease={handleDecrease}
