@@ -1,5 +1,6 @@
 "use client";
 import {
+  ArrowRightAltRounded,
   Info,
   KeyboardArrowDownRounded,
   LocalShippingOutlined,
@@ -7,7 +8,7 @@ import {
   PlaceOutlined,
   ShoppingCartRounded,
 } from "@mui/icons-material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Searchbar from "./Searchbar";
 import Link from "next/link";
 import { useCart } from "../contexts/CartContext";
@@ -16,14 +17,28 @@ import Image from "next/image";
 import DrawerForNavbarMenu from "./MicroComponenets/DrawerForNavbarMenu";
 import menuButton from "@/public/svgs/Menu_lines.svg";
 import DropdownMenu from "./DropDownMenu";
+import { useRouter } from "next/navigation";
 
 const Navbar = ({ search, setSearch, data }) => {
   const { cart, totalItems } = useCart();
-  const { logout } = useAuth();
+  const { logout, authData } = useAuth();
   const [open, setOpen] = useState(false);
 
-  const toggleDrawer = (newOpen) => () => {
-    setOpen(newOpen);
+  const router = useRouter();
+  const [userId, setUserId] = useState(null);
+
+  useEffect(() => {
+    if (authData && authData.id) {
+      setUserId(authData.id);
+    }
+  }, [authData]);
+
+  const handleProceedToProfile = () => {
+    if (userId) {
+      router.push("/profile");
+    } else {
+      router.push("/login");
+    }
   };
 
   return (
@@ -64,34 +79,44 @@ const Navbar = ({ search, setSearch, data }) => {
           >
             <Image src={menuButton} alt="menu_button" />
           </button> */}
-            <div id="search-bar" className="max-md:hidden w-full md:w-auto">
+
+            {/* <div id="search-bar" className="max-md:hidden w-full md:w-auto">
               <Searchbar />
-            </div>
+            </div> */}
           </div>
           <div className=" flex gap-4 items-center mt-4 md:mt-0">
-            <Link href={"/profile"}>
-              <h2 className="flex gap-2 items-center text-white">
+            <button
+              className="flex  items-center gap-2"
+              onClick={handleProceedToProfile}
+            >
+              {!userId && (
+                <span className="text-white">
+                  SignIn <ArrowRightAltRounded />
+                </span>
+              )}{" "}
+              <div className="flex gap-2 items-center text-white">
                 <Person2Outlined fontSize="large" />
                 <p className="hidden xl:block text-sm md:text-xl">Profile</p>
-              </h2>
-            </Link>
+              </div>
+            </button>
 
             <Link href="/cart">
-              <h2 className="flex gap-2 items-center text-white">
+              <div className="flex gap-2 items-center text-white">
                 <ShoppingCartRounded fontSize="large" />
-                <span className="bg-second rounded-full h-6 w-6 text-center text-xs md:text-sm">
+                <h3 className=" flex items-center justify-center    bg-second rounded-full h-6 w-6 text-center text-xs md:text-sm">
                   {totalItems}
-                </span>
+                </h3>
                 <p className="hidden xl:block text-sm md:text-lg">Cart</p>
-              </h2>
+              </div>
             </Link>
           </div>
         </div>
-        <div className="w-full flex justify-center items-center my-2 mx-auto md:hidden">
+        {/* searchbar silented */}
+        {/* <div className="w-full flex justify-center items-center my-2 mx-auto md:hidden">
           <div className="w-full max-w-md">
             <Searchbar />
           </div>
-        </div>
+        </div> */}
       </div>
       {/* lower navbar */}
       {/* <div className="bg-lightgray h-16 flex gap-8 items-center px-16">

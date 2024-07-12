@@ -115,7 +115,6 @@ const CheckoutPage = () => {
   const onSubmit = async (data) => {
     handleRazorpayPayment(data);
   };
-  console.log(selectedAddress);
   const handleSaveAddress = async (data) => {
     const addressForSave = {
       address: `${data.street},${data.city},${data.state},${data.zipcode} at ${data.address_type}`,
@@ -161,7 +160,6 @@ const CheckoutPage = () => {
     }
   };
 
-  console.log(selectedAddress);
   const saveAddress = async (data) => {
     try {
       const response = await DataService.SaveAddress(data, id);

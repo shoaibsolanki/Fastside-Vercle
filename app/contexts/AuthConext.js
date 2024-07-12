@@ -19,8 +19,7 @@ export const AuthProvider = ({ children }) => {
     }
   });
   const { id, saasId, storeId } = authData;
-  const isAuthenticated =  Cookies.get('authToken')
-
+  const isAuthenticated = Cookies.get("authToken");
   const fetchProductApi = async () => {
     try {
       const response = await DataService.FetchProductApi("33001", "33", "1");
@@ -67,7 +66,7 @@ export const AuthProvider = ({ children }) => {
     }
   }, []);
 
-  const login = (data,token) => {
+  const login = (data, token) => {
     setAuthData(data);
     localStorage.setItem("authData", JSON.stringify(data));
     Cookies.set("authToken", token, { expires: 7 });
