@@ -168,7 +168,7 @@ const Page = () => {
         <p className="text-2xl text-black text-medium">
           Looks like you have not added anything to your cart
         </p>
-        <Link href="/" className="btn bg-primary my-4 px-16 text-white">
+        <Link href="/" className="btn font-bold bg-primary my-4 px-16 text-white">
           Shop Now
         </Link>
       </div>
