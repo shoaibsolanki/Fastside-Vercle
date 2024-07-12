@@ -63,7 +63,7 @@ const CartItem = ({ item, removeFromCart, handleIncrease, handleDecrease }) => (
         </Grid>
         <Grid item xs={1}>
           <IconButton onClick={() => removeFromCart(item)}>
-            <Delete />
+            <Delete onClick={() => removeFromCart(item)}/>
           </IconButton>
         </Grid>
       </Grid>
@@ -156,23 +156,23 @@ const Page = () => {
     <div className="my-4">
       <Stepper activeStep={0} />
 
-      <Box className="mt-5" p={5}>
+      <Box className="mt-5 " p={5}>
         <Grid container spacing={2}>
           <Grid item xs={12} md={8}>
             <Box bgcolor="#E6F7FF" p={2} borderRadius={2}>
-              <Grid container>
-                <Grid item xs={4}>
+              <Grid container className="gap-1">
+                <Grid item xs={3}>
                   <Typography variant="subtitle1" fontWeight="bold">
                     Product
                   </Typography>
                 </Grid>
-                <Grid item xs={2}></Grid>
-                <Grid item xs={2}>
+                {/* <Grid item xs={2}></Grid> */}
+                <Grid item xs={3}>
                   <Typography variant="subtitle1" fontWeight="bold">
                     Price
                   </Typography>
                 </Grid>
-                <Grid item xs={2}>
+                <Grid item xs={3}>
                   <Typography variant="subtitle1" fontWeight="bold">
                     Quantity
                   </Typography>
