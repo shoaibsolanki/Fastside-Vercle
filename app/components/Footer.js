@@ -70,19 +70,26 @@ const Footer = () => {
           <p className="">Badge Holders</p>
         </nav>
         <nav>
-          <Link href="/about" className="footer-title underline">
-            About & Policy
+          <h1 className="footer-title ">About & Policy</h1>
+          <Link href="/about" className="link link-hover">
+            About
           </Link>{" "}
-          <p className="">Return policy</p>
-          <p className="">Privacy policy</p>
-          <p className="">Payment policy</p>
+          <Link href="/returnpolicy" className="link link-hover">
+            Return policy
+          </Link>
+          <Link href="/policy" className="link link-hover">
+            Privacy policy
+          </Link>
+          <Link href="/shippingpolicy" className="link link-hover">
+            Shipping policy
+          </Link>
         </nav>
         <nav>
-          <Link href="/gethelp" className="footer-title underline">
-            Get Help
+          <h1 className="footer-title ">get help</h1>
+          <Link href="/gethelp" className="link link-hover">
+            Custmer care
           </Link>
           {/* <a className="link link-hover">News</a> */}
-          <p className=" ">Custmer care</p>
           {/* <a className="link link-hover">Faq’s</a> */}
         </nav>
       </div>
