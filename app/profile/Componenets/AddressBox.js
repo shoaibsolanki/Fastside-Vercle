@@ -20,9 +20,9 @@ const Content = ({ className = "", address }) => {
             alt=""
             src="/outlineedit.svg"
           />
-          <a className="[text-decoration:none] relative leading-[26px] font-semibold text-[inherit] inline-block min-w-[31px]">
+          {/* <a className="[text-decoration:none] relative leading-[26px] font-semibold text-[inherit] inline-block min-w-[31px]">
             Edit
-          </a>
+          </a> */}
         </div>
       </div>
       <div className="self-stretch flex flex-col items-start justify-start py-0 pr-5 pl-0 gap-[4px] text-sm">

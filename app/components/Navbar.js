@@ -7,6 +7,7 @@ import {
   Person2Outlined,
   PlaceOutlined,
   ShoppingCartRounded,
+  WhatsApp,
 } from "@mui/icons-material";
 import React, { useEffect, useState } from "react";
 import Searchbar from "./Searchbar";
@@ -45,10 +46,13 @@ const Navbar = ({ search, setSearch, data }) => {
     <nav id="navbar" className="w-full">
       {/* upper navbar */}
       <div className="max-md:hidden bg-lightgray text-dark p-4 flex flex-col md:flex-row justify-between items-center">
-        <h2 className="text-sm md:text-lg">
-          Need Help? Call us:{" "}
-          <a href="tel:+917755821175" className=" hover:underline">
-            (+91) 775-582-1175
+        <h2 className="text-sm md:text-lg flex gap-2">
+          Need Help? Chat with us:{" "}
+          <a
+            href="https://wa.me/+917755821175"
+            className=" hover:underline flex items-center gap-2"
+          >
+            <WhatsApp /> (+91) 775-582-1175
           </a>
         </h2>
 
