@@ -36,7 +36,7 @@ const ImageSwitchProduct = () => {
   const swiperStyles = {
     width: "100%",
     height: "550px",
-    marginBottom:"50px"
+    marginBottom: "50px",
   };
   const imgContainerStyles = {
     display: "flex",
@@ -49,7 +49,7 @@ const ImageSwitchProduct = () => {
     height: "auto", // Maintain aspect ratio
     objectFit: "cover",
     borderRadius: "8px", // Rounded corners
-    alignItem:"center"
+    alignItem: "center",
   };
 
   const autoplayOptions = {
@@ -73,13 +73,14 @@ const ImageSwitchProduct = () => {
     >
       {images.map((image, index) => (
         <SwiperSlide key={index}>
-                  <div style={imgContainerStyles}>
-          <img
-            src={image}
-            className="rounded-3 "
-            alt={`Slide ${index + 1}`}
-            style={imgStyles}
-          /></div>
+          <div style={imgContainerStyles}>
+            <img
+              src={image}
+              className="rounded-3 "
+              alt={`Slide ${index + 1}`}
+              style={imgStyles}
+            />
+          </div>
         </SwiperSlide>
       ))}
     </Swiper>

@@ -82,7 +82,7 @@ const PopularProducts = ({ data, setData }) => {
             </li>
           ))}
 
-          <li className="px-8 py-3 border-[1px] cursor-pointer border-primary rounded-3xl text-primary text-lg font-medium capitalize hover:bg-light">
+          {/* <li className="px-8 py-3 border-[1px] cursor-pointer border-primary rounded-3xl text-primary text-lg font-medium capitalize hover:bg-light">
             Lanyards{" "}
           </li>
         </ul> */}

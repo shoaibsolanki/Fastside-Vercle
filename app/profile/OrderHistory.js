@@ -24,12 +24,12 @@ const Orders = ({ className = "" }) => {
 
   return (
     <div
-      className={`w-full flex flex-col items-start justify-start py-0 px-[72px] box-border gap-[40px] leading-[normal] tracking-[normal] text-left text-[20px] text-black font-caption-1 mq450:gap-[20px] mq450:px-5 ${className}`}
+      className={`w-full flex flex-col items-start justify-start py-0 px-[72px] box-border gap-[40px] leading-[normal] tracking-[normal] text-left text-[20px] text-black font-caption-1 mq450:gap-[20px] mq450:px-5 max-md:items-start`}
     >
       <h1 className="relative leading-[32px] font-semibold text-[inherit] mq450:text-[16px] mq450:leading-[26px]">
         Orders History
       </h1>
-      <section className="w-full flex flex-col items-start justify-start text-left text-sm text-neutral-04-100 font-caption-1">
+      <section className="max-w-full flex flex-col items-start justify-start text-left text-sm text-neutral-04-100 font-caption-1 max-md:max-w-[50px]">
         <div className="w-full flex flex-row items-center justify-between pt-0 px-0 pb-1.5 gap-[20px] border-b-[1px] border-solid border-neutral-03-100 mq750:flex-wrap">
           <div className="w-40 leading-[22px] inline-block shrink-0">
             Number ID

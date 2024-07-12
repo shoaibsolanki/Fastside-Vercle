@@ -16,22 +16,23 @@ const Page = () => {
   };
 
   return (
-    <Box sx={{ width: "100%", typography: "body1" }}>
-      <TabContext value={value}>
-        <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-          <TabList onChange={handleChange} aria-label="lab API tabs example">
-            <Tab label="Contace Us" value="1" />
-            <Tab label="FAQ's" value="2" />
-          </TabList>
-        </Box>
-        <TabPanel value="1">
-          <CustomerCare />
-        </TabPanel>
-        <TabPanel value="2">
-          <Faq />
-        </TabPanel>
-      </TabContext>
-    </Box>
+    // <Box sx={{ width: "100%", typography: "body1" }}>
+    //   <TabContext value={value}>
+    //     <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+    //       <TabList onChange={handleChange} aria-label="lab API tabs example">
+    //         <Tab label="Contace Us" value="1" />
+    //         <Tab label="FAQ's" value="2" />
+    //       </TabList>
+    //     </Box>
+    //     <TabPanel value="1">
+    //       <CustomerCare />
+    //     </TabPanel>
+    //     <TabPanel value="2">
+    //       <Faq />
+    //     </TabPanel>
+    //   </TabContext>
+    // </Box>
+    <CustomerCare />
   );
 };
 

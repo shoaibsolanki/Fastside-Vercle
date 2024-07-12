@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Button,
@@ -11,7 +11,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { Add, Remove, Delete } from "@mui/icons-material";
+import { Add, Remove, Delete, CurrencyRupee } from "@mui/icons-material";
 import { useCart } from "../contexts/CartContext";
 import Link from "next/link";
 import { BASEURL } from "../services/http-Pos";
@@ -21,6 +21,9 @@ import emptyCart from "@/public/imgs/shopping.png";
 import Product from "../components/ProductCard";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
+import { useAuth } from "../contexts/AuthConext";
+import { useRouter } from "next/navigation";
+
 const CartItem = ({ item, removeFromCart, handleIncrease, handleDecrease }) => (
   <>
     <Box className="my-2 items-center max-md:hidden">
@@ -83,13 +86,14 @@ const CartItem = ({ item, removeFromCart, handleIncrease, handleDecrease }) => (
         <div className="flex-1 flex flex-col items-start justify-start gap-[12px]">
           <div className="self-stretch flex flex-row items-start justify-start gap-[13px]">
             <b className="flex-1 relative tracking-[0.5px] leading-[150%] z-[1]">
-              {item.itemName}{" "}
+              {item.itemName.slice(0, 30)}
+              {item.itemName.length > 30 ? "..." : ""}
             </b>
             <div
-              onClick={() => handleDecrease(item)}
+              onClick={() => removeFromCart(item)}
               className="flex flex-row items-start justify-start gap-[8px]"
             >
-              <Delete />
+              <Delete fontSize="small" onClick={() => removeFromCart(item)} />
             </div>
           </div>
           <div className="self-stretch flex flex-row items-start justify-between gap-[20px] text-primary-blue">
@@ -97,12 +101,12 @@ const CartItem = ({ item, removeFromCart, handleIncrease, handleDecrease }) => (
               <b className="relative tracking-[0.5px] leading-[150%] inline-block min-w-[52px] whitespace-nowrap z-[1]">
                 Rs.{item.price}/-
                 <br />
-                Total.{item.price * item.product_qty}
+                {/* Total: Rs.{item.price * item.product_qty}/- */}
               </b>
             </div>
-            <div className="flex flex-row items-center justify-start py-0 px-2 relative gap-[8px] z-[1] text-center text-darkslateblue">
+            <div className="flex flex-row items-center justify-start py-0  relative gap-[2px] z-[1] text-center text-darkslateblue">
               <div className="flex flex-col items-start justify-start pt-1 px-0 pb-0">
-                <Remove />
+                <Remove fontSize="small" onClick={() => handleDecrease(item)} />
               </div>
               <div className="h-6 flex flex-row items-start justify-start py-0 pr-[17px] pl-0 box-border">
                 <div className="h-[25px] w-[41px] relative bg-neutral-light box-border  border-neutral-light" />
@@ -116,7 +120,7 @@ const CartItem = ({ item, removeFromCart, handleIncrease, handleDecrease }) => (
                 onClick={() => handleIncrease(item)}
                 className=" flex flex-col items-start justify-start pt-1 px-0 pb-0"
               >
-                <AddIcon />
+                <AddIcon fontSize="small" />
               </div>
             </div>
           </div>
@@ -135,7 +139,24 @@ const Page = () => {
     handleIncrease,
     handleDecrease,
   } = useCart();
+  const { authData } = useAuth();
+  console.log(authData);
+  const router = useRouter();
+  const [userId, setUserId] = useState(null);
 
+  useEffect(() => {
+    if (authData && authData.id) {
+      setUserId(authData.id);
+    }
+  }, [authData]);
+
+  const handleProceedToCheckout = () => {
+    if (userId) {
+      router.push("/cart/checkout");
+    } else {
+      router.push("/login");
+    }
+  };
   if (cart.length === 0) {
     return (
       <div className="flex items-center justify-center p-8 flex-col text-center">
@@ -159,31 +180,41 @@ const Page = () => {
       <Box className="mt-5 " p={5}>
         <Grid container spacing={2}>
           <Grid item xs={12} md={8}>
-            <Box bgcolor="#E6F7FF" p={2} borderRadius={2}>
-              <Grid container className="gap-1">
-                <Grid item xs={3}>
-                  <Typography variant="subtitle1" fontWeight="bold">
-                    Product
-                  </Typography>
+            <div className="mb-4 hidden max-md:block text-primary font-semibold">
+              subtotal{" "}
+              <span className="text-xl font-bold">
+                <CurrencyRupee fontSize="small" />
+                {totalPrice}
+              </span>
+            </div>
+
+            <div className="max-md:hidden">
+              <Box bgcolor="#E6F7FF" p={2} borderRadius={2}>
+                <Grid container>
+                  <Grid item xs={4}>
+                    <Typography variant="subtitle1" fontWeight="bold">
+                      Product
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={2}></Grid>
+                  <Grid item xs={2}>
+                    <Typography variant="subtitle1" fontWeight="bold">
+                      Price
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={2}>
+                    <Typography variant="subtitle1" fontWeight="bold">
+                      Quantity
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={2}>
+                    <Typography variant="subtitle1" fontWeight="bold">
+                      Subtotal
+                    </Typography>
+                  </Grid>
                 </Grid>
-                {/* <Grid item xs={2}></Grid> */}
-                <Grid item xs={3}>
-                  <Typography variant="subtitle1" fontWeight="bold">
-                    Price
-                  </Typography>
-                </Grid>
-                <Grid item xs={3}>
-                  <Typography variant="subtitle1" fontWeight="bold">
-                    Quantity
-                  </Typography>
-                </Grid>
-                <Grid item xs={2}>
-                  <Typography variant="subtitle1" fontWeight="bold">
-                    Subtotal
-                  </Typography>
-                </Grid>
-              </Grid>
-            </Box>
+              </Box>
+            </div>
             {cart.map((item, index) => {
               return (
                 <CartItem
@@ -205,17 +236,7 @@ const Page = () => {
               <button className="bg-second text-white font-medium text-md rounded-2xl p-4 w-full sm:w-[200px] text-center mb-2 sm:mb-0">
                 <Link href="/">Continue shopping</Link>
               </button>
-              <button
-                className="btn btn-outline-info rounded-2xl w-full sm:w-[150px] mb-2 sm:mb-0"
-                style={{
-                  background: "none",
-                  color: "#797979",
-                  borderColor: "gray",
-                }}
-                variant="contained"
-              >
-                Update cart
-              </button>
+
               <button
                 className="btn btn-outline-info rounded-2xl w-full sm:w-[150px]"
                 style={{
@@ -256,11 +277,12 @@ const Page = () => {
                 <Typography variant="body1">Rs {totalPrice}</Typography>
               </Box>
               <div className="flex justify-center">
-                <Link href="/cart/checkout">
-                  <button className="bg-second text-white font-medium text-md rounded-2xl p-2 w-full sm:w-[250px] text-center">
-                    Proceed to checkout
-                  </button>
-                </Link>
+                <button
+                  onClick={handleProceedToCheckout}
+                  className="bg-second text-white font-medium text-md rounded-2xl p-2 w-full sm:w-[250px] text-center"
+                >
+                  Proceed to checkout
+                </button>
               </div>
             </Box>
           </Grid>

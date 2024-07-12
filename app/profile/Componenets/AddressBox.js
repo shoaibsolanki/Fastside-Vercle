@@ -1,14 +1,15 @@
 import Image from "next/image";
 import PropTypes from "prop-types";
 
-const Content = ({ className = "", billingAddress }) => {
+const Content = ({ className = "", address }) => {
+  console.log(address);
   return (
     <div
       className={`flex-1 rounded-lg box-border flex flex-col items-center justify-start py-3.5 px-[23px] gap-[8px] min-w-[222px] max-w-full text-left text-base text-black font-caption-1 border-[1px] border-solid border-neutral-04-100 ${className}`}
     >
       <div className="self-stretch flex flex-row items-start justify-between gap-[20px] mq450:flex-wrap">
         <a className="[text-decoration:none] relative leading-[26px] font-semibold text-[inherit] inline-block min-w-[116px]">
-          {billingAddress}
+          {address?.address}
         </a>
         <div className="flex flex-row items-center justify-start gap-[4px] text-neutral-04-100">
           <Image
@@ -29,11 +30,9 @@ const Content = ({ className = "", billingAddress }) => {
           Jeet Patel
         </div>
         <div className="relative leading-[22px] inline-block min-w-[126px]">
-          (+91) 12345 12345
+          PinCode:{address?.pincode}{" "}
         </div>
-        <div className="relative leading-[22px]">
-          99, 123 gali, aaaaa, aaaa, india
-        </div>
+        <div className="relative leading-[22px]">{address.addressType} </div>
       </div>
     </div>
   );

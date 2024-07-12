@@ -30,7 +30,10 @@ const CustomerCare = () => {
         <div className="p-2">
           <div className="flex justify-center items-center flex-col h-full p-6 border border-second rounded-lg shadow-lg bg-white">
             <Factory fontSize="large" />
-            <h2 className="mt-2 text-center">Some address of the company</h2>
+            <h2 className="mt-2 text-center">
+              Bhopal - 1 Address : IT Office : Plot no 242/G3,Nitikhand-1,
+              Indirapuram, Ghaziabad NCR
+            </h2>
           </div>
         </div>
       </div>

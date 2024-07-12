@@ -12,6 +12,7 @@ import { useEffect, useState } from "react";
 import { BASEURL } from "./services/http-Pos";
 import axios from "axios";
 import { useAuth } from "./contexts/AuthConext";
+import ImageSwitchProduct from "./components/ImageSwitchProduct";
 export default function Home() {
   const { products } = useAuth();
 
@@ -19,9 +20,10 @@ export default function Home() {
     <main className=" min-h-screen ">
       {/* <Navbar setSearch={setSearch} search={search} data={data} /> */}
       <div className="  max-w-[1800px] mx-auto px-4 my-2">
-        <HeroSection data={products} />
+        <ImageSwitchProduct />
         <PopularProducts />
         <SaleComponenet />
+        <HeroSection data={products} />
         <WhyUs />
       </div>
         

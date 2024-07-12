@@ -6,6 +6,7 @@ import whatsapp from "../../public/imgs/whatsapp.png";
 import sendIcon from "../../public/imgs/send-2.png";
 import headphones from "../../public/imgs/headphone.png";
 import Link from "next/link";
+import InstagramIcon from "@mui/icons-material/Instagram";
 const Footer = () => {
   return (
     <footer className="bg-light text-primary p-10 ">
@@ -28,8 +29,10 @@ const Footer = () => {
         <div className="flex items-center gap-2">
           <Image src={headphones} alt="Call-us-now" />
           <div>
-            <h3 className="text-md font-semibold">Call us 24/7</h3>
-            <h3 className="text-md font-semibold ">(+91) 775-582-1175</h3>
+            <a href="tel:+917755821175" className="block">
+              <h3 className="text-md font-semibold">Call us 24/7</h3>
+              <h3 className="text-md font-semibold">(+91) 775-582-1175</h3>
+            </a>{" "}
           </div>
         </div>
       </section>
@@ -38,18 +41,30 @@ const Footer = () => {
         <aside>
           <h2 className="text-4xl font-bold">FastSide</h2>
           <p className=" border-b-[1px] border-primary  pb-4">
-            1123, flate no , district, state ,
-            <br /> country
+            Bhopal - 1 Address : IT Office : Plot no 242/G3,Nitikhand-1,
+            <br /> Indirapuram, Ghaziabad NCR
           </p>
-          <div className="flex gap-8 my-4 ">
-            <Image src={google} alt="google_link" />
-            <Image src={facebook} alt="facebook_link" />
-            <Image src={whatsapp} alt="whatsapp_link" />
+          <div className="flex gap-8 my-4 text-dark ">
+            {/* <Image src={google} alt="google_link" /> */}
+            <a
+              href="https://www.instagram.com/fastside.in/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <InstagramIcon fontSize="medium" />
+            </a>{" "}
+            <a
+              href="https://wa.me/+917755821175"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Image src={whatsapp} alt="whatsapp_link" />
+            </a>{" "}
           </div>
         </aside>
 
         <nav>
-          <h6 className="footer-title">Find product</h6>{" "}
+          <h6 className="footer-title">Our product</h6>{" "}
           <a className="link link-hover">Lanyards </a>
           <a className="link link-hover">Badge Reels</a>
           <a className="link link-hover">Badge Holders</a>
@@ -68,7 +83,7 @@ const Footer = () => {
           </Link>
           {/* <a className="link link-hover">News</a> */}
           <a className="link link-hover">Custmer care</a>
-          <a className="link link-hover">Faq’s</a>
+          {/* <a className="link link-hover">Faq’s</a> */}
         </nav>
       </div>
     </footer>
