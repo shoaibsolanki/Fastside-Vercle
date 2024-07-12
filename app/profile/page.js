@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 
 const Page = () => {
   const { logout, authData, isAuthenticated } = useAuth();
-  const [activeTab, setActiveTab] = useState("order");
+  const [activeTab, setActiveTab] = useState("address");
   const router = useRouter();
   const { name } = authData;
   console.log(authData, name);
@@ -112,7 +112,7 @@ const Page = () => {
               </div>
             </div>
           </div>
-          <section className="flex-1 flex flex-col items-start justify-start px-[72px] box-border gap-[40px] max-w-full mq750:max-w-full mq450:gap-[20px] mq1050:pl-9 mq1050:pr-9 mq1050:box-border">
+          <section className=" flex flex-col items-start justify-start px-4 box-border gap-4 max-w-full mq750:max-w-full mq450:gap-[20px] mq1050:pl-9 mq1050:pr-9 mq1050:box-border">
             {content}
           </section>
         </main>
