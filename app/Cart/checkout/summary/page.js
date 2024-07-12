@@ -9,18 +9,26 @@ import { useCart } from "../../../contexts/CartContext";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useAuth } from "@/app/contexts/AuthConext";
+import Link from "next/link";
 
 const OrderComplete = ({ className = "" }) => {
   const { cart, totalPrice } = useCart();
   const [orderInformations, setOrderInformations] = useState(null);
-
+  const [orderSummery, setOrderSummery] = useState(null);
   useEffect(() => {
     const savedOrderInformations = localStorage.getItem("orderInformations");
     if (savedOrderInformations) {
       setOrderInformations(JSON.parse(savedOrderInformations));
     }
   }, []);
+  useEffect(() => {
+    const savedSummery = localStorage.getItem("orderMaster");
+    if (savedSummery) {
+      setOrderSummery(JSON.parse(savedSummery));
+    }
+  }, []);
   console.log("order_informations", orderInformations);
+  console.log("orderSummery", orderSummery);
   const { isPaymentSuccessful } = useAuth();
   const router = useRouter();
   const today = new Date();
@@ -95,31 +103,33 @@ const OrderComplete = ({ className = "" }) => {
                 {formattedDate}
               </div>
               <div className="relative leading-[22px] font-semibold inline-block min-w-[69px] text-black">
-                Rs {totalPrice}
+                Rs {orderSummery?.data?.orderValue}
               </div>
               <div className="relative leading-[22px] font-semibold inline-block min-w-[78px] text-black">
-                Online{" "}
+                {orderSummery?.data?.paymentType}
               </div>
             </div>
           </section>
           <div className="w-[548px] flex flex-row items-start justify-center max-w-full">
-            <Button
-              className="h-[52px] w-[203px]"
-              disableElevation
-              variant="contained"
-              sx={{
-                textTransform: "none",
-                color: "#fff",
-                fontSize: "16",
-                background: "#eda315",
-                borderRadius: "80px",
-                "&:hover": { background: "#eda315" },
-                width: 203,
-                height: 52,
-              }}
-            >
-              Purchase history
-            </Button>
+            <Link href="/account">
+              <Button
+                className="h-[52px] w-[203px]"
+                disableElevation
+                variant="contained"
+                sx={{
+                  textTransform: "none",
+                  color: "#fff",
+                  fontSize: "16",
+                  background: "#eda315",
+                  borderRadius: "80px",
+                  "&:hover": { background: "#eda315" },
+                  width: 203,
+                  height: 52,
+                }}
+              >
+                Purchase history
+              </Button>
+            </Link>
           </div>
         </div>{" "}
       </div>

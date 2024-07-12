@@ -152,8 +152,8 @@ const CheckoutPage = () => {
         item_list: cart,
       };
       localStorage.setItem("orderInformations", JSON.stringify(cart));
-
       const response = await DataService.CreateOrder(orderInformations);
+      localStorage.setItem("orderMaster", JSON.stringify(response.data));
       console.log("Order placed:", response);
     } catch (error) {
       console.error("Error placing order:", error);
