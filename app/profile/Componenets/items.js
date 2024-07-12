@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 const Item = ({ className = "", prop, date, price, status }) => {
   return (
     <div
-      className={`self-stretch flex flex-row items-center justify-between pt-6 px-0 pb-[22px] gap-[20px] text-left text-sm text-neutral-07-100 font-caption-1 border-b-[1px] border-solid border-neutral-03-100 mq750:flex-wrap ${className}`}
+      className={`self-stretch flex flex-row items-center justify-between pt-6 px-0 pb-[22px] gap-[4px] text-left text-sm text-neutral-07-100 font-caption-1 border-b-[1px] border-solid border-neutral-03-100 mq750:flex-wrap ${className}`}
     >
       <div className="w-40 relative leading-[22px] inline-block shrink-0">
         {prop}
