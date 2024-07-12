@@ -146,7 +146,7 @@ export const CartProvider = ({ children }) => {
     } else {
       setCart((prevCart) => {
         const existingProductIndex = prevCart.findIndex(
-          (item) => item.item_id === product.item_id
+          (item) => item.item_id === product.item_id && item?.colorList[0].product_color === product?.colorList[0].product_color 
         );
         console.log("Added on the local storage");
 
@@ -158,8 +158,10 @@ export const CartProvider = ({ children }) => {
             }
             return item;
           });
+          setTotalItems(updatedCart.length)
         } else {
           updatedCart = [...prevCart, { ...product, product_qty: 1 }];
+          setTotalItems(updatedCart.length)
         }
 
         const newTotalPrice = updatedCart.reduce((total, item) => {
@@ -178,7 +180,7 @@ export const CartProvider = ({ children }) => {
 
         return updatedCart;
       });
-      setTotalItem()
+    
     }
   };
 
@@ -190,14 +192,15 @@ export const CartProvider = ({ children }) => {
       console.log("item deleted from local storage");
       setCart((prevCart) => {
         const updatedCart = prevCart.filter(
-          (item) => item.item_id !== product.item_id
+          (item) => item.item_id !== product.item_id || item?.colorList[0].product_color !== product?.colorList[0].product_color
         );
-
+        
         const totalNewPrice = updatedCart.reduce((total, item) => {
           return total + item.price * item.product_qty;
         }, 0);
 
         setTotalPrice(totalNewPrice);
+        setTotalItems(updatedCart.length)
         return updatedCart;
       });
     }
@@ -222,6 +225,7 @@ export const CartProvider = ({ children }) => {
     }
     setCart([]);
     setTotalPrice(0);
+    setTotalItems(0)
   };
 
   const handleIncrease = (item) => {
