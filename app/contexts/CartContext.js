@@ -126,8 +126,8 @@ export const CartProvider = ({ children }) => {
         .then(() => {
           Swal.fire({
             icon: "success",
-            title: "Added to Cart",
-            text: `${item.item_name} has been added to your cart successfully!`,
+            title: "Item Added to Cart",
+            // text: `${item.item_name} has been added to your cart successfully!`,
             timer: 2000,
             showConfirmButton: false,
           });
@@ -154,13 +154,14 @@ export const CartProvider = ({ children }) => {
         if (existingProductIndex >= 0) {
           updatedCart = prevCart.map((item, index) => {
             if (index === existingProductIndex) {
-              return { ...item, product_qty: item.product_qty + 1 };
+              return { ...item, product_qty: item.product_qty + 1, id:Math.random()*100 };
             }
             return item;
           });
           setTotalItems(updatedCart.length)
         } else {
-          updatedCart = [...prevCart, { ...product, product_qty: 1 }];
+          updatedCart = [...prevCart, { ...product, product_qty: 1 , id : Math.random()*100}];
+          console.log("updetedcart",updatedCart)
           setTotalItems(updatedCart.length)
         }
 
@@ -172,10 +173,10 @@ export const CartProvider = ({ children }) => {
 
         Swal.fire({
           icon: "success",
-          title: "Added to Cart",
-          text: `${item.item_name} has been added to your cart successfully!`,
+          title: "Item Added to Cart",
+          // text: `${item.item_name} has been added to your cart successfully!`,
           timer: 2000,
-          showConfirmButton: false,
+          // showConfirmButton: false,
         });
 
         return updatedCart;
