@@ -23,54 +23,56 @@ const Orders = ({ className = "" }) => {
   const currentOrders = allOrders?.slice(startIndex, startIndex + itemsPerPage);
 
   return (
-    <div
-      className={`w-full flex flex-col items-start justify-start py-0 px-[72px] box-border gap-[40px] leading-[normal] tracking-[normal] text-left text-[20px] text-black font-caption-1 mq450:gap-[20px] mq450:px-5 max-md:items-start`}
-    >
+    <>
       <h1 className="relative leading-[32px] font-semibold text-[inherit] mq450:text-[16px] mq450:leading-[26px]">
         Orders History
       </h1>
-      <section className="max-w-full flex flex-col items-start justify-start text-left text-sm text-neutral-04-100 font-caption-1 max-md:max-w-[50px]">
-        <div className="w-full flex flex-row items-center justify-between pt-0 px-0 pb-1.5 gap-[20px] border-b-[1px] border-solid border-neutral-03-100 mq750:flex-wrap">
-          <div className="w-40 leading-[22px] inline-block shrink-0">
-            Number ID
+      <div
+        className={`w-full flex flex-col items-start justify-start py-0 px-[72px] box-border gap-[10px] leading-[normal] tracking-[normal] text-left text-[20px] text-black font-caption-1 mq450:gap-[20px] mq450:px-5 max-w-full  overflow-x-auto  max-lg:max-w-[400px] `}
+      >
+        <section className="max-w-full flex flex-col items-start justify-start text-left text-sm text-neutral-04-100 font-caption-1 ">
+          <div className="w-full flex flex-row items-center justify-between pt-0 px-0 pb-1.5 gap-[4px] border-b-[1px] border-solid border-neutral-03-100 mq750:flex-wrap">
+            <div className="w-40 leading-[22px] inline-block shrink-0">
+              Number ID
+            </div>
+            <a className="[text-decoration:none] w-[120px] leading-[22px] text-[inherit] inline-block shrink-0">
+              Dates
+            </a>
+            <div className="w-[120px] leading-[22px] inline-block shrink-0">
+              Status
+            </div>
+            <a className="[text-decoration:none] w-[137px] leading-[22px] text-[inherit] inline-block shrink-0">
+              Price
+            </a>
           </div>
-          <a className="[text-decoration:none] w-[120px] leading-[22px] text-[inherit] inline-block shrink-0">
-            Dates
-          </a>
-          <div className="w-[120px] leading-[22px] inline-block shrink-0">
-            Status
-          </div>
-          <a className="[text-decoration:none] w-[137px] leading-[22px] text-[inherit] inline-block shrink-0">
-            Price
-          </a>
-        </div>
-        {currentOrders?.map((item, index) => (
-          <Item
-            key={index}
-            prop={item.order_id}
-            date={item.order_date}
-            price={item.order_value}
-            status={item.status}
-          />
-        ))}
-        <div className="flex justify-between mt-4 w-full">
-          <button
-            onClick={handlePrevPage}
-            disabled={currentPage === 1}
-            className="py-2 px-4 bg-gray-200 rounded disabled:opacity-50"
-          >
-            <ArrowLeft />
-          </button>
-          <button
-            onClick={handleNextPage}
-            disabled={currentPage === totalPages}
-            className="py-2 px-4 bg-gray-200 rounded disabled:opacity-50"
-          >
-            <ArrowRight />
-          </button>
-        </div>
-      </section>
-    </div>
+          {currentOrders?.map((item, index) => (
+            <Item
+              key={index}
+              prop={item.order_id}
+              date={item.order_date}
+              price={item.order_value}
+              status={item.status}
+            />
+          ))}
+        </section>
+      </div>
+      <div className="flex justify-between mt-4 w-full">
+        <button
+          onClick={handlePrevPage}
+          disabled={currentPage === 1}
+          className="py-2 px-4 bg-gray-200 rounded disabled:opacity-50"
+        >
+          <ArrowLeft />
+        </button>
+        <button
+          onClick={handleNextPage}
+          disabled={currentPage === totalPages}
+          className="py-2 px-4 bg-gray-200 rounded disabled:opacity-50"
+        >
+          <ArrowRight />
+        </button>
+      </div>
+    </>
   );
 };
 

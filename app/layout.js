@@ -26,7 +26,7 @@ export default function RootLayout({ children }) {
                 <Footer />
               </div>
             ) : (
-              <main className="bg-white  mx-auto p-11">{children}</main>
+              <main className="bg-white  mx-auto ">{children}</main>
             )}
           </CartProvider>
         </AuthProvider>

@@ -65,24 +65,24 @@ const Footer = () => {
 
         <nav>
           <h6 className="footer-title">Our product</h6>{" "}
-          <a className="link link-hover">Lanyards </a>
-          <a className="link link-hover">Badge Reels</a>
-          <a className="link link-hover">Badge Holders</a>
+          <p className="">Lanyards </p>
+          <p className="">Badge Reels</p>
+          <p className="">Badge Holders</p>
         </nav>
         <nav>
           <Link href="/about" className="footer-title underline">
             About & Policy
           </Link>{" "}
-          <p className="link link-hover">Return policy</p>
-          <p className="link link-hover">Privacy policy</p>
-          <p className="link link-hover">Payment policy</p>
+          <p className="">Return policy</p>
+          <p className="">Privacy policy</p>
+          <p className="">Payment policy</p>
         </nav>
         <nav>
           <Link href="/gethelp" className="footer-title underline">
             Get Help
           </Link>
           {/* <a className="link link-hover">News</a> */}
-          <a className="link link-hover">Custmer care</a>
+          <p className=" ">Custmer care</p>
           {/* <a className="link link-hover">Faq’s</a> */}
         </nav>
       </div>

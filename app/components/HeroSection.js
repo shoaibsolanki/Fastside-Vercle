@@ -7,11 +7,11 @@ const HeroSection = ({ data }) => {
     <div className="flex flex-col md:flex-row items-center justify-center gap-8 max-w-[1000px] mx-auto my-4">
       <div className="max-w-full overflow-hidden ">
         <video
-          controls
           autoPlay
           muted
           loop
           className="w-full h-auto rounded-2xl"
+          onClick={(e) => e.preventDefault()} // Prevent video from opening in full screen
         >
           <source src={video} type="video/mp4" />
           Your browser does not support the video tag.
