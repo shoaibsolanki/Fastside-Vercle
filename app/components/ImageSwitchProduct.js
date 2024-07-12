@@ -24,16 +24,21 @@ const ImageSwitchProduct = () => {
   }, []); // Only run on initial mount
 
   const images = [
-    "/imgs/anna.jpg",
-    "/imgs/BadgeReels2.png",
-    "/imgs/crown.png",
+    "/imgs/slid1.jpg",
+    "/imgs/slid2.jpg",
+    "/imgs/slid3.jpg",
+    "/imgs/slid4.jpg",
+    "/imgs/slid5.jpg",
+    "/imgs/slid6.jpg",
+    "/imgs/slid7.jpg",
   ];
 
   const swiperStyles = {
-    width: "100%",
-    height: "550px",
-    marginBottom:"50px"
+    marginBottom: "50px",
+    borderRadius: "8px",
+    overflow: "hidden",
   };
+
   const imgContainerStyles = {
     display: "flex",
     justifyContent: "center",
@@ -45,7 +50,7 @@ const ImageSwitchProduct = () => {
     height: "auto", // Maintain aspect ratio
     objectFit: "cover",
     borderRadius: "8px", // Rounded corners
-    alignItem:"center"
+    alignItem: "center",
   };
 
   const autoplayOptions = {
@@ -60,22 +65,23 @@ const ImageSwitchProduct = () => {
       centeredSlides={true}
       autoplay={autoplayOptions}
       loop={true} // Enable looping through images
-      pagination={{
-        clickable: true,
-      }}
-      navigation={true}
-      className="mySwiper"
-      style={swiperStyles}
+      // pagination={{
+      //   clickable: true,
+      // }}
+      // navigation={true}
+                className="mySwiper w-full lg:h-[500px] rounded-5"
+        style={swiperStyles}
     >
       {images.map((image, index) => (
         <SwiperSlide key={index}>
-                  <div style={imgContainerStyles}>
-          <img
-            src={image}
-            className="rounded-3 "
-            alt={`Slide ${index + 1}`}
-            style={imgStyles}
-          /></div>
+          <div style={imgContainerStyles}>
+            <img
+              src={image}
+              className="rounded-3 rounded-3xl"
+              alt={`Slide ${index + 1}`}
+              style={imgStyles}
+            />
+          </div>
         </SwiperSlide>
       ))}
     </Swiper>
