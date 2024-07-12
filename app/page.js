@@ -18,12 +18,11 @@ export default function Home() {
 
   return (
     <main className=" min-h-screen ">
-      {/* <Navbar setSearch={setSearch} search={search} data={data} /> */}
       <div className="  max-w-[1800px] mx-auto px-4 my-2">
-        <ImageSwitchProduct />
+        <HeroSection data={products} />
         <PopularProducts />
         <SaleComponenet />
-        <HeroSection data={products} />
+        <ImageSwitchProduct />
         <WhyUs />
       </div>
         

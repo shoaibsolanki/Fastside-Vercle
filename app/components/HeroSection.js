@@ -1,22 +1,11 @@
 import Image from "next/image";
 import React from "react";
-import video from "@/public/vdo/vdo.mp4";
+import mainposter from "@/public/imgs/Mainposter.jpg";
 
 const HeroSection = ({ data }) => {
   return (
-    <div className="flex flex-col md:flex-row items-center justify-center gap-8 max-w-[1000px] mx-auto my-4">
-      <div className="max-w-full overflow-hidden ">
-        <video
-          autoPlay
-          muted
-          loop
-          className="w-full h-auto rounded-2xl"
-          onClick={(e) => e.preventDefault()} // Prevent video from opening in full screen
-        >
-          <source src={video} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-      </div>
+    <div className="flex flex-col md:flex-row items-center justify-center gap-8 w-full mx-auto my-4">
+      <Image src={mainposter} alt="poster_hero_section" />
     </div>
   );
 };
