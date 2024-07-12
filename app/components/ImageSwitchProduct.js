@@ -24,19 +24,15 @@ const ImageSwitchProduct = () => {
   }, []); // Only run on initial mount
 
   const images = [
-    "/imgs/slid1.jpg",
-    "/imgs/slid2.jpg",
-    "/imgs/slid3.jpg",
-    "/imgs/slid4.jpg",
-    "/imgs/slid5.jpg",
-    "/imgs/slid6.jpg",
-    "/imgs/slid7.jpg",
+    "/imgs/anna.jpg",
+    "/imgs/BadgeReels2.png",
+    "/imgs/crown.png",
   ];
 
   const swiperStyles = {
     width: "100%",
     height: "550px",
-    marginBottom: "50px",
+    marginBottom:"50px"
   };
   const imgContainerStyles = {
     display: "flex",
@@ -49,7 +45,7 @@ const ImageSwitchProduct = () => {
     height: "auto", // Maintain aspect ratio
     objectFit: "cover",
     borderRadius: "8px", // Rounded corners
-    alignItem: "center",
+    alignItem:"center"
   };
 
   const autoplayOptions = {
@@ -73,14 +69,13 @@ const ImageSwitchProduct = () => {
     >
       {images.map((image, index) => (
         <SwiperSlide key={index}>
-          <div style={imgContainerStyles}>
-            <img
-              src={image}
-              className="rounded-3 "
-              alt={`Slide ${index + 1}`}
-              style={imgStyles}
-            />
-          </div>
+                  <div style={imgContainerStyles}>
+          <img
+            src={image}
+            className="rounded-3 "
+            alt={`Slide ${index + 1}`}
+            style={imgStyles}
+          /></div>
         </SwiperSlide>
       ))}
     </Swiper>
