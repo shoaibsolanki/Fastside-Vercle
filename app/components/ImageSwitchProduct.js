@@ -73,7 +73,7 @@ const ImageSwitchProduct = () => {
     >
       {images.map((image, index) => (
         <SwiperSlide key={index}>
-          <div style={imgContainerStyles}>
+          <div className="h-full" style={imgContainerStyles}>
             <img
               src={image}
               className="rounded-3 "

@@ -45,7 +45,7 @@ const CartItem = ({ item, removeFromCart, handleIncrease, handleDecrease }) => (
         </Grid>
         <Grid item xs={2}>
           <Typography className="fw-bold" variant="body1">
-            Rs {item.price}
+            ₹{item.price}
           </Typography>
         </Grid>
         <Grid item xs={2}>
@@ -61,7 +61,7 @@ const CartItem = ({ item, removeFromCart, handleIncrease, handleDecrease }) => (
         </Grid>
         <Grid item xs={1}>
           <Typography className="fw-bold" variant="body1">
-            Rs {item.price * item.product_qty}
+            ₹{item.price * item.product_qty}
           </Typography>
         </Grid>
         <Grid item xs={1}>
@@ -90,7 +90,8 @@ const CartItem = ({ item, removeFromCart, handleIncrease, handleDecrease }) => (
               {item?.itemName?.length > 30 ? "..." : ""}
             </b>
             <div
-              onClick={() =>{ removeFromCart(item)
+              onClick={() => {
+                removeFromCart(item);
               }}
               className="flex flex-row items-start justify-start gap-[8px] z-10"
             >
@@ -100,7 +101,7 @@ const CartItem = ({ item, removeFromCart, handleIncrease, handleDecrease }) => (
           <div className="self-stretch flex flex-row items-start justify-between gap-[20px] text-primary-blue">
             <div className="flex flex-col items-start justify-start pt-1.5 px-0 pb-0">
               <b className="relative tracking-[0.5px] leading-[150%] inline-block min-w-[52px] whitespace-nowrap z-[1]">
-                Rs.{item.price}/-
+                ₹{item.price}/-
                 <br />
                 {/* Total: Rs.{item.price * item.product_qty}/- */}
               </b>
@@ -160,7 +161,7 @@ const Page = () => {
   };
   if (cart.length === 0) {
     return (
-      <div className="flex items-center justify-center p-8 flex-col text-center">
+      <div className="flex  items-center justify-center p-8 flex-col text-center">
         <Image height={200} width={200} alt="empty_cart" src={emptyCart} />
         <h2 className="text-4xl font-semibold text-primary">
           Your cart is empty
@@ -261,7 +262,7 @@ const Page = () => {
             <Box p={2} borderRadius={2}>
               <Box display="flex" justifyContent="space-between" my={1}>
                 <Typography variant="body1">Subtotal</Typography>
-                <Typography variant="body1">Rs {totalPrice}</Typography>
+                <Typography variant="body1">₹{totalPrice}</Typography>
               </Box>
               <TextField
                 label="Enter coupon code"
@@ -275,7 +276,7 @@ const Page = () => {
               </Select>
               <Box display="flex" justifyContent="space-between" my={2}>
                 <Typography variant="body1">Total amount</Typography>
-                <Typography variant="body1">Rs {totalPrice}</Typography>
+                <Typography variant="body1">₹{totalPrice}</Typography>
               </Box>
               <div className="flex justify-center">
                 <button

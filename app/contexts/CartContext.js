@@ -178,7 +178,7 @@ export const CartProvider = ({ children }) => {
 
         return updatedCart;
       });
-      setTotalItem()
+      setTotalItem();
     }
   };
 

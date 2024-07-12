@@ -8,6 +8,7 @@ import AddToCartButton from "./MicroComponenets/AddToCartButton";
 import Link from "next/link";
 import { useCart } from "../contexts/CartContext";
 import keychain from "../../public/imgs/keychain.png";
+import ColorShow from "./MicroComponenets/ColorShow";
 
 const ProductComponent = ({ flex_direction, data }) => {
   const [isHovering, setIsHovering] = useState(false);
@@ -69,7 +70,7 @@ const ProductComponent = ({ flex_direction, data }) => {
                 : data?.item_name}
             </h2>
             <p className="priceTitle">₹{data?.price}/-</p>
-            <Rating size={"sm"} />
+            <ColorShow item={data.colorList} />
           </div>
           <AddToCartButton item={selectedProduct} />
         </div>
