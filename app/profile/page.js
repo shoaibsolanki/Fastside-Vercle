@@ -11,6 +11,8 @@ const Page = () => {
   const { logout, authData } = useAuth();
   const [activeTab, setActiveTab] = useState("order");
   const router = useRouter();
+  const { name } = authData;
+  console.log(authData, name);
   const userAuthenticated = authData.id != null && authData.id != undefined;
   let content;
   switch (activeTab) {
@@ -64,8 +66,8 @@ const Page = () => {
                   </div>
                 </div> */}
                 </div>
-                <div className="relative leading-[32px] font-semibold inline-block min-w-[97px] mq450:text-base mq450:leading-[26px]">
-                  Jeet Patel
+                <div className="text-lg relative text-center  font-semibold inline-block min-w-[97px] mq450:text-base mq450:leading-[26px]">
+                  {name}{" "}
                 </div>
               </div>
             </div>
