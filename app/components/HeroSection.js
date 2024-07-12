@@ -1,11 +1,5 @@
 import Image from "next/image";
 import React from "react";
-import BadgeReels from "@/public/imgs/keychain.png";
-import SimpleProductComponent from "./SimpleProductComponent";
-import { ArrowBackRounded, ArrowForwardRounded } from "@mui/icons-material";
-import CardHolder from "@/public/imgs/CardHolder.png";
-import BadgeReels2 from "@/public/imgs/BadgeReels2.png";
-import Lanyard from "@/public/imgs/Lanyard.png";
 import video from "@/public/vdo/vdo.mp4";
 
 const HeroSection = ({ data }) => {

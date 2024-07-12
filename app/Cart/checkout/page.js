@@ -11,10 +11,10 @@ const Page = () => {
   const { cart, totalPirce } = useCart();
   const { isAuthenticated } = useAuth();
   const router = useRouter();
-  // if (!isAuthenticated) {
-  //   return router.push("/login");
-  // }
-  if (cart.lenght == []) {
+  if (!isAuthenticated) {
+    return router.push("/login");
+  }
+  if (cart?.lenght == 0) {
     return router.push("/");
   } else
     return (

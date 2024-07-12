@@ -86,12 +86,13 @@ const CartItem = ({ item, removeFromCart, handleIncrease, handleDecrease }) => (
         <div className="flex-1 flex flex-col items-start justify-start gap-[12px]">
           <div className="self-stretch flex flex-row items-start justify-start gap-[13px]">
             <b className="flex-1 relative tracking-[0.5px] leading-[150%] z-[1]">
-              {item.itemName.slice(0, 30)}
-              {item.itemName.length > 30 ? "..." : ""}
+              {item.itemName?.slice(0, 30)}
+              {item.itemName?.length > 30 ? "..." : ""}
             </b>
             <div
-              onClick={() => removeFromCart(item)}
-              className="flex flex-row items-start justify-start gap-[8px]"
+              onClick={() =>{ removeFromCart(item)
+              }}
+              className="flex flex-row items-start justify-start gap-[8px] z-10"
             >
               <Delete fontSize="small" onClick={() => removeFromCart(item)} />
             </div>
