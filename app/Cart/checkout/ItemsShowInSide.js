@@ -22,7 +22,7 @@ const ItemsShowInSide = ({ items }) => {
         {items?.map((item, index) => {
           return (
             <div className="flex items-center space-x-4" key={index}>
-              <img
+              <Image
                 src={item.image_url}
                 alt="Badge Reel"
                 width={50}

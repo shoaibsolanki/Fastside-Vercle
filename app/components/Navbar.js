@@ -11,7 +11,8 @@ import Link from "next/link";
 import { useCart } from "../contexts/CartContext";
 import { useAuth } from "../contexts/AuthConext";
 import { useRouter } from "next/navigation";
-
+import logo from "../../public/imgs/logo.png";
+import Image from "next/image";
 const Navbar = ({ search, setSearch, data }) => {
   const { cart, totalItems } = useCart();
   const { authData } = useAuth();
@@ -66,7 +67,14 @@ const Navbar = ({ search, setSearch, data }) => {
         <div className="flex justify-between items-center w-full">
           <div className="flex items-center justify-between max-md:w-full gap-8">
             <h2 className="text-2xl md:text-3xl font-bold text-white italic">
-              <Link href="/">FastSide</Link>
+              <Link href="/">
+                <Image
+                  width={100}
+                  height={100}
+                  src={logo}
+                  alt="FastSide Logo"
+                />
+              </Link>
             </h2>
           </div>
           <div className=" flex gap-4 items-center mt-4 md:mt-0">

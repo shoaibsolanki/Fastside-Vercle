@@ -5,6 +5,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import SwiperCore, { Autoplay, Pagination, Navigation } from "swiper";
+import Image from "next/image";
 
 SwiperCore.use([Autoplay, Pagination, Navigation]);
 
@@ -69,13 +70,15 @@ const ImageSwitchProduct = () => {
       //   clickable: true,
       // }}
       // navigation={true}
-                className="mySwiper w-full lg:h-[500px] rounded-5"
-        style={swiperStyles}
+      className="mySwiper w-full lg:h-auto rounded-5"
+      style={swiperStyles}
     >
       {images.map((image, index) => (
         <SwiperSlide key={index}>
-          <div className="h-full" style={imgContainerStyles}>
-            <img
+          <div style={imgContainerStyles}>
+            <Image
+              width={1000}
+              height={1000}
               src={image}
               className="rounded-3 rounded-3xl"
               alt={`Slide ${index + 1}`}

@@ -95,7 +95,7 @@ const Page = ({ params }) => {
           >
             {singleProduct?.colorList &&
               singleProduct?.colorList[index]?.image_url && (
-                <img
+                <Image
                   alt="product image"
                   src={singleProduct?.colorList[index]?.image_url}
                   width={500}

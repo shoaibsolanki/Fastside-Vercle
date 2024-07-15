@@ -8,7 +8,7 @@ const SaleComponenet = () => {
     <>
       <div className="bg-black my-4 rounded-2xl p-4 flex flex-col md:flex-row justify-around items-center max-w-full mx-auto">
         <div className="relative w-full md:w-auto">
-          <img src="/imgs/BadgeReels2.png" objectFit="contain" />
+          <Image src={BadgeReels} objectFit="contain" alt="" />
           <h2 className="absolute top-2 right-36 md:right-4 w-20 h-20 bg-second p-4 text-center rounded-full text-white font-semibold">
             50% <span>Off</span>
           </h2>
@@ -27,12 +27,7 @@ const SaleComponenet = () => {
       <div
         style={{ marginTop: "50px" }}
         className="w-full mx-auto max-w-[1000px]  grid grid-cols-1 lg:grid-cols-2s gap-4"
-      >
-        {/* <ImageSwitchProduct /> */}
-
-        {/* <ProductComponent flex_direction="row" />
-        <ProductComponent flex_direction="row" /> */}
-      </div>
+      ></div>
     </>
   );
 };

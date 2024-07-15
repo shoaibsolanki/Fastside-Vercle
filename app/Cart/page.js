@@ -19,7 +19,6 @@ import { BASEURL } from "../services/http-Pos";
 import Image from "next/image";
 import Stepper from "@/app/components/MicroComponenets/Stepper";
 import emptyCart from "@/public/imgs/shopping.png";
-import Product from "../components/ProductCard";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import { useAuth } from "../contexts/AuthConext";
@@ -36,7 +35,7 @@ const CartItem = ({
     <Box className="my-2 items-center max-md:hidden">
       <Grid container spacing={4} alignItems="center">
         <Grid item xs={2}>
-          <img
+          <Image
             src={
               isAuthenticated
                 ? item?.image_url
@@ -90,7 +89,9 @@ const CartItem = ({
         className={`w-full flex flex-row items-start justify-start p-4 box-border relative gap-[12px] leading-[normal] tracking-[normal] text-left text-xs text-neutral-dark font-heading-h6`}
       >
         <section className="h-full w-full absolute !m-[0] top-[0px] right-[0px] bottom-[0px] left-[0px] rounded-8xs bg-background-white box-border border-[1px] border-solid border-neutral-light" />
-        <img
+        <Image
+          width={100}
+          height={100}
           src={
             isAuthenticated
               ? item?.image_url
@@ -340,7 +341,7 @@ const Page = () => {
   if (cart.length === 0) {
     return (
       <div className="flex items-center justify-center p-8 flex-col text-center">
-        <img
+        <Image
           height={200}
           width={200}
           alt="empty_cart"

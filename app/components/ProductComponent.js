@@ -43,7 +43,7 @@ const ProductComponent = ({ flex_direction, data }) => {
             href={`/${data?.item_id}`}
             className="w-full h-full flex items-center justify-center"
           >
-            <img
+            <Image
               src={Productimage ? Productimage : keychain}
               alt=""
               width={200}
