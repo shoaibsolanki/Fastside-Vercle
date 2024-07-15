@@ -62,10 +62,10 @@ const Navbar = ({ search, setSearch, data }) => {
       {/* Middle Navbar */}
       <div
         id="lower-navbar"
-        className="w-full bg-primary p-4 md:p-8 flex  min-md:flex-row flex-col justify-between items-center"
+        className="w-full bg-primary p-4 md:p-8 flex flex-col min-md:flex-row justify-between items-center"
       >
         <div className="flex justify-between items-center w-full">
-          <div className="flex items-center justify-between max-md:w-full gap-8">
+          <div className="max-md:w-full flex gap-8 items-center">
             <Link href="/">
               <Image
                 src={logo}
@@ -79,9 +79,9 @@ const Navbar = ({ search, setSearch, data }) => {
               />
             </Link>
           </div>
-          <div className=" flex gap-4 items-center mt-4 md:mt-0">
+          <div className="flex gap-4 items-center mt-4 md:mt-0">
             <button
-              className="flex  items-center gap-2"
+              className="flex items-center gap-2"
               onClick={handleProceedToProfile}
             >
               <div className="flex gap-2 items-center text-white">
@@ -91,11 +91,10 @@ const Navbar = ({ search, setSearch, data }) => {
                 </p>
               </div>
             </button>
-
             <Link href="/cart">
               <div className="flex gap-2 items-center text-white">
                 <ShoppingCartRounded fontSize="large" />
-                <h3 className=" flex items-center justify-center    bg-second rounded-full h-6 w-6 text-center text-xs md:text-sm">
+                <h3 className="flex items-center justify-center bg-second rounded-full h-6 w-6 text-center text-xs md:text-sm">
                   {totalItems}
                 </h3>
                 <p className="hidden xl:block text-sm md:text-lg">Cart</p>

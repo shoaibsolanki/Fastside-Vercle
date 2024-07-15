@@ -3,6 +3,9 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 import { useAuth } from "./AuthConext";
 import DataService from "../services/requestApi";
 import Swal from "sweetalert2";
+import Alert from "@mui/material/Alert";
+import CheckIcon from "@mui/icons-material/Check";
+import { Snackbar } from "@mui/material";
 
 const CartContext = createContext();
 
@@ -19,6 +22,20 @@ export const CartProvider = ({ children }) => {
     }
     return [];
   });
+
+  const [alert, setAlert] = useState({
+    show: false,
+    message: "",
+    severity: "",
+  });
+
+  const showAlert = (message, severity) => {
+    setAlert({ show: true, message, severity });
+    setTimeout(
+      () => setAlert({ show: false, message: "", severity: "" }),
+      2000
+    ); // Hide the alert after 2 seconds
+  };
 
   let subTotal;
   const [wishlist, setWishlist] = useState(() => {
@@ -124,29 +141,25 @@ export const CartProvider = ({ children }) => {
     if (id) {
       AddProductInTheCart(item)
         .then(() => {
-          Swal.fire({
-            icon: "success",
-            title: "Item Added to Cart",
-            // text: `${item.item_name} has been added to your cart successfully!`,
-            timer: 2000,
-            showConfirmButton: false,
-          });
+          showAlert("Item Added to Cart", "success");
         })
         .catch((error) => {
           console.error(
             "Error adding product to the cart on the server:",
             error
           );
-          Swal.fire({
-            icon: "error",
-            title: "Error",
-            text: "There was a problem adding the product to your cart. Please try again.",
-          });
+          showAlert(
+            "There was a problem adding the product to your cart. Please try again.",
+            "error"
+          );
         });
     } else {
       setCart((prevCart) => {
         const existingProductIndex = prevCart.findIndex(
-          (item) => item.item_id === product.item_id && item?.colorList[0].product_color === product?.colorList[0].product_color 
+          (item) =>
+            item.item_id === product.item_id &&
+            item?.colorList[0].product_color ===
+              product?.colorList[0].product_color
         );
         console.log("Added on the local storage");
 
@@ -154,15 +167,22 @@ export const CartProvider = ({ children }) => {
         if (existingProductIndex >= 0) {
           updatedCart = prevCart.map((item, index) => {
             if (index === existingProductIndex) {
-              return { ...item, product_qty: item.product_qty + 1, id:Math.random()*100 };
+              return {
+                ...item,
+                product_qty: item.product_qty + 1,
+                id: Math.random() * 100,
+              };
             }
             return item;
           });
-          setTotalItems(updatedCart.length)
+          setTotalItems(updatedCart.length);
         } else {
-          updatedCart = [...prevCart, { ...product, product_qty: 1 , id : Math.random()*100}];
-          console.log("updetedcart",updatedCart)
-          setTotalItems(updatedCart.length)
+          updatedCart = [
+            ...prevCart,
+            { ...product, product_qty: 1, id: Math.random() * 100 },
+          ];
+          console.log("updetedcart", updatedCart);
+          setTotalItems(updatedCart.length);
         }
 
         const newTotalPrice = updatedCart.reduce((total, item) => {
@@ -171,17 +191,10 @@ export const CartProvider = ({ children }) => {
 
         setTotalPrice(newTotalPrice);
 
-        Swal.fire({
-          icon: "success",
-          title: "Item Added to Cart",
-          // text: `${item.item_name} has been added to your cart successfully!`,
-          timer: 2000,
-          // showConfirmButton: false,
-        });
+        showAlert("Item Added to Cart", "success");
 
         return updatedCart;
       });
-    
     }
   };
 
@@ -193,15 +206,18 @@ export const CartProvider = ({ children }) => {
       console.log("item deleted from local storage");
       setCart((prevCart) => {
         const updatedCart = prevCart.filter(
-          (item) => item.item_id !== product.item_id || item?.colorList[0].product_color !== product?.colorList[0].product_color
+          (item) =>
+            item.item_id !== product.item_id ||
+            item?.colorList[0].product_color !==
+              product?.colorList[0].product_color
         );
-        
+
         const totalNewPrice = updatedCart.reduce((total, item) => {
           return total + item.price * item.product_qty;
         }, 0);
 
         setTotalPrice(totalNewPrice);
-        setTotalItems(updatedCart.length)
+        setTotalItems(updatedCart.length);
         return updatedCart;
       });
     }
@@ -226,7 +242,7 @@ export const CartProvider = ({ children }) => {
     }
     setCart([]);
     setTotalPrice(0);
-    setTotalItems(0)
+    setTotalItems(0);
   };
 
   const handleIncrease = (item) => {
@@ -296,6 +312,21 @@ export const CartProvider = ({ children }) => {
       }}
     >
       {children}
+      {alert.show && (
+        <Snackbar
+          open={alert.show}
+          autoHideDuration={2000}
+          onClose={() => setAlert({ show: false, message: "", severity: "" })}
+        >
+          <Alert
+            icon={<CheckIcon fontSize="inherit" />}
+            severity={alert.severity}
+            variant="filled"
+          >
+            {alert.message}
+          </Alert>
+        </Snackbar>
+      )}
     </CartContext.Provider>
   );
 };

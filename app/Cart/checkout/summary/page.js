@@ -115,7 +115,7 @@ const OrderComplete = ({ className = "" }) => {
                 Rs {orderSummery?.data?.orderValue}
               </div>
               <div className="relative leading-[22px] font-semibold inline-block min-w-[78px] text-black">
-                {orderSummery?.data?.paymentType}
+                Pending...
               </div>
             </div>
           </section>

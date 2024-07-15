@@ -112,7 +112,7 @@ const Page = ({ params }) => {
           {singleProduct && (
             <>
               <h2 className="text-3xl text-primary font-semibold mb-4">
-                {singleProduct.item_name}
+                {singleProduct.item_name} ({selectedColor})
               </h2>
               <p className="text-2xl font-bold text-gray-700 mb-4">
                 Rs {singleProduct.price}
@@ -216,17 +216,6 @@ const Page = ({ params }) => {
           Reviews
         </button>
       </div>
-      {/* <div className="w-full mx-auto my-4">
-        <h2 className="text-3xl text-primary font-semibold">
-          Related Products
-        </h2>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-          <ProductComponent />
-          <ProductComponent />
-          <ProductComponent />
-          <ProductComponent />
-        </div>
-      </div> */}
     </section>
   );
 };
