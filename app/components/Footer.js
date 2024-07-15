@@ -1,4 +1,3 @@
-import Image from "next/image";
 import React from "react";
 import google from "../../public/imgs/Vector.png";
 import facebook from "../../public/imgs/facebook.png";
@@ -7,6 +6,7 @@ import sendIcon from "../../public/imgs/send-2.png";
 import headphones from "../../public/imgs/headphone.png";
 import Link from "next/link";
 import InstagramIcon from "@mui/icons-material/Instagram";
+
 const Footer = () => {
   return (
     <>
@@ -24,11 +24,11 @@ const Footer = () => {
               placeholder="Enter Your Email"
             />
             <button className="ml-4">
-              <Image src={sendIcon} alt="send-your-email" />
+              <img src="/imgs/send-2.png" alt="send-your-email" />
             </button>
           </div>
           <div className="flex items-center gap-2">
-            <Image src={headphones} alt="Call-us-now" />
+            <img src="/imgs/headphone.png" alt="Call-us-now" />
             <div>
               <a href="tel:+917755821175" className="block">
                 <h3 className="text-md font-semibold">Call us 24/7</h3>
@@ -46,11 +46,10 @@ const Footer = () => {
               <br /> Indirapuram, Ghaziabad NCR
             </p>
             <div className="flex gap-8 my-4 text-dark ">
-              {/* <Image src={google} alt="google_link" /> */}
               <a
                 href="https://www.instagram.com/fastside.in/"
                 target="_blank"
-                rel=" noreferrer"
+                rel="noreferrer"
               >
                 <InstagramIcon fontSize="medium" />
               </a>{" "}
@@ -59,7 +58,7 @@ const Footer = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Image src={whatsapp} alt="whatsapp_link" />
+                <img src="/imgs/whatsapp.png" alt="whatsapp_link" />
               </a>{" "}
             </div>
           </aside>
@@ -93,8 +92,6 @@ const Footer = () => {
             <Link href="/gethelp" className="link link-hover">
               Customer care
             </Link>
-            {/* <a className="link link-hover">News</a> */}
-            {/* <a className="link link-hover">Faq’s</a> */}
           </nav>
         </div>
       </footer>

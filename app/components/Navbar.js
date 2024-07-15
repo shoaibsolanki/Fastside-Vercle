@@ -1,8 +1,5 @@
 "use client";
 import {
-  ArrowRightAltRounded,
-  Info,
-  KeyboardArrowDownRounded,
   LocalShippingOutlined,
   Person2Outlined,
   PlaceOutlined,
@@ -10,21 +7,14 @@ import {
   WhatsApp,
 } from "@mui/icons-material";
 import React, { useEffect, useState } from "react";
-import Searchbar from "./Searchbar";
 import Link from "next/link";
 import { useCart } from "../contexts/CartContext";
 import { useAuth } from "../contexts/AuthConext";
-import Image from "next/image";
-import DrawerForNavbarMenu from "./MicroComponenets/DrawerForNavbarMenu";
-import menuButton from "@/public/svgs/Menu_lines.svg";
-import DropdownMenu from "./DropDownMenu";
 import { useRouter } from "next/navigation";
 
 const Navbar = ({ search, setSearch, data }) => {
   const { cart, totalItems } = useCart();
-  const { logout, authData } = useAuth();
-  const [open, setOpen] = useState(false);
-
+  const { authData } = useAuth();
   const router = useRouter();
   const [userId, setUserId] = useState(null);
 
@@ -78,30 +68,17 @@ const Navbar = ({ search, setSearch, data }) => {
             <h2 className="text-2xl md:text-3xl font-bold text-white italic">
               <Link href="/">FastSide</Link>
             </h2>
-            {/* <button
-            className="hidden max-md:block min text-2xl md:text-3xl font-bold text-white"
-            onClick={toggleDrawer(true)}
-          >
-            <Image src={menuButton} alt="menu_button" />
-          </button> */}
-
-            {/* <div id="search-bar" className="max-md:hidden w-full md:w-auto">
-              <Searchbar />
-            </div> */}
           </div>
           <div className=" flex gap-4 items-center mt-4 md:mt-0">
             <button
               className="flex  items-center gap-2"
               onClick={handleProceedToProfile}
             >
-              {!userId && (
-                <span className="text-white">
-                  SignIn <ArrowRightAltRounded />
-                </span>
-              )}{" "}
               <div className="flex gap-2 items-center text-white">
                 <Person2Outlined fontSize="large" />
-                <p className="hidden xl:block text-sm md:text-xl">Profile</p>
+                <p className="hidden xl:block text-sm md:text-xl">
+                  {userId ? "Profile" : "Login"}
+                </p>
               </div>
             </button>
 
@@ -116,31 +93,7 @@ const Navbar = ({ search, setSearch, data }) => {
             </Link>
           </div>
         </div>
-        {/* searchbar silented */}
-        {/* <div className="w-full flex justify-center items-center my-2 mx-auto md:hidden">
-          <div className="w-full max-w-md">
-            <Searchbar />
-          </div>
-        </div> */}
       </div>
-      {/* lower navbar */}
-      {/* <div className="bg-lightgray h-16 flex gap-8 items-center px-16">
-        <h2 className="bg-second text-white font-semibold h-full flex items-center px-4 text-lg">
-          Browse Category <KeyboardArrowDownRounded fontSize="large" />
-        </h2>
-
-        <ul className="text-dark font-semibold h-full flex items-center  text-lg gap-4">
-          <li>
-            <Link href="/blog">Blog</Link>
-          </li>
-          <li>
-            <Link href="/about" className="">
-              About
-            </Link>{" "}
-          </li>
-        </ul>
-      </div> */}
-      {/* <DrawerForNavbarMenu open={open} toggleDrawer={toggleDrawer} /> */}
     </nav>
   );
 };

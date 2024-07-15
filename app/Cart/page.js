@@ -36,7 +36,7 @@ const CartItem = ({
     <Box className="my-2 items-center max-md:hidden">
       <Grid container spacing={4} alignItems="center">
         <Grid item xs={2}>
-          <Image
+          <img
             src={
               isAuthenticated
                 ? item?.image_url
@@ -335,7 +335,7 @@ const Page = () => {
   if (cart.length === 0) {
     return (
       <div className="flex items-center justify-center p-8 flex-col text-center">
-        <Image
+        <img
           height={200}
           width={200}
           alt="empty_cart"

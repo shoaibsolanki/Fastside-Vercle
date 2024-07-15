@@ -5,7 +5,7 @@ import mainposter from "@/public/imgs/Mainposter.jpg";
 const HeroSection = ({ data }) => {
   return (
     <div className="flex flex-col md:flex-row items-center justify-center gap-8 w-full mx-auto my-4">
-      <Image src={mainposter} alt="poster_hero_section" />
+      <img src="/imgs/Mainposter.jpg" alt="poster_hero_section" />
     </div>
   );
 };
