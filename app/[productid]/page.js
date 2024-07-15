@@ -58,8 +58,6 @@ const Page = ({ params }) => {
       ].filter((image) => image && image !== "unavailable")
     : [];
 
-  console.log(images);
-
   const addQty = () => {
     try {
       const updatedProduct = {
@@ -92,19 +90,19 @@ const Page = ({ params }) => {
       <div className="flex flex-col lg:flex-row gap-8 justify-center items-start">
         <div className="flex flex-col items-center w-full lg:w-auto">
           <div
-            className="overflow-hidden w-[500px] h-[500px] mb-4 flex items-center justify-center"
+            className="overflow-hidden w-full sm:w-[500px] h-auto mb-4 flex items-center justify-center"
             id="main-image"
           >
             {singleProduct?.colorList &&
               singleProduct?.colorList[index]?.image_url && (
-                <Image
+                <img
                   alt="product image"
                   src={singleProduct?.colorList[index]?.image_url}
-                  width={40}
-                  height={50}
+                  width={500}
+                  height={500}
                   layout="responsive"
                   objectFit="cover"
-                  className="rounded-xl"
+                  className="rounded-xl sm:object-contain"
                 />
               )}
           </div>

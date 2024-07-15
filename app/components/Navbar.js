@@ -53,7 +53,7 @@ const Navbar = ({ search, setSearch, data }) => {
             href="https://wa.me/+917755821175"
             className=" hover:underline flex items-center gap-2"
           >
-            <WhatsApp /> (+91) 775-582-1175
+            <WhatsApp className=" text-green-500" /> (+91) 775-582-1175
           </a>
         </h2>
 

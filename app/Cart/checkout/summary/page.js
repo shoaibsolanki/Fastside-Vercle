@@ -120,7 +120,7 @@ const OrderComplete = ({ className = "" }) => {
             </div>
           </section>
           <div className="w-[548px] flex flex-row items-start justify-center max-w-full">
-            <Link href="/account">
+            <Link href="/profile">
               <Button
                 className="h-[52px] w-[203px]"
                 disableElevation

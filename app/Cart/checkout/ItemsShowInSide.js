@@ -22,7 +22,7 @@ const ItemsShowInSide = ({ items }) => {
         {items?.map((item, index) => {
           return (
             <div className="flex items-center space-x-4" key={index}>
-              <Image
+              <img
                 src={item.image_url}
                 alt="Badge Reel"
                 width={50}
@@ -33,7 +33,7 @@ const ItemsShowInSide = ({ items }) => {
                   {item.itemName.slice(0, 30)}
                   {item.itemName.length > 30 ? "..." : ""}
                 </h3>
-                <p>Color: Black</p>
+                <p>Color: {item.image_name}</p>
               </div>
               <div>
                 <p className="font-semibold">Rs {item.price}.00</p>
