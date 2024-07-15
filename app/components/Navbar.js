@@ -36,9 +36,9 @@ const Navbar = ({ search, setSearch, data }) => {
   return (
     <nav id="navbar" className="w-full">
       {/* upper navbar */}
-      <div className="max-md:hidden bg-lightgray text-dark p-4 flex flex-col md:flex-row justify-between items-center">
-        <h2 className="text-sm md:text-lg flex gap-2">
-          Need Help? Chat with us:{" "}
+      <div className=" bg-lightgray text-dark p-4 flex flex-col md:flex-row justify-between items-center">
+        <h2 className="text-sm md:text-lg flex items-center gap-2">
+          Chat with us:{" "}
           <a
             target="_blank"
             href="https://wa.me/+917755821175"
@@ -48,7 +48,7 @@ const Navbar = ({ search, setSearch, data }) => {
           </a>
         </h2>
 
-        <div className="flex flex-col md:flex-row justify-between gap-5 items-center text-sm md:text-lg">
+        <div className=" max-md:hidden flex flex-col md:flex-row justify-between gap-5 items-center text-sm md:text-lg">
           <h2 className="flex gap-2 items-center">
             <PlaceOutlined fontSize="large" />
             Our Store
@@ -66,16 +66,18 @@ const Navbar = ({ search, setSearch, data }) => {
       >
         <div className="flex justify-between items-center w-full">
           <div className="flex items-center justify-between max-md:w-full gap-8">
-            <h2 className="text-2xl md:text-3xl font-bold text-white italic">
-              <Link href="/">
-                <Image
-                  width={100}
-                  height={100}
-                  src={logo}
-                  alt="FastSide Logo"
-                />
-              </Link>
-            </h2>
+            <Link href="/">
+              <Image
+                src={logo}
+                alt="FastSide Logo"
+                style={{
+                  width: "100%",
+                  height: "auto",
+                  maxWidth: "150px",
+                  maxHeight: "150px",
+                }}
+              />
+            </Link>
           </div>
           <div className=" flex gap-4 items-center mt-4 md:mt-0">
             <button
