@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 
 const Page = () => {
   const { logout, authData, isAuthenticated } = useAuth();
-  const [activeTab, setActiveTab] = useState("address");
+  const [activeTab, setActiveTab] = useState("order");
   const router = useRouter();
   const { name } = authData;
   console.log(authData, name);

@@ -28,7 +28,7 @@ const Orders = ({ className = "" }) => {
         Orders History
       </h1>
       <div
-        className={`w-full flex flex-col items-start justify-start py-0 px-[72px] box-border gap-[10px] leading-[normal] tracking-[normal] text-left text-[20px] text-black font-caption-1 mq450:gap-[20px] mq450:px-5 max-w-full  overflow-x-auto  max-lg:max-w-[400px] `}
+        className={`w-full flex flex-col items-start justify-start py-0 px-[10px] box-border gap-[10px] leading-[normal] tracking-[normal] text-left text-[20px] text-black font-caption-1 mq450:gap-[20px] mq450:px-5 max-w-full  overflow-x-auto  max-lg:max-w-[450px] xl:max-w-full `}
       >
         <section className="max-w-full flex flex-col items-start justify-start text-left text-sm text-neutral-04-100 font-caption-1 ">
           <div className="w-full flex flex-row items-center justify-between pt-0 px-0 pb-1.5 gap-[4px] border-b-[1px] border-solid border-neutral-03-100 mq750:flex-wrap">

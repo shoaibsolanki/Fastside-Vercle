@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 const Address = ({ className = "" }) => {
   const { allOrders, authData } = useAuth();
   const { id, saasId, storeId } = authData;
+  console.log(saasId, storeId);
   const [savedAddresses, setSavedAddresses] = useState();
   const getSavedData = async () => {
     try {
@@ -29,7 +30,7 @@ const Address = ({ className = "" }) => {
       <a className="[text-decoration:none] relative leading-[32px] font-semibold text-[inherit] inline-block min-w-[81px] mq450:text-base mq450:leading-[26px]">
         Address
       </a>
-      <section className="self-stretch flex flex-row flex-wrap items-start justify-start gap-[23px] max-w-full">
+      <section className="self-stretch grid grid-cols-2 max-md:grid-cols-1 items-start justify-start gap-[23px] max-w-full">
         {savedAddresses?.map((item, index) => {
           return <AddressBox key={index} address={item} />;
         })}{" "}

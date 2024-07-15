@@ -27,8 +27,10 @@ const OrderComplete = ({ className = "" }) => {
       setOrderSummery(JSON.parse(savedSummery));
     }
   }, []);
-  console.log("order_informations", orderInformations);
-  console.log("orderSummery", orderSummery);
+  console.log("order_informations", orderInformations?.slice(0, 3));
+  const orderLength = orderInformations?.length - 3;
+  console.log("orderlength", orderLength);
+
   const { isPaymentSuccessful } = useAuth();
   const router = useRouter();
   const today = new Date();
@@ -43,7 +45,7 @@ const OrderComplete = ({ className = "" }) => {
   } else
     return (
       <div className="my-4">
-        <Stepper activeStep={3} />;
+        <Stepper activeStep={3} />
         <div
           className={`w-full shadow-[0px_32px_48px_-48px_rgba(18,_18,_18,_0.1)] rounded-lg bg-white flex flex-col items-center justify-start py-20 px-5 box-border gap-[40px] leading-[normal] tracking-[normal] mq600:gap-[20px] ${className} border-2 my-8 rounded-xl max-w-[700px] mx-auto`}
         >
@@ -60,8 +62,8 @@ const OrderComplete = ({ className = "" }) => {
             </div>
           </section>
           <section className="w-[548px] flex flex-row items-start justify-start py-0 px-px box-border max-w-full">
-            <div className="flex-1 flex flex-row items-start justify-center py-0 px-[89px] box-border max-w-full gap-[20px] mq450:pl-5 mq450:pr-5 mq450:box-border mq600:flex-wrap mq600:pl-11 mq600:pr-11 mq600:box-border ">
-              {orderInformations?.map((item, index) => {
+            <div className="flex-1 flex flex-row items-start justify-center py-0 px-[89px] box-border max-w-full gap-[20px] mq450:pl-5 mq450:pr-5 mq450:box-border mq600:flex-wrap mq600:pl-11 mq600:pr-11 mq600:box-border max-sm:flex-col max-sm:items-center w-full  ">
+              {orderInformations?.slice(0, 3).map((item, index) => {
                 return (
                   <Placeholder
                     key={index}
@@ -70,6 +72,13 @@ const OrderComplete = ({ className = "" }) => {
                   />
                 );
               })}
+              {orderLength > 0 ? (
+                <h1 className="text-lg text-dark h-14 w-14 p-2 bg-gray-100 rounded-badge flex items-center justify-center ml-5 font-semibold">
+                  +{orderLength}
+                </h1>
+              ) : (
+                ""
+              )}
             </div>
           </section>
           <section className="flex flex-row items-center justify-center py-0 px-[139px] box-border gap-[32px] max-w-full text-left text-sm text-neutral-04-100 font-caption-1-semi mq450:pl-5 mq450:pr-5 mq450:box-border mq600:flex-wrap mq600:gap-[16px] mq600:pl-[69px] mq600:pr-[69px] mq600:box-border">

@@ -4,7 +4,6 @@ const ColorShow = ({ item }) => {
   const availableColors = item.map((product, index) => {
     return product.product_color; // Changed variable name to 'product' for clarity
   });
-  console.log(availableColors);
 
   return (
     <>

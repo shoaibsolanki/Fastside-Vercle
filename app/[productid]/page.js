@@ -60,32 +60,32 @@ const Page = ({ params }) => {
 
   console.log(images);
 
-  const addQty =()=>{
+  const addQty = () => {
     try {
       const updatedProduct = {
         ...singleProduct,
-        product_qty: singleProduct.product_qty + 1
-    };
-    console.log(updatedProduct);
-    setSingleProduct(updatedProduct);
-    } catch (error) {
-      console.log(error)
-    }
-  }
-  const DecQty =()=>{
-    try {
-      if(singleProduct.product_qty >1){
-        const updatedProduct = {
-          ...singleProduct,
-          product_qty: singleProduct.product_qty - 1
+        product_qty: singleProduct.product_qty + 1,
       };
       console.log(updatedProduct);
       setSingleProduct(updatedProduct);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const DecQty = () => {
+    try {
+      if (singleProduct.product_qty > 1) {
+        const updatedProduct = {
+          ...singleProduct,
+          product_qty: singleProduct.product_qty - 1,
+        };
+        console.log(updatedProduct);
+        setSingleProduct(updatedProduct);
       }
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   return (
     <section className="container mx-auto my-8 p-4">
@@ -126,9 +126,7 @@ const Page = ({ params }) => {
                   <Check /> In stock
                 </span>
               </h2>
-              <p className="text-gray-600 mb-4">
-                Hurry up! Only 34 products left in stock!
-              </p>
+
               <div className="flex items-center gap-4 my-4">
                 Color:
                 {singleProduct?.colorList?.map((el, index) => {
@@ -152,9 +150,23 @@ const Page = ({ params }) => {
               <div className="flex items-center gap-4 my-4">
                 Quantity:
                 <div className="bg-gray-200 flex items-center border">
-                  <button className="px-3 border-r" onClick={()=>{DecQty()}}>-</button>
+                  <button
+                    className="px-3 border-r"
+                    onClick={() => {
+                      DecQty();
+                    }}
+                  >
+                    -
+                  </button>
                   <p className="px-3">{singleProduct.product_qty}</p>
-                  <button className="px-3 border-l" onClick={()=>{addQty()}}>+</button>
+                  <button
+                    className="px-3 border-l"
+                    onClick={() => {
+                      addQty();
+                    }}
+                  >
+                    +
+                  </button>
                 </div>
               </div>
               <div className="flex gap-4 my-6 flex-wrap justify-center lg:justify-start">
@@ -165,7 +177,7 @@ const Page = ({ params }) => {
                   Add to cart
                 </button>
               </div>
-              <div className="flex items-center gap-2 my-4">
+              {/* <div className="flex items-center gap-2 my-4">
                 <p className="font-semibold">SKU:</p>
                 <p>01133-9-9</p>
               </div>
@@ -195,7 +207,7 @@ const Page = ({ params }) => {
                     <i className="fab fa-whatsapp"></i>
                   </a>
                 </div>
-              </div>
+              </div> */}
             </>
           )}
         </div>

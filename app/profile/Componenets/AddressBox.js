@@ -11,7 +11,7 @@ const Content = ({ className = "", address }) => {
         <a className="[text-decoration:none] relative leading-[26px] font-semibold text-[inherit] inline-block min-w-[116px]">
           {address?.address}
         </a>
-        <div className="flex flex-row items-center justify-start gap-[4px] text-neutral-04-100">
+        {/* <div className="flex flex-row items-center justify-start gap-[4px] text-neutral-04-100">
           <Image
             width={100}
             height={100}
@@ -20,10 +20,10 @@ const Content = ({ className = "", address }) => {
             alt=""
             src="/outlineedit.svg"
           />
-          {/* <a className="[text-decoration:none] relative leading-[26px] font-semibold text-[inherit] inline-block min-w-[31px]">
+          <a className="[text-decoration:none] relative leading-[26px] font-semibold text-[inherit] inline-block min-w-[31px]">
             Edit
-          </a> */}
-        </div>
+          </a>
+        </div> */}
       </div>
       <div className="self-stretch flex flex-col items-start justify-start py-0 pr-5 pl-0 gap-[4px] text-sm">
         <div className="relative leading-[22px] inline-block min-w-[67px]">

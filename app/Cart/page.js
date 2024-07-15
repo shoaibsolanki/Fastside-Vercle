@@ -24,13 +24,25 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import { useAuth } from "../contexts/AuthConext";
 import { useRouter } from "next/navigation";
 
-const CartItem = ({ item, removeFromCart, handleIncrease, handleDecrease,isAuthenticated }) => (
+const CartItem = ({
+  item,
+  removeFromCart,
+  handleIncrease,
+  handleDecrease,
+  isAuthenticated,
+}) => (
   <>
     <Box className="my-2 items-center max-md:hidden">
       <Grid container spacing={4} alignItems="center">
         <Grid item xs={2}>
           <Image
-            src={isAuthenticated?item?.image_url ? item?.image_url : "/default-image.jpg":item?.colorList[0].image_url}
+            src={
+              isAuthenticated
+                ? item?.image_url
+                  ? item?.image_url
+                  : "/default-image.jpg"
+                : item?.colorList[0].image_url
+            }
             alt={item?.itemName}
             width={50}
             height={50}
@@ -39,7 +51,7 @@ const CartItem = ({ item, removeFromCart, handleIncrease, handleDecrease,isAuthe
         </Grid>
         <Grid item xs={4}>
           <Typography variant="subtitle1" fontWeight="bold">
-          {isAuthenticated?item?.itemName?.slice(0, 30):item.item_name}
+            {isAuthenticated ? item?.itemName?.slice(0, 30) : item.item_name}
           </Typography>
           <Typography variant="body2">Color: {item.color || "N/A"}</Typography>
         </Grid>
@@ -78,7 +90,13 @@ const CartItem = ({ item, removeFromCart, handleIncrease, handleDecrease,isAuthe
       >
         <section className="h-full w-full absolute !m-[0] top-[0px] right-[0px] bottom-[0px] left-[0px] rounded-8xs bg-background-white box-border border-[1px] border-solid border-neutral-light" />
         <img
-          src={isAuthenticated?item?.image_url ? item?.image_url : "/default-image.jpg":item?.colorList[0].image_url}
+          src={
+            isAuthenticated
+              ? item?.image_url
+                ? item?.image_url
+                : "/default-image.jpg"
+              : item?.colorList[0].image_url
+          }
           className="h-[72px] w-[72px] relative rounded-8xs object-cover z-[1]"
           loading="lazy"
           alt=""
@@ -86,7 +104,9 @@ const CartItem = ({ item, removeFromCart, handleIncrease, handleDecrease,isAuthe
         <div className="flex-1 flex flex-col items-start justify-start gap-[12px]">
           <div className="self-stretch flex flex-row items-start justify-start gap-[13px]">
             <b className="flex-1 relative tracking-[0.5px] leading-[150%] z-[1]">
-              {isAuthenticated?item?.itemName?.slice(0, 30):item.item_name?.slice(0, 30)}
+              {isAuthenticated
+                ? item?.itemName?.slice(0, 30)
+                : item.item_name?.slice(0, 30)}
               {item?.itemName?.length > 30 ? "..." : ""}
             </b>
             <div
@@ -141,8 +161,7 @@ const Page = () => {
     handleIncrease,
     handleDecrease,
   } = useCart();
-  const { authData ,isAuthenticated} = useAuth();
-  console.log(authData);
+  const { authData, isAuthenticated } = useAuth();
   const router = useRouter();
   const [userId, setUserId] = useState(null);
 
@@ -169,7 +188,10 @@ const Page = () => {
         <p className="text-2xl text-black text-medium">
           Looks like you have not added anything to your cart
         </p>
-        <Link href="/" className="btn font-bold bg-primary my-4 px-16 text-white">
+        <Link
+          href="/"
+          className="btn font-bold bg-primary my-4 px-16 text-white"
+        >
           Shop Now
         </Link>
       </div>

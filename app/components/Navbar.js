@@ -49,6 +49,7 @@ const Navbar = ({ search, setSearch, data }) => {
         <h2 className="text-sm md:text-lg flex gap-2">
           Need Help? Chat with us:{" "}
           <a
+            target="_blank"
             href="https://wa.me/+917755821175"
             className=" hover:underline flex items-center gap-2"
           >
