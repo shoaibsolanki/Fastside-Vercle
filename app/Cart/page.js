@@ -178,6 +178,11 @@ const Page = () => {
       setLoading(false);
     }
   }, [cart]);
+  useEffect(() => {
+    if (cart.length === 0) {
+      setLoading(false);
+    }
+  }, [cart]);
 
   const handleProceedToCheckout = () => {
     if (userId) {
@@ -339,7 +344,7 @@ const Page = () => {
           height={200}
           width={200}
           alt="empty_cart"
-          src="/path/to/emptyCart.jpg"
+          src="/imgs/shopping.png"
         />
         <h2 className="text-4xl font-semibold text-primary">
           Your cart is empty

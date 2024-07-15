@@ -77,6 +77,9 @@ const CancellationReturnPolicy = () => {
             TERMS OF RETURN AND REFUND
           </h2>
           <p className="mb-4">
+            4.1 You may initiate the return of Products within 7 days. We would accept the request for the return of such Product subject to the terms of this Policy. Fastside will not process returns if you have placed the order for a wrong Product model, color, or incorrect Product.
+          </p>
+          <p className="mb-4">
             4.1. You may initiate the return of Products within the timelines
             and as per the terms stipulated under Annexure A (refer to the table
             provided at the end of this Policy) of this Policy. We would accept
@@ -158,6 +161,7 @@ const CancellationReturnPolicy = () => {
             happen by the date advised, you may contact us, and we will gladly
             help you.
           </p>
+
           <p className="mb-4">
             CUSTOMER SUPPORT TEAM:
             <br />
