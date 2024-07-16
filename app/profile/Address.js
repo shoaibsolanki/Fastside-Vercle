@@ -22,7 +22,7 @@ const Address = ({ className = "" }) => {
     if (id) {
       getSavedData();
     }
-  }, [id]);
+  }, [id,getSavedData]);
   return (
     <div
       className={`w-full flex flex-col items-start justify-start py-0  box-border gap-[19px] leading-[normal] tracking-[normal] text-left text-[20px] text-black font-caption-1 mq450:pl-5 mq450:pr-5 mq450:box-border ${className}`}

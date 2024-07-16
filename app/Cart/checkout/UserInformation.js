@@ -192,7 +192,7 @@ const CheckoutPage = () => {
     if (id) {
       getSavedData();
     }
-  }, [id]);
+  }, [getSavedData,id]);
 
   const handleClose = () => {
     document.getElementById("my_modal_5").close();

@@ -54,11 +54,11 @@ export const AuthProvider = ({ children }) => {
   };
   useEffect(() => {
     getOrderHistory(saasId, storeId, id);
-  }, [id]);
+  }, [saasId,storeId,id]);
 
   useEffect(() => {
     fetchAndSetProducts();
-  }, []);
+  }, [fetchAndSetProducts]);
 
   useEffect(() => {
     const storedAuthData = JSON.parse(localStorage.getItem("authData"));

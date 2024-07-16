@@ -10,7 +10,7 @@ const Searchbar = () => {
   const { fetchAndSetProducts, products, setProducts } = useAuth();
   const [search, setSearch] = useState("");
   const [show, setShow] = useState(false);
-  const handleSearch = () => {
+  const handleSearch = useCallback(() => {
     try {
       if (search) {
         const apiUrl = `${BASEURL.ENDPOINT_URL}search/get-result/10001/1/${search}`;
@@ -36,10 +36,10 @@ const Searchbar = () => {
     } catch (error) {
       console.log(error);
     }
-  };
+  }, [search]); // Add dependencies here
   useEffect(() => {
     handleSearch();
-  }, [search]);
+  }, [search,handleSearch]);
 
   return (
     <div className="flex items-center max-md:w-full  rounded-2xl shadow-md">

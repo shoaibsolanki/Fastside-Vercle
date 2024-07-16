@@ -1,6 +1,6 @@
 import https from "./http-Pos";
 
-class DataService {
+class dataServiceInstance {
   //Api For Port 8089 / 8088
   Login(data) {
     return https.post("auth/user-login", data);
@@ -58,4 +58,5 @@ class DataService {
     );
   }
 }
-export default new DataService();
+const DataService = new dataServiceInstance();
+export default DataService;

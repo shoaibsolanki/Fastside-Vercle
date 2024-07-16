@@ -53,7 +53,7 @@ export const CartProvider = ({ children }) => {
     } else {
       setTotalItem();
     }
-  }, [id]);
+  }, [id,getCartItems,migrateLocalStorageCartToServerCart,setTotalItem]);
 
   const getCartItems = async (userId) => {
     try {
