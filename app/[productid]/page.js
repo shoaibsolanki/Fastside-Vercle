@@ -5,7 +5,7 @@ import productImage from "../../public/imgs/keychain.png";
 import Rating from "../components/Rating";
 import { Check, FavoriteRounded } from "@mui/icons-material";
 import ProductComponent from "../components/ProductComponent";
-import DataService from "../services/requestApi";
+import DataService from "../services/dataServiceInstance";
 import { BASEURL } from "../services/http-Pos";
 import { useCart } from "../contexts/CartContext";
 

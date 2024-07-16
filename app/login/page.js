@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import DataService from "../services/requestApi";
+import DataService from "../services/dataServiceInstance";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { useAuth } from "../contexts/AuthConext";

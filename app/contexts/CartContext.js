@@ -1,7 +1,7 @@
 "use client";
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { useAuth } from "./AuthConext";
-import DataService from "../services/requestApi";
+import DataService from "../services/dataServiceInstance";
 import Swal from "sweetalert2";
 import Alert from "@mui/material/Alert";
 import CheckIcon from "@mui/icons-material/Check";

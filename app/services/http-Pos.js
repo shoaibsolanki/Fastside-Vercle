@@ -9,10 +9,9 @@ export const BASEURL = {
 
 // export const authToken = localStorage.getItem('token');
 
-export default axios.create({
-  baseURL: `${BASEURL.ENDPOINT_URL}`,
-  // headers: {
-  //     "Access-Control-Allow-Origin":"*",
-  //     "authtoken": ${authToken}
-  // }
+const https = axios.create({
+  baseURL: BASEURL.ENDPOINT_URL,
+  // Optional headers or other configurations
 });
+
+export default https;

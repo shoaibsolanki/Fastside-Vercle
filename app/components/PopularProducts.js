@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import ProductComponent from "./ProductComponent";
 import { BASEURL } from "../services/http-Pos";
 import axios from "axios";
-import DataService from "../services/requestApi";
+import DataService from "../services/dataServiceInstance";
 import { useAuth } from "../contexts/AuthConext";
 const PopularProducts = ({ data, setData }) => {
   const { products } = useAuth();

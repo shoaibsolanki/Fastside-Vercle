@@ -1,7 +1,7 @@
 "use client";
 import React, { createContext, useContext, useEffect, useState } from "react";
 import Cookies from "js-cookie";
-import DataService from "../services/requestApi";
+import DataService from "../services/dataServiceInstance";
 
 const AuthContext = createContext();
 

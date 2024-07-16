@@ -5,7 +5,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import DataService from "@/app/services/requestApi";
+import DataService from "@/app/services/dataServiceInstance";
 import { Add } from "@mui/icons-material";
 import { BASEURL } from "@/app/services/http-Pos";
 const CheckoutPage = () => {

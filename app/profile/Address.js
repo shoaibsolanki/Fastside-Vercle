@@ -1,7 +1,7 @@
 import { useAuth } from "../contexts/AuthConext";
 import AddressBox from "./Componenets/AddressBox";
 import PropTypes from "prop-types";
-import DataService from "../services/requestApi";
+import DataService from "../services/dataServiceInstance";
 import { useEffect, useState } from "react";
 const Address = ({ className = "" }) => {
   const { allOrders, authData } = useAuth();
