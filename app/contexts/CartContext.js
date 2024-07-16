@@ -16,7 +16,7 @@ export const CartProvider = ({ children }) => {
   const [totalPrice, setTotalPrice] = useState(0);
 
   const [cart, setCart] = useState(() => {
-    if (typeof window !== "undefined") {
+    if (typeof window !== "undefined" && localStorage) {
       const storedCart = localStorage.getItem("cart");
       return storedCart ? JSON.parse(storedCart) : [];
     }
@@ -39,7 +39,7 @@ export const CartProvider = ({ children }) => {
 
   let subTotal;
   const [wishlist, setWishlist] = useState(() => {
-    if (typeof window !== "undefined") {
+    if (typeof window !== "undefined" && localStorage) {
       const storedWishlist = localStorage.getItem("wishlist");
       return storedWishlist ? JSON.parse(storedWishlist) : [];
     }
@@ -74,7 +74,7 @@ export const CartProvider = ({ children }) => {
   };
 
   const migrateLocalStorageCartToServerCart = async (userId) => {
-    if (typeof window !== "undefined") {
+    if (typeof window !== "undefined" && localStorage) {
       const storedCart = localStorage.getItem("cart");
       if (storedCart) {
         const localStorageCart = JSON.parse(storedCart);

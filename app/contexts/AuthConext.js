@@ -11,7 +11,7 @@ export const AuthProvider = ({ children }) => {
   const [isPaymentSuccessful, setIsPaymentSuccessful] = useState(false);
 
   const [authData, setAuthData] = useState(() => {
-    const storedAuthData = JSON.parse(localStorage.getItem("authData"));
+    const storedAuthData =localStorage  ??  JSON.parse(localStorage.getItem("authData"));
     if (storedAuthData) {
       return storedAuthData;
     } else {
@@ -61,7 +61,7 @@ export const AuthProvider = ({ children }) => {
   }, [fetchAndSetProducts]);
 
   useEffect(() => {
-    const storedAuthData = JSON.parse(localStorage.getItem("authData"));
+    const storedAuthData =localStorage  ?? JSON.parse(localStorage.getItem("authData"));
     if (storedAuthData) {
       setAuthData(storedAuthData);
     }

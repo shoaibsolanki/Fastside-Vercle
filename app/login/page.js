@@ -24,7 +24,7 @@ const Page = () => {
   const onSubmit = async (data) => {
     try {
       const response = await DataService.Login(data);
-      const redirectUrl = sessionStorage.getItem("redirectAfterLogin");
+      const redirectUrl = sessionStorage ?? sessionStorage.getItem("redirectAfterLogin");
       if (response.data.status) {
         const token = response.data.data.jwt_response;
         const user = response.data.data.customer_data;
