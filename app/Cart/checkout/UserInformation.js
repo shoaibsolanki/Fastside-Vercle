@@ -151,9 +151,9 @@ const CheckoutPage = () => {
         order_type: "",
         item_list: cart,
       };
-      localStorage.setItem("orderInformations", JSON.stringify(cart));
+      typeof window !== 'undefined' && window.localStorage && localStorage.setItem("orderInformations", JSON.stringify(cart));
       const response = await DataService.CreateOrder(orderInformations);
-      localStorage.setItem("orderMaster", JSON.stringify(response.data));
+      typeof window !== 'undefined' && window.localStorage && localStorage.setItem("orderMaster", JSON.stringify(response.data));
       console.log("Order placed:", response);
 
       if ((response.status = "200")) {

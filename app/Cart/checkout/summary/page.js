@@ -16,13 +16,13 @@ const OrderComplete = ({ className = "" }) => {
   const [orderInformations, setOrderInformations] = useState(null);
   const [orderSummery, setOrderSummery] = useState(null);
   useEffect(() => {
-    const savedOrderInformations = localStorage ?? localStorage.getItem("orderInformations");
+    const savedOrderInformations =  typeof window !== 'undefined' && window.localStorage &&  localStorage.getItem("orderInformations");
     if (savedOrderInformations) {
       setOrderInformations(JSON.parse(savedOrderInformations));
     }
   }, []);
   useEffect(() => {
-    const savedSummery =localStorage  ?? localStorage.getItem("orderMaster");
+    const savedSummery = typeof window !== 'undefined' && window.localStorage && localStorage.getItem("orderMaster");
     if (savedSummery) {
       setOrderSummery(JSON.parse(savedSummery));
     }

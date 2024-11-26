@@ -4,10 +4,10 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { Autoplay, Pagination, Navigation } from 'swiper/modules';
+import SwiperCore, { Autoplay, Pagination, Navigation } from "swiper";
 import Image from "next/image";
 
-Swiper.use([Autoplay, Pagination, Navigation]);
+SwiperCore.use([Autoplay, Pagination, Navigation]);
 
 const ImageSwitchProduct = () => {
   const swiperRef = useRef(null);
@@ -66,10 +66,10 @@ const ImageSwitchProduct = () => {
       centeredSlides={true}
       autoplay={autoplayOptions}
       loop={true} // Enable looping through images
-      pagination={{
-        clickable: true,
-      }}
-      navigation={true}
+      // pagination={{
+      //   clickable: true,
+      // }}
+      // navigation={true}
       className="mySwiper w-full lg:h-auto rounded-5"
       style={swiperStyles}
     >

@@ -16,7 +16,7 @@ export const CartProvider = ({ children }) => {
   const [totalPrice, setTotalPrice] = useState(0);
 
   const [cart, setCart] = useState(() => {
-    if (typeof window !== "undefined" && localStorage) {
+    if ( typeof window !== 'undefined' && window.localStorage ) {
       const storedCart = localStorage.getItem("cart");
       return storedCart ? JSON.parse(storedCart) : [];
     }
@@ -39,21 +39,14 @@ export const CartProvider = ({ children }) => {
 
   let subTotal;
   const [wishlist, setWishlist] = useState(() => {
-    if (typeof window !== "undefined" && localStorage) {
+    if ( typeof window !== 'undefined' && window.localStorage ) {
       const storedWishlist = localStorage.getItem("wishlist");
       return storedWishlist ? JSON.parse(storedWishlist) : [];
     }
     return [];
   });
 
-  useEffect(() => {
-    if (id) {
-      getCartItems(id);
-      migrateLocalStorageCartToServerCart(id);
-    } else {
-      setTotalItem();
-    }
-  }, [id,getCartItems,migrateLocalStorageCartToServerCart,setTotalItem]);
+  
 
   const getCartItems = async (userId) => {
     try {
@@ -74,27 +67,27 @@ export const CartProvider = ({ children }) => {
   };
 
   const migrateLocalStorageCartToServerCart = async (userId) => {
-    if (typeof window !== "undefined" && localStorage) {
+    if ( typeof window !== 'undefined' && window.localStorage ) {
       const storedCart = localStorage.getItem("cart");
       if (storedCart) {
         const localStorageCart = JSON.parse(storedCart);
         for (const item of localStorageCart) {
           await AddProductInTheCart(item, userId);
         }
-        localStorage.removeItem("cart");
+        typeof window !== 'undefined' && window.localStorage && localStorage.removeItem("cart");
       }
     }
   };
 
   useEffect(() => {
     if (typeof window !== "undefined" && !id) {
-      localStorage.setItem("cart", JSON.stringify(cart));
+      typeof window !== 'undefined' && window.localStorage &&localStorage.setItem("cart", JSON.stringify(cart));
     }
   }, [cart, id]);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      localStorage.setItem("wishlist", JSON.stringify(wishlist));
+      typeof window !== 'undefined' && window.localStorage && localStorage.setItem("wishlist", JSON.stringify(wishlist));
     }
   }, [wishlist]);
 
@@ -290,6 +283,15 @@ export const CartProvider = ({ children }) => {
   const clearWishlist = () => {
     setWishlist([]);
   };
+
+  useEffect(() => {
+    if (id) {
+      getCartItems(id);
+      migrateLocalStorageCartToServerCart(id);
+    } else {
+      setTotalItem();
+    }
+  }, [id,getCartItems,migrateLocalStorageCartToServerCart,setTotalItem]);
 
   return (
     <CartContext.Provider

@@ -11,7 +11,7 @@ export const AuthProvider = ({ children }) => {
   const [isPaymentSuccessful, setIsPaymentSuccessful] = useState(false);
 
   const [authData, setAuthData] = useState(() => {
-    const storedAuthData =localStorage  ??  JSON.parse(localStorage.getItem("authData"));
+    const storedAuthData = typeof window !== 'undefined' && window.localStorage &&  JSON.parse(localStorage.getItem("authData"));
     if (storedAuthData) {
       return storedAuthData;
     } else {
@@ -20,7 +20,7 @@ export const AuthProvider = ({ children }) => {
   });
   const { id, saasId, storeId } = authData;
   const isAuthenticated = Cookies.get("authToken");
-  console.log("isAuthenticated", isAuthenticated);
+  // console.log("isAuthenticated", isAuthenticated);
   const fetchProductApi = async () => {
     try {
       const response = await DataService.FetchProductApi("33001", "33", "1");
@@ -61,7 +61,7 @@ export const AuthProvider = ({ children }) => {
   }, [fetchAndSetProducts]);
 
   useEffect(() => {
-    const storedAuthData =localStorage  ?? JSON.parse(localStorage.getItem("authData"));
+    const storedAuthData = typeof window !== 'undefined' && window.localStorage && JSON.parse(localStorage.getItem("authData"));
     if (storedAuthData) {
       setAuthData(storedAuthData);
     }
@@ -69,15 +69,15 @@ export const AuthProvider = ({ children }) => {
 
   const login = (data, token) => {
     setAuthData(data);
-    localStorage.setItem("authData", JSON.stringify(data));
+    typeof window !== 'undefined' && window.localStorage &&localStorage.setItem("authData", JSON.stringify(data));
     Cookies.set("authToken", token, { expires: 7 });
   };
 
   const logout = () => {
     console.log("Logged Out");
     setAuthData({ token: null, user: null });
-    localStorage.removeItem("authData");
-    localStorage.clear();
+    typeof window !== 'undefined' && window.localStorage &&localStorage.removeItem("authData");
+    typeof window !== 'undefined' && window.localStorage &&localStorage.clear();
     Cookies.remove("authToken");
     window.location.reload();
   };
