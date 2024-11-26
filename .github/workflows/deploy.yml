@@ -21,7 +21,7 @@ jobs:
           password: ${{ secrets.SERVER_PASSWORD }}
           port: 22
           script: |
-            # Add deployment commands here
+            # Add deployment commands 
             echo "Deploying application..."
             cd /path/to/your/application
             git pull origin main
