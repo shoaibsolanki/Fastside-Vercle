@@ -16,7 +16,7 @@ const Footer = () => {
           className="bg-white p-8 my-4 rounded-xl flex flex-col md:flex-row justify-evenly items-center space-y-4 md:space-y-0 md:space-x-4 max-w-[1600px] mx-auto"
         >
           <h2 className="text-3xl font-semibold capitalize text-center md:text-left">
-            Subscribtion FastSide
+            Shoaib FastSide
           </h2>
           <div className="bg-second flex p-4 rounded-xl w-full md:w-auto">
             <input
